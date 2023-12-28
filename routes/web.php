@@ -199,15 +199,22 @@ Route::get('/', function () {
     })->name('index_redirect');
 
 
-// Auth Middleware Routes
-/*Protected from retrieving sensitive data accesses in browser or tab*/
-Route::middleware(['auth'])->group(function () {
     Route::get('/change_password', function () {
         return view('change_password');
     })->name('change_password');
+
     Route::get('/verify_code', function () {
         return view('not_allowed');
     })->name('verify_code');
+
+    Route::get('/request_reset', function () {
+        return view('not_allowed');
+    })->name('request_reset');
+    
+// Auth Middleware Routes
+/*Protected from retrieving sensitive data accesses in browser or tab*/
+Route::middleware(['auth'])->group(function () {
+ 
 
     Route::get('/index_redirect', function () {
         return view('not_allowed');
@@ -216,9 +223,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/login_post', function () {
         return view('error_login');
     })->name('login_post');
-    Route::get('/request_reset', function () {
-        return view('not_allowed');
-    })->name('request_reset');
+
 });
 /********************************************************/ 
 

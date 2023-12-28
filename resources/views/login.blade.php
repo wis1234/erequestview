@@ -158,7 +158,7 @@
       </div>
 
       <div class="d-flex justify-content-between align-items-center">
-        <button type="submit" class="btn btn-primary btn-yellow" style="margin-bottom: 40px; top:10px height: 65px; width: 145px;">Seconnecter</button>
+        <button type="submit" class="btn btn-primary btn-yellow" style="margin-bottom: 40px; top:10px height: 65px; width: 155px;">Se connecter</button>
         <a href="{{ route('forgot_password')}}" style="color: blue; margin-bottom: 10px; height: 65px; margin-left: 10px;">Mot de passe oublié?</a>
       </div>
     </form>

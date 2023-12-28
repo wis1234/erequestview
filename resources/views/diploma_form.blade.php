@@ -213,7 +213,7 @@
               <div class="form-group">
                 <label for="field">Filière:</label>
                 <select id="field" class="form-control" name="field">
-                  <optgroup label="">
+                  <optgroup label="Veuillez choisir votre filière">
                     <option value="Sciences Economiques">Sciences Economiques</option>
                     <option value="Sciences de Gestion">Sciences de Gestion</option>
                   </optgroup>
@@ -223,7 +223,7 @@
               <div class="form-group">
                 <label for="speciality">Spécialité:</label>
                 <select id="speciality" class="form-control" name="speciality">
-                  <optgroup label="">
+                  <optgroup label="Veuillez choisir votre spécialité">
                     <option value="Economie Appliquée">Economie Appliquée</option>
                     <option value="Economie et Finance des Collectivités Locales">Economie et Finance des Collectivités Locales</option>
                     <option value="Economie et Gestion des Exploitations Agricoles">Economie et Gestion des Exploitations Agricoles</option>
