@@ -201,419 +201,294 @@
 
 {{-- additional informations to clarify the user index page --}}
 
- <!-- ======= Additonal content begining ======= -->
-    <section id="blog" class="blog">
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+<!-- ======= Additonal content begining ======= -->
+<section id="blog" class="blog">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="row gy-4 posts-list">
+    <div class="row gy-4 posts-list">
 
-          <div class="col-xl-4 col-md-6">
-            <div class="post-item position-relative h-100">
+      <div class="col-xl-4 col-md-6">
+        <div class="post-item position-relative h-100">
 
-              <div class="post-img position-relative overflow-hidden">
-                <img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt="">
-                {{-- <span class="post-date">December 12</span> --}}
+          <div class="post-img position-relative overflow-hidden">
+            <img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt="">
+            {{-- <span class="post-date">December 12</span> --}}
+          </div>
+
+          <div class="post-content d-flex flex-column">
+
+            <h3 class="post-title">Facilitez vos procédures académiques</h3>
+
+            <div class="meta d-flex align-items-center">
+              <div class="d-flex align-items-center">
+                {{-- <i class="bi bi-person"></i> <span class="ps-2">John Doe</span> --}}
               </div>
-
-              <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</h3>
-
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    {{-- <i class="bi bi-person"></i> <span class="ps-2">John Doe</span> --}}
-                  </div>
-                  <span class="px-3 text-black-50">/</span>
-                  <div class="d-flex align-items-center">
-                    {{-- <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span> --}}
-                  </div>
-                </div>
-
-                <p>
-                  Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et
-                  laboriosam eius aut nostrum quidem aliquid dicta.
-                </p>
-
-                <hr>
-
-                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
-                    class="bi bi-arrow-right"></i></a>
-
+              {{-- <span class="px-3 text-black-50">/</span> --}}
+              <div class="d-flex align-items-center">
+                {{-- <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span> --}}
               </div>
-
             </div>
-          </div><!-- End post list item -->
 
-          <div class="col-xl-4 col-md-6">
-            <div class="post-item position-relative h-100">
+            <p>
+              Simplifiez vos procédures académiques en gérant facilement vos réclamations, notes et demandes d'actes en ligne. Profitez d'une plateforme intuitive pour une expérience simplifiée.
+            </p>
 
-              <div class="post-img position-relative overflow-hidden">
-                <img src="assets/img/blog/blog-2.jpg" class="img-fluid" alt="">
-                {{-- <span class="post-date">March 19</span> --}}
+            <hr>
+
+            <a href="blog-details.html" class="readmore stretched-link"><span>En savoir plus</span><i
+                class="bi bi-arrow-right"></i></a>
+
+          </div>
+
+        </div>
+      </div><!-- End post list item -->
+
+      <div class="col-xl-4 col-md-6">
+        <div class="post-item position-relative h-100">
+
+          <div class="post-img position-relative overflow-hidden">
+            <img src="assets/img/blog/blog-2.jpg" class="img-fluid" alt="">
+            {{-- <span class="post-date">March 19</span> --}}
+          </div>
+
+          <div class="post-content d-flex flex-column">
+
+            <h3 class="post-title">Gérez vos notes et réclamations en toute simplicité</h3>
+
+            <div class="meta d-flex align-items-center">
+              <div class="d-flex align-items-center">
+                {{-- <i class="bi bi-person"></i> <span class="ps-2">Julia Parker</span> --}}
               </div>
-
-              <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">Nisi magni odit consequatur autem nulla dolorem</h3>
-
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    {{-- <i class="bi bi-person"></i> <span class="ps-2">Julia Parker</span> --}}
-                  </div>
-                  <span class="px-3 text-black-50">/</span>
-                  <div class="d-flex align-items-center">
-                    {{-- <i class="bi bi-folder2"></i> <span class="ps-2">Economics</span> --}}
-                  </div>
-                </div>
-
-                <p>
-                  Incidunt voluptate sit temporibus aperiam. Quia vitae aut sint ullam quis illum voluptatum et. Quo
-                  libero rerum voluptatem pariatur nam.
-                </p>
-
-                <hr>
-
-                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
-                    class="bi bi-arrow-right"></i></a>
-
+              {{-- <span class="px-3 text-black-50">/</span> --}}
+              <div class="d-flex align-items-center">
+                {{-- <i class="bi bi-folder2"></i> <span class="ps-2">Economics</span> --}}
               </div>
-
             </div>
-          </div><!-- End post list item -->
 
-          <div class="col-xl-4 col-md-6">
-            <div class="post-item position-relative h-100">
+            <p>
+              Gérez efficacement vos notes et réclamations académiques en ligne. Simplifiez le processus et accédez rapidement à toutes vos informations académiques.
+            </p>
 
-              <div class="post-img position-relative overflow-hidden">
-                <img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
-                {{-- <span class="post-date">June 24</span> --}}
+            <hr>
+
+            <a href="blog-details.html" class="readmore stretched-link"><span>En savoir plus</span><i
+                class="bi bi-arrow-right"></i></a>
+
+          </div>
+
+        </div>
+      </div><!-- End post list item -->
+
+      <div class="col-xl-4 col-md-6">
+        <div class="post-item position-relative h-100">
+
+          <div class="post-img position-relative overflow-hidden">
+            <img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
+            {{-- <span class="post-date">June 24</span> --}}
+          </div>
+
+          <div class="post-content d-flex flex-column">
+
+            <h3 class="post-title">Recevez rapidement vos documents académiques</h3>
+
+            <div class="meta d-flex align-items-center">
+              <div class="d-flex align-items-center">
+                {{-- <i class="bi bi-person"></i> <span class="ps-2">Maria Doe</span> --}}
               </div>
-
-              <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">Possimus soluta ut id suscipit ea ut. In quo quia et soluta libero sit sint.</h3>
-
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    {{-- <i class="bi bi-person"></i> <span class="ps-2">Maria Doe</span> --}}
-                  </div>
-                  <span class="px-3 text-black-50">/</span>
-                  <div class="d-flex align-items-center">
-                    {{-- <i class="bi bi-folder2"></i> <span class="ps-2">Sports</span> --}}
-                  </div>
-                </div>
-
-                <p>
-                  Aut iste neque ut illum qui perspiciatis similique recusandae non. Fugit autem dolorem labore omnis
-                  et. Eum temporibus fugiat voluptate enim tenetur sunt omnis.
-                </p>
-
-                <hr>
-
-                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
-                    class="bi bi-arrow-right"></i></a>
-
+              {{-- <span class="px-3 text-black-50">/</span> --}}
+              <div class="d-flex align-items-center">
+                {{-- <i class="bi bi-folder2"></i> <span class="ps-2">Sports</span> --}}
               </div>
-
             </div>
-          </div><!-- End post list item -->
 
-          <div class="col-xl-4 col-md-6">
-            <div class="post-item position-relative h-100">
+            <p>
+              Obtenez rapidement vos documents académiques en quelques clics. Simplifiez vos demandes pour une gestion aisée de votre parcours académique.
+            </p>
 
-              <div class="post-img position-relative overflow-hidden">
-                <img src="assets/img/blog/blog-4.jpg" class="img-fluid" alt="">
-                {{-- <span class="post-date">August 05</span> --}}
-              </div>
+            <hr>
 
-              <div class="post-content d-flex flex-column">
+            <a href="blog-details.html" class="readmore stretched-link"><span>Explorer davantage</span><i
+                class="bi bi-arrow-right"></i></a>
 
-                <h3 class="post-title">Non rem rerum nam cum quo minus. Dolor distinctio deleniti explicabo eius
-                  exercitationem.</h3>
+          </div>
 
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    {{-- <i class="bi bi-person"></i> <span class="ps-2">Maria Doe</span> --}}
-                  </div>
-                  <span class="px-3 text-black-50">/</span>
-                  <div class="d-flex align-items-center">
-                    {{-- <i class="bi bi-folder2"></i> <span class="ps-2">Sports</span> --}}
-                  </div>
-                </div>
+        </div>
+      </div><!-- End post list item -->
 
-                <p>
-                  Aspernatur rerum perferendis et sint. Voluptates cupiditate voluptas atque quae. Rem veritatis rerum
-                  enim et autem. Saepe atque cum eligendi eaque iste omnis a qui.
-                </p>
+      <!-- Repéter le même schéma pour d'autres éléments, si nécessaire -->
 
-                <hr>
+    </div><!-- End blog posts list -->
 
-                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
-                    class="bi bi-arrow-right"></i></a>
+    <!-- <div class="blog-pagination">
+      <ul class="justify-content-center">
+        <li><a href="#">1</a></li>
+        <li class="active"><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+      </ul>
+    </div> -->
+    
+    <!-- End blog pagination -->
 
-              </div>
+  </div>
+</section><!-- End additional content -->
 
-            </div>
-          </div><!-- End post list item -->
-
-          <div class="col-xl-4 col-md-6">
-            <div class="post-item position-relative h-100">
-
-              <div class="post-img position-relative overflow-hidden">
-                <img src="assets/img/blog/blog-5.jpg" class="img-fluid" alt="">
-                {{-- <span class="post-date">September 17</span> --}}
-              </div>
-
-              <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">Accusamus quaerat aliquam qui debitis facilis consequatur</h3>
-
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    {{-- <i class="bi bi-person"></i> <span class="ps-2">John Parker</span> --}}
-                  </div>
-                  <span class="px-3 text-black-50">/</span>
-                  <div class="d-flex align-items-center">
-                    {{-- <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span> --}}
-                  </div>
-                </div>
-
-                <p>
-                  In itaque assumenda aliquam voluptatem qui temporibus iusto nisi quia. Autem vitae quas aperiam
-                  nesciunt mollitia tempora odio omnis. Ipsa odit sit ut amet necessitatibus. Quo ullam ut corrupti
-                  autem consequuntur totam dolorem.
-                </p>
-
-                <hr>
-
-                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
-                    class="bi bi-arrow-right"></i></a>
-
-              </div>
-
-            </div>
-          </div><!-- End post list item -->
-
-          <div class="col-xl-4 col-md-6">
-            <div class="post-item position-relative h-100">
-
-              <div class="post-img position-relative overflow-hidden">
-                <img src="assets/img/blog/blog-6.jpg" class="img-fluid" alt="">
-                {{-- <span class="post-date">December 07</span> --}}
-              </div>
-
-              <div class="post-content d-flex flex-column">
-
-                <h3 class="post-title">Distinctio provident quibusdam numquam aperiam aut</h3>
-
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    {{-- <i class="bi bi-person"></i> <span class="ps-2">Julia White</span> --}}
-                  </div>
-                  <span class="px-3 text-black-50">/</span>
-                  <div class="d-flex align-items-center">
-                    {{-- <i class="bi bi-folder2"></i> <span class="ps-2">Economics</span> --}}
-                  </div>
-                </div>
-
-                <p>
-                  Expedita et temporibus eligendi enim molestiae est architecto praesentium dolores. Illo laboriosam
-                  officiis quis. Labore officia quia sit voluptatem nisi est dignissimos totam. Et voluptate et
-                  consectetur voluptatem id dolor magni impedit. Omnis dolores sit.
-                </p>
-
-                <hr>
-
-                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
-                    class="bi bi-arrow-right"></i></a>
-
-              </div>
-
-            </div>
-          </div><!-- End post list item -->
-
-        </div><!-- End blog posts list -->
-
-        {{-- <div class="blog-pagination">
-          <ul class="justify-content-center">
-            <li><a href="#">1</a></li>
-            <li class="active"><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-          </ul>
-        </div> --}}
-        
-        <!-- End blog pagination -->
-
-      </div>
-    </section><!-- End additional content -->
 
 
 
     {{-- additional content --}}
 
         <!-- ======= Alt Services Section ======= -->
-        <section id="alt-services" class="alt-services">
-          <div class="container" data-aos="fade-up">
-    
-            <div class="row justify-content-around gy-4">
-              <div class="col-lg-6 img-bg" style="background-image: url(assets/img/hero-carousel/use2.png);" data-aos="zoom-in"
-                data-aos-delay="100"></div>
-    
-              <div class="col-lg-5 d-flex flex-column justify-content-center">
-                <h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-                <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed minima temporibus
-                  laudantium. Soluta voluptate sed facere corporis dolores excepturi</p>
-    
-                <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
-                  <i class="bi bi-easel flex-shrink-0"></i>
-                  <div>
-                    <h4><a href="" class="stretched-link">Lorem Ipsum</a></h4>
-                    <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate
-                      non provident</p>
-                  </div>
-                </div><!-- End Icon Box -->
-    
-                <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="200">
-                  <i class="bi bi-patch-check flex-shrink-0"></i>
-                  <div>
-                    <h4><a href="" class="stretched-link">Nemo Enim</a></h4>
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                      deleniti atque</p>
-                  </div>
-                </div><!-- End Icon Box -->
-    
-                <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
-                  <i class="bi bi-brightness-high flex-shrink-0"></i>
-                  <div>
-                    <h4><a href="" class="stretched-link">Dine Pad</a></h4>
-                    <p>Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus
-                      aut eligendi omnis</p>
-                  </div>
-                </div><!-- End Icon Box -->
-    
-                <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
-                  <i class="bi bi-brightness-high flex-shrink-0"></i>
-                  <div>
-                    <h4><a href="" class="stretched-link">Tride clov</a></h4>
-                    <p>Est voluptatem labore deleniti quis a delectus et. Saepe dolorem libero sit non aspernatur odit amet.
-                      Et eligendi</p>
-                  </div>
-                </div><!-- End Icon Box -->
-    
-              </div>
-            </div>
-    
+<section id="alt-services" class="alt-services">
+  <div class="container" data-aos="fade-up">
+
+    <div class="row justify-content-around gy-4">
+      <div class="col-lg-6 img-bg" style="background-image: url(assets/img/hero-carousel/use2.png);" data-aos="zoom-in"
+        data-aos-delay="100"></div>
+
+      <div class="col-lg-5 d-flex flex-column justify-content-center">
+        <h3>Facilitez vos démarches académiques avec notre plateforme</h3>
+        <p>Gérez vos études de manière intuitive. Profitez de fonctionnalités simples pour vos réclamations, notes, et demandes académiques en ligne.</p>
+
+        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
+          <i class="bi bi-easel flex-shrink-0"></i>
+          <div>
+            <h4><a href="" class="stretched-link">Gestion simplifiée</a></h4>
+            <p>Accédez facilement à vos informations et gérez vos démarches académiques en toute simplicité pour une expérience sans tracas.</p>
           </div>
-        </section><!-- End Alt Services Section -->
-    
-        <!-- ======= Alt Services Section 2 ======= -->
-        <section id="alt-services-2" class="alt-services section-bg">
-          <div class="container" data-aos="fade-up">
-    
-            <div class="row justify-content-around gy-4">
-              <div class="col-lg-5 d-flex flex-column justify-content-center">
-                <h3>Non quasi officia eum nobis et rerum epudiandae rem voluptatem</h3>
-                <p>Maxime quia dolorum alias perspiciatis. Earum voluptatem sint at non. Ducimus maxime minima iste magni
-                  sit praesentium assumenda minus. Amet rerum saepe tempora vero.</p>
-    
-                <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
-                  <i class="bi bi-easel flex-shrink-0"></i>
-                  <div>
-                    <h4><a href="" class="stretched-link">Lorem Ipsum</a></h4>
-                    <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate
-                      non provident</p>
-                  </div>
-                </div><!-- End Icon Box -->
-    
-                <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="200">
-                  <i class="bi bi-patch-check flex-shrink-0"></i>
-                  <div>
-                    <h4><a href="" class="stretched-link">Nemo Enim</a></h4>
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                      deleniti atque</p>
-                  </div>
-                </div><!-- End Icon Box -->
-    
-                <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
-                  <i class="bi bi-brightness-high flex-shrink-0"></i>
-                  <div>
-                    <h4><a href="" class="stretched-link">Dine Pad</a></h4>
-                    <p>Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus
-                      aut eligendi omnis</p>
-                  </div>
-                </div><!-- End Icon Box -->
-    
-                <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
-                  <i class="bi bi-brightness-high flex-shrink-0"></i>
-                  <div>
-                    <h4><a href="" class="stretched-link">Tride clov</a></h4>
-                    <p>Est voluptatem labore deleniti quis a delectus et. Saepe dolorem libero sit non aspernatur odit amet.
-                      Et eligendi</p>
-                  </div>
-                </div><!-- End Icon Box -->
-              </div>
-    
-              <div class="col-lg-6 img-bg" style="background-image: url(assets/img/hero-carousel/use1.png);" data-aos="zoom-in"
-                data-aos-delay="100"></div>
-            </div>
-    
+        </div><!-- End Icon Box -->
+
+        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="200">
+          <i class="bi bi-patch-check flex-shrink-0"></i>
+          <div>
+            <h4><a href="" class="stretched-link">Fiabilité assurée</a></h4>
+            <p>Nos services vous offrent une fiabilité totale pour garantir la sécurité et la confidentialité de vos données académiques.</p>
           </div>
-        </section><!-- End Alt Services Section 2 -->
+        </div><!-- End Icon Box -->
 
-
-
-
-    <!-- ======= Service Details Section ======= -->
-    <section id="service-details" class="service-details">
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4">
-            <div class="services-list">
-              <a href="#" class="active">Remodeling</a>
-              <a href="#">Construction</a>
-              <a href="#">Product Management</a>
-              <a href="#">Repairs</a>
-              <a href="#">Design</a>
-            </div>
-
-            <h4>Enim qui eos rerum in delectus</h4>
-            <p>Nam voluptatem quasi numquam quas fugiat ex temporibus quo est. Quia aut quam quod facere ut non
-              occaecati ut aut. Nesciunt mollitia illum tempore corrupti sed eum reiciendis. Maxime modi rerum.</p>
+        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
+          <i class="bi bi-brightness-high flex-shrink-0"></i>
+          <div>
+            <h4><a href="" class="stretched-link">Accessibilité optimale</a></h4>
+            <p>Profitez d'une plateforme facile d'accès vous permettant de gérer vos démarches académiques de n'importe où et à tout moment.</p>
           </div>
+        </div><!-- End Icon Box -->
 
-          <div class="col-lg-8">
-            <img src="{{ asset('assets/img/use1.png') }}" alt="" class="img-fluid services-img">
-            <h3>Temporibus et in vero dicta aut eius lidero plastis trand lined voluptas dolorem ut voluptas</h3>
-            <p>
-              Blanditiis voluptate odit ex error ea sed officiis deserunt. Cupiditate non consequatur et doloremque
-              consequuntur. Accusantium labore reprehenderit error temporibus saepe perferendis fuga doloribus vero. Qui
-              omnis quo sit. Dolorem architecto eum et quos deleniti officia qui.
-            </p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i> <span>Aut eum totam accusantium voluptatem.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Assumenda et porro nisi nihil nesciunt voluptatibus.</span>
-              </li>
-              <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea</span></li>
-            </ul>
-            <p>
-              Est reprehenderit voluptatem necessitatibus asperiores neque sed ea illo. Deleniti quam sequi optio iste
-              veniam repellat odit. Aut pariatur itaque nesciunt fuga.
-            </p>
-            <p>
-              Sunt rem odit accusantium omnis perspiciatis officia. Laboriosam aut consequuntur recusandae mollitia
-              doloremque est architecto cupiditate ullam. Quia est ut occaecati fuga. Distinctio ex repellendus eveniet
-              velit sint quia sapiente cumque. Et ipsa perferendis ut nihil. Laboriosam vel voluptates tenetur nostrum.
-              Eaque iusto cupiditate et totam et quia dolorum in. Sunt molestiae ipsum at consequatur vero. Architecto
-              ut pariatur autem ad non cumque nesciunt qui maxime. Sunt eum quia impedit dolore alias explicabo ea.
-            </p>
+        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
+          <i class="bi bi-brightness-high flex-shrink-0"></i>
+          <div>
+            <h4><a href="" class="stretched-link">Assistance personnalisée</a></h4>
+            <p>Notre équipe est disponible pour vous offrir un support personnalisé et répondre à toutes vos questions académiques.</p>
           </div>
-
-        </div>
+        </div><!-- End Icon Box -->
 
       </div>
-    </section><!-- End Service Details Section -->
+    </div>
+
+  </div>
+</section><!-- End Alt Services Section -->
+
+       <!-- ======= Alt Services Section 2 ======= -->
+<section id="alt-services-2" class="alt-services section-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="row justify-content-around gy-4">
+      <div class="col-lg-5 d-flex flex-column justify-content-center">
+        <h3>Facilitez vos démarches académiques</h3>
+        <p>Optimisez la gestion de vos demandes académiques et de réclamations. Obtenez rapidement vos bulletins, attestations et diplômes, et demandez facilement des duplicatas en cas de besoin.</p>
+
+        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
+          <i class="bi bi-easel flex-shrink-0"></i>
+          <div>
+            <h4><a href="" class="stretched-link">Demande de réclamation</a></h4>
+            <p>Effectuez facilement des demandes de réclamation en ligne pour résoudre tout problème lié à vos résultats académiques.</p>
+          </div>
+        </div><!-- End Icon Box -->
+
+        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="200">
+          <i class="bi bi-patch-check flex-shrink-0"></i>
+          <div>
+            <h4><a href="" class="stretched-link">Bulletins et attestations</a></h4>
+            <p>Recevez vos bulletins et attestations officielles rapidement et en toute simplicité via notre plateforme en ligne sécurisée.</p>
+          </div>
+        </div><!-- End Icon Box -->
+
+        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
+          <i class="bi bi-brightness-high flex-shrink-0"></i>
+          <div>
+            <h4><a href="" class="stretched-link">Demande de diplôme</a></h4>
+            <p>Initiez votre demande de diplôme officiel en ligne pour obtenir rapidement votre document attestant de votre réussite académique.</p>
+          </div>
+        </div><!-- End Icon Box -->
+
+        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
+          <i class="bi bi-brightness-high flex-shrink-0"></i>
+          <div>
+            <h4><a href="" class="stretched-link">Duplicatas et attestations</a></h4>
+            <p>Demandez facilement des duplicatas de vos diplômes ou attestations en cas de perte ou de besoin supplémentaire.</p>
+          </div>
+        </div><!-- End Icon Box -->
+      </div>
+
+      <div class="col-lg-6 img-bg" style="background-image: url(assets/img/hero-carousel/use1.png);" data-aos="zoom-in"
+        data-aos-delay="100"></div>
+    </div>
+
+  </div>
+</section><!-- End Alt Services Section 2 -->
+
+
+
+
+   <!-- ======= Service Details Section ======= -->
+<section id="service-details" class="service-details">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-4">
+        <div class="services-list">
+          <a href="#" class="active">Communication</a>
+          <a href="#">Recherche</a>
+          <a href="#">Développement académique</a>
+          <a href="#">Innovation pédagogique</a>
+          <a href="#">Partenariats</a>
+        </div>
+
+        <h4>Facilitez les échanges académiques</h4>
+        <p>Optimisez les canaux de communication pour favoriser les échanges entre étudiants, professeurs et personnels administratifs. Une communication transparente et efficace contribue à renforcer l'environnement académique.</p>
+      </div>
+
+      <div class="col-lg-8">
+        <img src="{{ asset('assets/img/use1.png') }}" alt="" class="img-fluid services-img">
+        <h3>Améliorer les interactions pour une meilleure expérience académique</h3>
+        <p>
+          Facilitez l'accès à l'information et favorisez les interactions entre les membres de la communauté académique. Une communication efficace renforce l'apprentissage, la recherche et la collaboration.
+        </p>
+        <ul>
+          <li><i class="bi bi-check-circle"></i> <span>Créer des canaux de communication dédiés à chaque filière ou promotion.</span></li>
+          <li><i class="bi bi-check-circle"></i> <span>Faciliter les échanges pour des projets de recherche interdisciplinaires.</span></li>
+          <li><i class="bi bi-check-circle"></i> <span>Promouvoir l'innovation pédagogique à travers des communications ciblées.</span></li>
+        </ul>
+        <p>
+          Une communication fluide et ouverte contribue à l'épanouissement académique, favorise la créativité et renforce le sentiment d'appartenance à une communauté dynamique.
+        </p>
+        <p>
+          Encourager les partenariats et les collaborations entre étudiants, professeurs et institutions externes renforce l'environnement académique et favorise le partage de connaissances ainsi que la croissance collective.
+        </p>
+        
+        <!-- Paragraphe du doyen -->
+        <div class="dean-message">
+          <h4>Message du Doyen</h4>
+          <p>Chers étudiants, En cette nouvelle année académique, je tiens à souligner l'importance cruciale de la communication au sein de notre communauté académique à la FASEG. Nous croyons fermement que la qualité des échanges et des interactions façonne non seulement votre expérience d'apprentissage, mais aussi la dynamique de notre faculté. C'est pourquoi je vous encourage vivement à participer activement aux différents canaux de communication que nous mettons à votre disposition. (...)</p>
+          <p>Je vous remercie pour votre attention et je vous encourage à être actifs dans nos échanges académiques. Bien cordialement, [Le Nom du Doyen] Doyen de la FASEG</p>
+        </div><!-- End Dean's Message -->
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End Service Details Section -->
+
 
 
  <!-- ======= Footer ======= -->
