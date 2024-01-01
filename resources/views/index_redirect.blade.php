@@ -22,6 +22,9 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+{{-- finger bootstrap library link --}}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
   <!-- Vendor CSS Files -->
   <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -119,6 +122,59 @@
     .popup .ok-button:hover {
       background-color: #1144aa;
     }
+
+
+
+
+    /* the pop-up styling for ins and mem */
+    .popup-content {
+  display: none;
+}
+
+.popup-content .text-wrapper {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for the text wrapper */
+  padding: 10px; /* Padding for the text wrapper */
+}
+
+.popup-content p {
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  margin: 20px 0;
+}
+.popup-button {
+      background: #007bff; /* Blue color for the button */
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 50%;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .popup-button:hover {
+      background: #0056b3; /* Darker blue color on hover */
+    }
+
+    /* CSS for blinking animation */
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.icon-blink {
+  animation: blink 1s infinite; /* Change the animation duration as needed */
+}
+
+
   </style>
 
 </head>
@@ -267,7 +323,22 @@
             </div>
           </li>
 
-          <li><a href="{{ route('transcript_status')}}"  style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Historique</a></li>
+          <li>
+            <div class="dropdown" id="bulletin-dropdown">
+              <a href="{{route('dup_transcript_form')}}">
+                <span style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Duplicata de Bulletin</span>
+                <i class="fas fa-caret-down"></i>
+              </a>
+              <ul class="additional-items" style="display: none;">
+                <!-- Initially empty, to be populated with JS -->
+              </ul>
+            </div>
+          </li>
+
+
+          <li><a href="{{ route('transcript_status')}}"  style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Statut Bulletin</a></li>
+          <li><a href="{{ route('dup_transcript_status')}}"  style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Statut Duplicata</a></li>
+
         </ol>
       </div>
     </div>
@@ -294,8 +365,9 @@
         </ul>
       </div>
     </li>
-            {{-- <li><a href="{{ route('certificate_form')}}" style="cursor: pointer; font-weight: ; font-size: 20px; color:black;">Demande de duplicata d'attestation</a></li> --}}
-            <li>
+
+
+    <li>
               <div class="dropdown" id="duplicata-dropdown">
                 <a href="#">
                   <span style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Demande de duplicata</span>
@@ -365,6 +437,97 @@
             </ol>
           </div>
         </div>
+
+
+
+        {{-- academic enrollment service title --}}
+
+        <div class="service-title">
+          {{-- <i class="fas fa-chalkboard fa-3x"></i> --}}
+          <i class="fas fa-file-signature fa-3x"></i>
+          <h4 class="title">Inscription pédagogique</h4>
+          <a href="#" class="toggle-items" style=" font-weight: bold; font-size: 20px;" id="optionsElement">Options</a> <i class="fas fa-caret-down" ></i><br><br>
+      
+          <!-- Additional items initially hidden -->
+          <div class="additional-items" style="display: none;">
+            <ol>
+              {{-- <li><a href="{{ route('transcript_form')}}" style="cursor: pointer; font-weight: ;font-size: 20px; color:  black;">Demande de bulletin</a></li> --}}
+
+
+              <div class="popup-content" id="popup">
+                <div class="text-wrapper">
+                  <i class="fas fa-exclamation-triangle icon-blink" style="color: rgba(226, 25, 25, 0.842)"></i>
+                  <p style="font-size: 20px; color: black;" id="display"></p>
+                  <button class="popup-button" onclick="closePopup()">OK</button>
+                </div>
+              </div>
+              
+              <li>
+                <div class="dropdown" id="bulletin-dropdown">
+                  <a href="{{route('transcript_form')}}">
+                    <span style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Payement</span>
+                    <i class="fas fa-caret-down"></i>
+                  </a>
+                  <ul class="additional-items" style="display: none;">
+                    <!-- Initially empty, to be populated with JS -->
+                  </ul>
+                </div>
+              </li>
+    
+              <li><a href="{{ route('transcript_status')}}"  style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Historique</a></li>
+            </ol>
+          </div>
+        </div>
+
+
+        {{-- Dissertation fees services title --}}
+
+        <div class="service-title">
+          <i class="fas fa-book fa-3x"></i>
+             <h4 class="title">Soutenance</h4>
+          <a href="#" class="toggle-items" style=" font-weight: bold; font-size: 20px;" id="optionsElement_memo">Options</a> <i class="fas fa-caret-down" ></i><br><br>
+      
+          <!-- Additional items initially hidden -->
+          <div class="additional-items" style="display: none;">
+            <ol>
+              {{-- <li><a href="{{ route('transcript_form')}}" style="cursor: pointer; font-weight: ;font-size: 20px; color:  black;">Demande de bulletin</a></li> --}}
+              <div class="popup-content" id="popup_memo">
+                <div class="text-wrapper">
+                  <i class="fas fa-exclamation-triangle icon-blink" style="color: rgba(226, 25, 25, 0.842)"></i>
+                  <p style="font-size: 20px; color: black;" id="display_memo"></p>
+                  <button class="popup-button" onclick="closePopupSecond()">OK</button>
+                </div>
+              </div>
+
+              <li>
+                <div class="dropdown" id="bulletin-dropdown">
+                  <a href="{{route('transcript_form')}}">
+                    <span style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Dépôt de mémoire</span>
+                    <i class="fas fa-caret-down"></i>
+                  </a>
+                  <ul class="additional-items" style="display: none;">
+                    <!-- Initially empty, to be populated with JS -->
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                <div class="dropdown" id="bulletin-dropdown">
+                  <a href="{{route('transcript_form')}}">
+                    <span style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Frais de soutenance</span>
+                    <i class="fas fa-caret-down"></i>
+                  </a>
+                  <ul class="additional-items" style="display: none;">
+                    <!-- Initially empty, to be populated with JS -->
+                  </ul>
+                </div>
+              </li>
+    
+              <li><a href="{{ route('transcript_status')}}"  style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Historique</a></li>
+            </ol>
+          </div>
+        </div>
+
 
     </div>
 
@@ -459,15 +622,21 @@
   //   });
   // });
 
-  $(document).ready(function() {
+//   $(document).ready(function() {
+//   // Function to toggle the visibility of additional items
+//   $('.toggle-items').on('click', function(e) {
+//     e.preventDefault();
+//     $(this).closest('.service-title').find('.additional-items').slideToggle();
+//   });
+// });
+
+$(document).ready(function() {
   // Function to toggle the visibility of additional items
   $('.toggle-items').on('click', function(e) {
     e.preventDefault();
     $(this).closest('.service-title').find('.additional-items').slideToggle();
   });
 });
-
-
 
 
 </script>
@@ -480,122 +649,135 @@
 
 
 <script>
-  // Function to create the pop-up
-  function createPopup() {
-    var popup = document.createElement('div');
-    popup.classList.add('popup');
+ // Function to create the pop-up
+function createPopup() {
+  var popup = document.createElement('div');
+  popup.classList.add('popup');
 
-    // Add the "ATTESTATION" title
-    var title = document.createElement('div');
-    title.classList.add('title');
-    title.textContent = "DUPLICATA D'ATTESTATION";
-    popup.appendChild(title);
+  // Add the "ATTESTATION" title
+  var title = document.createElement('div');
+  title.classList.add('title');
+  title.textContent = "DUPLICATA D'ATTESTATION";
+  popup.appendChild(title);
 
-    // Create the three links inside the pop-up
-    var links = ['a- Licence', 'b- Master', 'c- Doctorat'];
-    links.forEach(function (linkText) {
-      var link = document.createElement('a');
-      link.href = '#' + linkText.toLowerCase(); // Set href based on the link text
-      link.textContent = linkText;
-      link.style.display = 'block';
-      link.style.marginBottom = '10px';
+  // Create the three links inside the pop-up with finger icons
+  var links = [
+    '<i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i> Licence',
+    '<i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i> Master',
+    '&nbsp&nbsp&nbsp <i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i>&nbsp Doctorat'
+  ];
 
-      // Event listener for each link in the pop-up
-      link.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent default link behavior
 
-        // Redirect based on the clicked link text
-        if (linkText === 'a- Licence') {
-          window.location.href = '{{route('certificate_form')}}'; // Redirect to Licence page
-        } else if (linkText === 'b- Master') {
-          window.location.href = '{{route('certificate_form')}}'; // Redirect to Master page
-        } else if (linkText === 'c- Doctorat') {
-          window.location.href = '{{route('certificate_form')}}'; // Redirect to Doctorate page
-        }
-      });
 
-      // Append the links to the pop-up
-      popup.appendChild(link);
+  links.forEach(function (linkHTML) {
+    var link = document.createElement('a');
+    link.href = '#' + linkHTML.toLowerCase().replace(/<\/?[^>]+(>|$)/g, ''); // Set href based on the link HTML
+    link.innerHTML = linkHTML; // Use HTML content instead of textContent
+    link.style.display = 'block';
+    link.style.marginBottom = '10px';
+
+    // Event listener for each link in the pop-up
+    link.addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent default link behavior
+
+      // Redirect based on the clicked link text
+      if (linkHTML.includes('Licence')) {
+        window.location.href = '{{route('certificate_form')}}'; // Redirect to Licence page
+      } else if (linkHTML.includes('Master')) {
+        window.location.href = '{{route('certificate_form')}}'; // Redirect to Master page
+      } else if (linkHTML.includes('Doctorat')) {
+        window.location.href = '{{route('certificate_form')}}'; // Redirect to Doctorate page
+      }
     });
 
-    // Add the "OK" button to close the pop-up
-    var okButton = document.createElement('div');
-    okButton.classList.add('ok-button');
-    okButton.textContent = 'OK';
-    okButton.addEventListener('click', function () {
-      popup.remove(); // Remove the pop-up when OK is clicked
-    });
-    popup.appendChild(okButton);
-
-    // Append the pop-up to the body
-    document.body.appendChild(popup);
-  }
-
-  // Event listener for the "Demande de duplicata d'Attestation" link
-  var duplicataLink = document.querySelector('#duplicata-dropdown span');
-  duplicataLink.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default link behavior
-    createPopup(); // Call the function to create the pop-up
+    // Append the links to the pop-up
+    popup.appendChild(link);
   });
+
+  // Add the "OK" button to close the pop-up
+  var okButton = document.createElement('div');
+  okButton.classList.add('ok-button');
+  okButton.textContent = 'OK';
+  okButton.addEventListener('click', function () {
+    popup.remove(); // Remove the pop-up when OK is clicked
+  });
+  popup.appendChild(okButton);
+
+  // Append the pop-up to the body
+  document.body.appendChild(popup);
+}
+
+// Event listener for the "Demande de duplicata d'Attestation" link
+var duplicataLink = document.querySelector('#duplicata-dropdown span');
+duplicataLink.addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent default link behavior
+  createPopup(); // Call the function to create the pop-up
+});
 
 
   // Function to create the pop-up for Demande d'Attestation
-  function createAttestationPopup() {
-    var popup = document.createElement('div');
-    popup.classList.add('popup');
+function createAttestationPopup() {
+  var popup = document.createElement('div');
+  popup.classList.add('popup');
 
-    // Add the "ATTESTATION" title
-    var title = document.createElement('div');
-    title.classList.add('title');
-    title.textContent = 'ATTESTATION';
-    popup.appendChild(title);
+  // Add the "ATTESTATION" title
+  var title = document.createElement('div');
+  title.classList.add('title');
+  title.textContent = 'ATTESTATION';
+  popup.appendChild(title);
 
-    // Create the three links inside the pop-up
-    var links = ['a- Licence', 'b- Master', 'c- Doctorat']; // Updated links for Demande d'Attestation
-    links.forEach(function (linkText) {
-      var link = document.createElement('a');
-      link.href = '#' + linkText.toLowerCase(); // Set href based on the link text
-      link.textContent = linkText;
-      link.style.display = 'block';
-      link.style.marginBottom = '10px';
+  // Create the three links inside the pop-up with finger icons
+  var links = [
+    '<i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i> Licence',
+    '<i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i> Master',
+    '&nbsp&nbsp&nbsp <i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i>&nbsp Doctorat'
+  ];
 
-      // Event listener for each link in the pop-up
-      link.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent default link behavior
+  links.forEach(function (linkHTML, index) {
+    var link = document.createElement('a');
+    link.href = '#' + String.fromCharCode(97 + index) + '- ' + linkHTML.toLowerCase().replace(/<\/?[^>]+(>|$)/g, ''); // Set href based on the link HTML
+    link.innerHTML = linkHTML; // Use HTML content instead of textContent
+    link.style.display = 'block';
+    link.style.marginBottom = '10px';
 
-        // Redirect based on the clicked link text
-        if (linkText === 'a- Licence') {
-          window.location.href = '{{route('certificate_form')}}'; // Redirect to Licence1 page
-        } else if (linkText === 'b- Master') {
-          window.location.href = '{{route('certificate_form')}}'; // Redirect to Master1 page
-        } else if (linkText === 'c- Doctorat') {
-          window.location.href = '{{route('certificate_form')}}'; // Redirect to Doctorate1 page
-        }
-      });
+    // Event listener for each link in the pop-up
+    link.addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent default link behavior
 
-      // Append the links to the pop-up
-      popup.appendChild(link);
+      // Redirect based on the clicked link text
+      if (link.textContent.includes('Licence')) {
+        window.location.href = '{{route('certificate_form')}}'; // Redirect to Licence1 page
+      } else if (link.textContent.includes('Master')) {
+        window.location.href = '{{route('certificate_form_master')}}'; // Redirect to Master1 page
+      } else if (link.textContent.includes('Doctorat')) {
+        window.location.href = '{{route('certificate_form_doctorat')}}'; // Redirect to Doctorate1 page
+      }
     });
 
-    // Add the "OK" button to close the pop-up
-    var okButton = document.createElement('div');
-    okButton.classList.add('ok-button');
-    okButton.textContent = 'OK';
-    okButton.addEventListener('click', function () {
-      popup.remove(); // Remove the pop-up when OK is clicked
-    });
-    popup.appendChild(okButton);
-
-    // Append the pop-up to the body
-    document.body.appendChild(popup);
-  }
-
-  // Event listener for the "Demande d'Attestation" link
-  var attestationDropdown = document.querySelector('#attestation-dropdown span');
-  attestationDropdown.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default link behavior
-    createAttestationPopup(); // Call the function to create the pop-up
+    // Append the links to the pop-up
+    popup.appendChild(link);
   });
+
+  // Add the "OK" button to close the pop-up
+  var okButton = document.createElement('div');
+  okButton.classList.add('ok-button');
+  okButton.textContent = 'OK';
+  okButton.addEventListener('click', function () {
+    popup.remove(); // Remove the pop-up when OK is clicked
+  });
+  popup.appendChild(okButton);
+
+  // Append the pop-up to the body
+  document.body.appendChild(popup);
+}
+
+// Event listener for the "Demande d'Attestation" link
+var attestationDropdown = document.querySelector('#attestation-dropdown span');
+attestationDropdown.addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent default link behavior
+  createAttestationPopup(); // Call the function to create the pop-up
+});
+
 </script>
 
 {{-- Diplome --}}
@@ -603,180 +785,268 @@
 <script>
   // Function to create the pop-up for Demande d'Authenticité
   function createAuthenticitePopup() {
-    var popup = document.createElement('div');
-    popup.classList.add('popup');
+  var popup = document.createElement('div');
+  popup.classList.add('popup');
 
-    // Add the "DEMANDE D'AUTHENTICITÉ" title
-    var title = document.createElement('div');
-    title.classList.add('title');
-    title.textContent = "DEMANDE D'AUTHENTICITÉ";
-    popup.appendChild(title);
+  var title = document.createElement('div');
+  title.classList.add('title');
+  title.textContent = "AUTHENTICITÉ DE DIPLOME";
+  popup.appendChild(title);
 
-    // Create the three links inside the pop-up for Demande d'Authenticité
-    var links = ['Licence', 'Master', 'Doctorat']; // Redirections for Demande d'Authenticité
-    links.forEach(function (text) {
-      var link = document.createElement('a');
-      link.href = '#' + text.toLowerCase(); // Set href based on the link text
-      link.textContent = '- ' + text; // Display text for the link
-      link.style.display = 'block';
-      link.style.marginBottom = '10px';
+  var links = [
+    '<i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i> Licence',
+    '<i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i> Master',
+    '&nbsp&nbsp&nbsp <i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i>&nbsp Doctorat'
+  ];
 
-      // Event listener for each link in the pop-up for Demande d'Authenticité
-      link.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent default link behavior
+  links.forEach(function (linkHTML, index) {
+    var link = document.createElement('a');
+    link.href = '#'; // Set href based on the link HTML
+    link.innerHTML = linkHTML; // Use HTML content instead of textContent
+    link.style.display = 'block';
+    link.style.marginBottom = '10px';
 
-        // Redirect based on the clicked link text
-        if (text === 'Licence') {
-          window.location.href = '{{route('diploma_form')}}'; // Redirect to Licence1 page
-        } else if (text === 'Master') {
-          window.location.href = '{{route('diploma_form')}}'; // Redirect to Master1 page
-        } else if (text === 'Doctorat') {
-          window.location.href = '{{route('diploma_form')}}'; // Redirect to Doctorate1 page
-        }
-      });
+    // Event listener for each link in the pop-up
+    link.addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent default link behavior
 
-      // Append the links to the pop-up
-      popup.appendChild(link);
+      // Redirect based on the clicked link text
+      if (link.textContent.includes('Licence')) {
+        window.location.href = '{{route('diploma_form')}}'; // Redirect to Licence1 page
+      } else if (link.textContent.includes('Master')) {
+        window.location.href = '{{route('diploma_form')}}'; // Redirect to Master1 page
+      } else if (link.textContent.includes('Doctorat')) {
+        window.location.href = '{{route('diploma_form')}}'; // Redirect to Doctorate1 page
+      }
     });
 
-    // Add the "OK" button to close the pop-up for Demande d'Authenticité
-    var okButton = document.createElement('div');
-    okButton.classList.add('ok-button');
-    okButton.textContent = 'OK';
-    okButton.addEventListener('click', function () {
-      popup.remove(); // Remove the pop-up when OK is clicked
-    });
-    popup.appendChild(okButton);
-
-    // Append the pop-up to the body for Demande d'Authenticité
-    document.body.appendChild(popup);
-  }
-
-  // Event listener for the "Demande d'Authenticité" link
-  var authenticiteDropdown = document.querySelector('#diplome-aut-dropdown span');
-  authenticiteDropdown.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default link behavior
-    createAuthenticitePopup(); // Call the function to create the pop-up for Demande d'Authenticité
+    // Append the links to the pop-up
+    popup.appendChild(link);
   });
+
+  var okButton = document.createElement('div');
+  okButton.classList.add('ok-button');
+  okButton.textContent = 'OK';
+  okButton.addEventListener('click', function () {
+    popup.remove(); // Remove the pop-up when OK is clicked
+  });
+  popup.appendChild(okButton);
+
+  document.body.appendChild(popup);
+}
+
+var authenticiteDropdown = document.querySelector('#diplome-aut-dropdown span');
+authenticiteDropdown.addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent default link behavior
+  createAuthenticitePopup(); // Call the function to create the pop-up
+});
+
 
  // Function to create the pop-up for Demande de duplicata
  function createDuplicataPopup() {
-    var popup = document.createElement('div');
-    popup.classList.add('popup');
+  var popup = document.createElement('div');
+  popup.classList.add('popup');
 
-    // Add the "DEMANDE DE DUPLICATA" title
-    var title = document.createElement('div');
-    title.classList.add('title');
-    title.textContent = "DEMANDE DE DUPLICATA";
-    popup.appendChild(title);
+  var title = document.createElement('div');
+  title.classList.add('title');
+  title.textContent = "DUPLICATA DE DIPLÔME";
+  popup.appendChild(title);
 
-    // Create the three links inside the pop-up for Demande de duplicata
-    var links = ['Licence', 'Master', 'Doctorat']; // Redirections for Demande de duplicata
-    links.forEach(function (text) {
-      var link = document.createElement('a');
-      link.href = '#' + text.toLowerCase(); // Set href based on the link text
-      link.textContent = '- ' + text; // Display text for the link
-      link.style.display = 'block';
-      link.style.marginBottom = '10px';
+  var links = [
+    '<i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i> Licence',
+    '<i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i> Master',
+    '&nbsp&nbsp&nbsp <i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i>&nbsp Doctorat'
+  ];
 
-      // Event listener for each link in the pop-up for Demande de duplicata
-      link.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent default link behavior
+  links.forEach(function (linkHTML, index) {
+    var link = document.createElement('a');
+    link.href = '#'; // Set href based on the link HTML
+    link.innerHTML = linkHTML; // Use HTML content instead of textContent
+    link.style.display = 'block';
+    link.style.marginBottom = '10px';
 
-        // Redirect based on the clicked link text
-        if (text === 'Licence') {
-          window.location.href = '{{route('diploma_form')}}'; // Redirect to Licence2 page
-        } else if (text === 'Master') {
-          window.location.href = '{{route('diploma_form')}}'; // Redirect to Master2 page
-        } else if (text === 'Doctorat') {
-          window.location.href = '{{route('diploma_form')}}'; // Redirect to Doctorate2 page
-        }
-      });
+    // Event listener for each link in the pop-up
+    link.addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent default link behavior
 
-      // Append the links to the pop-up
-      popup.appendChild(link);
+      // Redirect based on the clicked link text
+      if (link.textContent.includes('Licence')) {
+        window.location.href = '{{route('diploma_form')}}'; // Redirect to Licence2 page
+      } else if (link.textContent.includes('Master')) {
+        window.location.href = '{{route('diploma_form')}}'; // Redirect to Master2 page
+      } else if (link.textContent.includes('Doctorat')) {
+        window.location.href = '{{route('diploma_form')}}'; // Redirect to Doctorate2 page
+      }
     });
 
-    // Add the "OK" button to close the pop-up for Demande de duplicata
-    var okButton = document.createElement('div');
-    okButton.classList.add('ok-button');
-    okButton.textContent = 'OK';
-    okButton.addEventListener('click', function () {
-      popup.remove(); // Remove the pop-up when OK is clicked
-    });
-    popup.appendChild(okButton);
-
-    // Append the pop-up to the body for Demande de duplicata
-    document.body.appendChild(popup);
-  }
-
-  // Event listener for the "Demande de duplicata" link
-  var duplicataDropdown = document.querySelector('#diplome-dup-dropdown span');
-  duplicataDropdown.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default link behavior
-    createDuplicataPopup(); // Call the function to create the pop-up for Demande de duplicata
+    // Append the links to the pop-up
+    popup.appendChild(link);
   });
+
+  var okButton = document.createElement('div');
+  okButton.classList.add('ok-button');
+  okButton.textContent = 'OK';
+  okButton.addEventListener('click', function () {
+    popup.remove(); // Remove the pop-up when OK is clicked
+  });
+  popup.appendChild(okButton);
+
+  document.body.appendChild(popup);
+}
+
+var duplicataDropdown = document.querySelector('#diplome-dup-dropdown span');
+duplicataDropdown.addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent default link behavior
+  createDuplicataPopup(); // Call the function to create the pop-up
+});
+
+
 
    // Function to create the pop-up for Demande de Diplôme
    function createDiplomePopup() {
-    var popup = document.createElement('div');
-    popup.classList.add('popup');
+  var popup = document.createElement('div');
+  popup.classList.add('popup');
 
-    // Add the "DEMANDE DE DIPLÔME" title
-    var title = document.createElement('div');
-    title.classList.add('title');
-    title.textContent = "DEMANDE DE DIPLÔME";
-    popup.appendChild(title);
+  var title = document.createElement('div');
+  title.classList.add('title');
+  title.textContent = "DIPLÔME";
+  popup.appendChild(title);
 
-    // Create the three links inside the pop-up for Demande de Diplôme
-    var links = ['Licence', 'Master', 'Doctorat']; // Redirections for Demande de Diplôme
-    links.forEach(function (text) {
-      var link = document.createElement('a');
-      link.href = '#' + text.toLowerCase(); // Set href based on the link text
-      link.textContent = '- ' + text; // Display text for the link
-      link.style.display = 'block';
-      link.style.marginBottom = '10px';
+  var links = [
+    '<i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i> Licence',
+    '<i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i> Master',
+    '&nbsp&nbsp&nbsp <i class="fas fa-arrow-alt-circle-right fa-lg" style="color:#0056b3"></i>&nbsp Doctorat'
+  ];
 
-      // Event listener for each link in the pop-up for Demande de Diplôme
-      link.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent default link behavior
 
-        // Redirect based on the clicked link text
-        if (text === 'Licence') {
-          window.location.href = '{{route('diploma_form')}}'; // Redirect to Licence3 page
-        } else if (text === 'Master') {
-          window.location.href = '{{route('diploma_form')}}'; // Redirect to Master3 page
-        } else if (text === 'Doctorat') {
-          window.location.href = '{{route('diploma_form')}}'; // Redirect to Doctorate3 page
-        }
-      });
+  links.forEach(function (linkHTML, index) {
+    var link = document.createElement('a');
+    link.href = '#'; // Set href based on the link HTML
+    link.innerHTML = linkHTML; // Use HTML content instead of textContent
+    link.style.display = 'block';
+    link.style.marginBottom = '10px';
 
-      // Append the links to the pop-up
-      popup.appendChild(link);
+    // Event listener for each link in the pop-up
+    link.addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent default link behavior
+
+      // Redirect based on the clicked link text
+      if (link.textContent.includes('Licence')) {
+        window.location.href = '{{route('diploma_form')}}'; // Redirect to Licence3 page
+      } else if (link.textContent.includes('Master')) {
+        window.location.href = '{{route('diploma_form')}}'; // Redirect to Master3 page
+      } else if (link.textContent.includes('Doctorat')) {
+        window.location.href = '{{route('diploma_form')}}'; // Redirect to Doctorate3 page
+      }
     });
 
-    // Add the "OK" button to close the pop-up for Demande de Diplôme
-    var okButton = document.createElement('div');
-    okButton.classList.add('ok-button');
-    okButton.textContent = 'OK';
-    okButton.addEventListener('click', function () {
-      popup.remove(); // Remove the pop-up when OK is clicked
-    });
-    popup.appendChild(okButton);
+    // Append the links to the pop-up
+    popup.appendChild(link);
+  });
 
-    // Append the pop-up to the body for Demande de Diplôme
-    document.body.appendChild(popup);
+  var okButton = document.createElement('div');
+  okButton.classList.add('ok-button');
+  okButton.textContent = 'OK';
+  okButton.addEventListener('click', function () {
+    popup.remove(); // Remove the pop-up when OK is clicked
+  });
+  popup.appendChild(okButton);
+
+  document.body.appendChild(popup);
+}
+
+var diplomeDropdown = document.querySelector('#diplome-dropdown span');
+diplomeDropdown.addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent default link behavior
+  createDiplomePopup(); // Call the function to create the pop-up
+});
+
+
+
+
+
+  // progressive displaying script
+
+  const Paragraph =
+  "Le paiement des frais d'inscription pédagogique concernent les étudiants du premier cycle (Licence 1, 2 et 3) des formations non payantes.";
+
+const displayElement = document.getElementById("display");
+let isPopupDisplayed = false; // Track if the popup is displayed
+
+function displayProgressively(index) {
+  if (index < Paragraph.length) {
+    displayElement.textContent += Paragraph.charAt(index);
+    setTimeout(() => displayProgressively(index + 1), 60);
+  }
+}
+
+// Function to toggle the popup display and manage paragraph display
+function togglePopup() {
+  const popup = document.getElementById("popup");
+
+  if (!isPopupDisplayed) {
+    popup.style.display = "block";
+    displayProgressively(0); // Start displaying the paragraph
+  } else {
+    popup.style.display = "none";
+    displayElement.textContent = ""; // Clear the displayed text
   }
 
-  // Event listener for the "Demande de Diplôme" link
-  var diplomeDropdown = document.querySelector('#diplome-dropdown span');
-  diplomeDropdown.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default link behavior
-    createDiplomePopup(); // Call the function to create the pop-up for Demande de Diplôme
-  });
+  isPopupDisplayed = !isPopupDisplayed;
+}
+
+// Call togglePopup function when clicking on the options element
+document.getElementById("optionsElement").addEventListener("click", togglePopup);
+
+    // close pop up
+
+    function closePopup(){
+      window.popup.remove()
+    }
+
+
+   // Code for the second popup (memoire)
+const paragraphSecondPopup =
+  "Le paiement des frais de soutenance concernent les étudiants en fin de formation de licence des spécialités non payante.";
+
+let isPopupDisplayedSecond = false;
+let displayElementSecond = document.getElementById("display_memo");
+
+function displayProgressivelySecond(index) {
+  if (index < paragraphSecondPopup.length) {
+    displayElementSecond.textContent += paragraphSecondPopup.charAt(index);
+    setTimeout(() => displayProgressivelySecond(index + 1), 60);
+  }
+}
+
+function togglePopupSecond() {
+  const popup = document.getElementById("popup_memo");
+
+  if (!isPopupDisplayedSecond) {
+    popup.style.display = "block";
+    displayProgressivelySecond(0);
+  } else {
+    popup.style.display = "none";
+    displayElementSecond.textContent = "";
+  }
+
+  isPopupDisplayedSecond = !isPopupDisplayedSecond;
+}
+
+function closePopupSecond() {
+  const popup = document.getElementById("popup_memo");
+  popup.style.display = "none";
+  displayElementSecond.textContent = "";
+  isPopupDisplayedSecond = false;
+}
+
+
+document.getElementById("optionsElement_memo").addEventListener("click", togglePopupSecond);
 
 
 </script>
+
+
 
 </body>
 </html>

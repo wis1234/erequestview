@@ -7,6 +7,8 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 
   <!-- Add CSS for the popup -->
@@ -113,12 +115,49 @@ tr:nth-child(even) {
     border: 1px solid #007bff;
 }
 
+ /* New styles for the finger hint */
+ .scroll-hint {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Animation for moving the finger */
+@keyframes moveFinger {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px); /* Adjust the distance the finger moves */
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animated-finger {
+  animation: moveFinger 1s linear infinite;
+}
 
   </style>
 </head>
 <body>
   <div class="popup-content " id="popup">
-    <i class="bi bi-check-circle popup-icon" style="font-size: xx-large;">HISTORIQUE DES DEMANDES</i>
+    <i class="bi bi-check-circle popup-icon"  style="font-size: large; font-weight:bold; color: blue">ETAT DE TRAITEMENT DES DEMANDES DE BULLETIN</i>
+    <br><br>
+    {{-- <i class="bi bi-check-circle popup-icon" style="font-size: large; font-weight:bold; color: blue">BULLETIN</i> --}}
+
     <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
 <!-- Display the table of complaints -->
 <div class="table-responsive">
@@ -167,19 +206,43 @@ tr:nth-child(even) {
   </tbody>
 </table>
 </div>
+
 <!-- Display pagination links -->
 <div class="d-flex justify-content-center">
   {{ $userTranscripts->links('pagination::bootstrap-4') }}
 </div>
+ 
 
-    </p> 
-   </div>
+      <!-- Finger scroll hint -->
+<div class="scroll-hint">
+  <i class="fas fa-hand-point-right fa-3x animated-finger" style="color:#0056b3"></i>
+</div>
+
+
 
   <script>
     window.onload = function () {
       document.getElementById("popup").style.display = "block";
     };
+
+
+    
+          // Show scroll hint on small and medium screens
+          if (window.innerWidth <= 768) {
+        const scrollHint = document.querySelector('.scroll-hint');
+        scrollHint.style.display = 'block';
+
+        // Automatically hide the scroll hint after 5 seconds
+        setTimeout(function () {
+          scrollHint.style.display = 'none';
+        }, 5000);
+      }
+    
+
   </script>
+
+
+{{-- @include('dup_transcript_status') --}}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 

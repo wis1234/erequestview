@@ -29,7 +29,29 @@
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/my_style1.css')}}" rel="stylesheet">
   <style>
-    /* Your existing styles */
+  /* CSS for the spinner */
+.spinner {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; 
+  width: 2cm;
+  height: 2cm;
+  border: 3px solid #ccc;
+  border-top: 3px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px; /* Adjust spacing as needed */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
     .form-container {
       padding: 20px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -175,7 +197,7 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="ac_level">Année d'étude:</label>
+                <label for="ac_level">Niveau d'étude:</label>
                 <select id="ac_level" class="form-control" name="ac_level">
                   <optgroup label="Veuillez sélectionner votre année d'étude">
                     <option value="Licence 1">Licence 1</option>
@@ -183,6 +205,18 @@
                     <option value="Licence 3">Licence 3</option>
                     <option value="Master 1">Master 1</option>
                     <option value="Master 2">Master 2</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="training_type">Options:</label>
+                <select id="training_type" class="form-control" name="training_type">
+                  <optgroup label="Veuillez choisir l'option convenable">
+                    <option value="paid_training">Formation payante</option>
+                    <option value="non_paid_training">Formation non payante</option>
+                    <option value="together_l1">Tronc commun L1</option>
+                    <option value="more_than_five">5ans d'ancienneté ou plus </option>
+
                   </optgroup>
                 </select>
               </div>
@@ -255,7 +289,7 @@
           <div class="col-lg-4 form-container form-step" id="step3">
             <fieldset>
               <div class="form-group">
-                <p style="font-size: larger; text-decoration: underline;">PIECES JOINTES</p>
+                <p style="font-size: larger; text-decoration: underline;">INFORMATIONS COMPLEMENTAIRES</p>
               
               </div>
               <div class="form-group">
@@ -273,7 +307,6 @@
                 <input type="file" class="form-control-file" id="inscription" name="inscription" placeholder="Votre fiche de préinscription validée">
               </div>
 
-
               <div class="form-group">
                 <label for="bio">Description:</label>
                 <textarea class="form-control" id="bio" name="description" rows="3" placeholder="Brève description du problème"></textarea>
@@ -290,7 +323,7 @@
           <div class="col-lg-4 form-container form-step" id="step4">
             <fieldset>
               <div class="form-group">
-                <p>Confirmation</p>
+                <p>CONFIRMATION</p>
                 En cliquant sur SUIVANT vous confirmez les Informations renseignées précédemment
               </div>
               <!-- Add "Previous" and "Next" buttons for navigation between Step 3 and Step 5 -->
@@ -307,15 +340,17 @@
               <div class="form-group">
                 <p>Paiement</p>
                 <!-- Add the payment button with the required script -->
-                Vous y êtes preque. <br>
+                Vous y êtes presque. <br>
                 Patientez pendant que la page de paiement se charge
-                 
               </div>
-                      <!-- Add "Previous" and "Next" buttons for navigation between Step 4 and Step 5 -->
-        <div class="text-center">
-          <button type="button" onclick="prevStep(4)" class="btn btn-primary" style="margin-right: 250px; width: 95px">Précédent</button>
-          <!-- <button type="button" onclick="nextStep(5)" class="btn btn-primary">Suivant</button> -->
-        </div>
+              <!-- Add "Previous" and "Next" buttons for navigation between Step 4 and Step 5 -->
+              <div class="text-center">
+                <div class="spinner"></div>
+                <button type="button" onclick="prevStep(4)" class="btn btn-primary" style="margin-right: 100px; width: 90px">
+                  Précédent
+                </button>
+                <!-- <button type="button" onclick="nextStep(5)" class="btn btn-primary">Suivant</button> -->
+              </div>
             </fieldset>
           </div>
        

@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\CertificateMasterController;
 use App\Http\Controllers\TranscriptController;
 use App\Http\Controllers\DiplomaController;
+use App\Http\Controllers\DupTranscriptController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PasswordResetController;
 
@@ -23,7 +25,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-// Guest Middleware Routes
+// Auth Middleware Routes
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/test_certificate', function () {
@@ -224,6 +226,56 @@ Route::middleware(['auth'])->group(function () {
         return view('error_login');
     })->name('login_post');
 
+    Route::get('/paid_training', function () {
+        return view('paid_training');
+    })->name('paid_training');
+
+        Route::get('/non_paid_training', function () {
+        return view('non_paid_training');
+    })->name('non_paid_training');
+
+    Route::get('/together_l1', function () {
+        return view('together_l1');
+    })->name('together_l1');
+
+    Route::get('/more_than_five', function () {
+        return view('more_than_five');
+    })->name('more_than_five');
+    
+
+    Route::get('/dup_transcript_form', function () {
+        return view('dup_transcript_form');
+    })->name('dup_transcript_form');
+
+    Route::get('/dup_test_transcript', function () {
+        return view('dup_test_transcript');
+    })->name('dup_test_transcript');
+
+    Route::get('/dup_transcript_status', function () {
+        return view('dup_transcript_status');
+    })->name('dup_transcript_status');
+
+    Route::get('/bachelor5+', function () {
+        return view('bachelor5+');
+    })->name('bachelor5+');
+
+    Route::get('/bachelor-5', function () {
+        return view('bachelor-5');
+    })->name('bachelor-5');
+    
+
+    Route::get('/certificate_form_master', function () {
+        return view('certificate_form_master');
+    })->name('certificate_form_master');
+
+    Route::get('/certificate_form_doctorat', function () {
+        return view('certificate_form_doctorat');
+    })->name('certificate_form_doctorat');
+
+    Route::get('/ certificate_form_master', function () {
+        return view(' certificate_form_master');
+    })->name(' certificate_form_master');
+   
 });
 /********************************************************/ 
 
@@ -294,6 +346,20 @@ Route::group(['prefix' => 'diploma'], function () {
     Route::put('{diploma}', [DiplomaController::class, 'update']);
 });
 
+
+
+
+
+//Duplicat transcript routing
+Route::post('/dup_transcript', [DupTranscriptController::class, 'store'])->name('dup_transcript');
+
+
+//master certificate routing
+Route::post('/certificate_master', [CertificateMasterController::class, 'store'])->name('certificate_master');
+
+
+
+
 // Message routing
 // Route::get('/message', [MessageController::class, 'index']);
 Route::get('/message', function () {
@@ -326,6 +392,7 @@ Route::get('/user/complaints', [ComplaintController::class, 'userComplaints'])->
 Route::get('/user/certificates', [CertificateController::class, 'userCertificates'])->name('certificate_status')->middleware('auth');
 Route::get('/user/transcripts', [TranscriptController::class, 'userTranscripts'])->name('transcript_status')->middleware('auth');
 Route::get('/user/diploma', [DiplomaController::class, 'userDiploma'])->name('diploma_status')->middleware('auth');
+Route::get('/user/dup_transcript', [DupTranscriptController::class, 'userDupTranscripts'])->name('dup_transcript_status')->middleware('auth');
 
 
 

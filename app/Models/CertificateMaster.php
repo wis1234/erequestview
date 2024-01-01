@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Certificate extends Model
+class CertificateMaster extends Model
 {
     use HasFactory;
-    protected $table = 'certificates';
+
+    protected $table = 'certificates_master';
 
     protected $fillable = [
         'user_id',
@@ -32,9 +33,13 @@ class Certificate extends Model
         'student_card', 
         'enrolle1', 
         'enrolle2', 
-        'enrolle3', 
+        'school_fees1',
+        'school_fees2',
+        'enrolle_defense', 
         'dis_cover_page', 
-        'cert_thesis_def'
+        'cert_dis_def',
+        'cue_m1',
+        'cue_m2',
         
         
     ];

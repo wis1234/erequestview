@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Transcript;
 use Illuminate\Http\Request;
+use App\Models\DupTranscript;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class TranscriptController extends Controller
+class DupTranscriptController extends Controller
 {
     public function index()
     {
         try {
-            $transcripts = Transcript::all();
+            $transcripts = DupTranscript::all();
             return response()->json($transcripts, 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error fetching transcripts'], 500);
         }
     }
 
-    public function show(Transcript $transcript)
+    public function show(DupTranscript $transcript)
     {
         try {
             return response()->json($transcript, 200);
@@ -42,7 +42,6 @@ public function store(Request $request)
             'field' => 'required',
             'speciality' => 'required',
             'description' => 'required',
-            'training_type' => 'required',
             'fiche_inscription' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'cip' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'inscription' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -78,14 +77,13 @@ public function store(Request $request)
             
         }
 
-        $transcript = Transcript::create([
+        $userDupTranscripts = DupTranscript::create([
             'ac_year' => $request->input('ac_year'),
             'ac_level' => $request->input('ac_level'),
             'mat' => $mat,
             'exam_type' => $request->input('exam_type'),
             'field' => $request->input('field'),
             'speciality' => $request->input('speciality'),
-            'training_type' => $request->input('training_type'),
             'description' => $request->input('description'),
             'fiche_inscription' => $imagePath,
             'cip' => $imagePath_cip,
@@ -98,31 +96,7 @@ public function store(Request $request)
         ]);
 
         // return response()->json($transcript, 201);
-        // return view('test_transcript');
-
-        // Determine the redirection based on the stored value
-    $redirect = '';
-
-    switch ($transcript->training_type) {
-        case 'paid_training':
-            $redirect = 'paid_training'; // Route name for test1.blade.php
-            break;
-        case 'non_paid_training':
-            $redirect = 'non_paid_training'; // Route name for test2.blade.php
-            break;
-        case 'together_l1':
-            $redirect = 'together_l1'; // Route name for test3.blade.php
-            break;
-            case 'more_than_five':
-                $redirect = 'more_than_five'; // Route name for test3.blade.php
-                break;
-        default:
-            $redirect = 'default_page'; // Route name for default page
-            break;
-    }
-
-    // Redirect the user based on the determined value
-    return redirect()->route($redirect);
+        return view('dup_test_transcript');
 
     } catch (\Exception $e) {
         // return response()->json(['message' => 'Error creating transcript'], 500);
@@ -132,7 +106,7 @@ public function store(Request $request)
 
 
 
-    public function update(Request $request, Transcript $transcript)
+    public function update(Request $request, DupTranscript $transcript)
     {
         try {
             $validator = Validator::make($request->all(), [
@@ -181,7 +155,7 @@ public function store(Request $request)
         }
     }
 
-    public function destroy(Transcript $transcript)
+    public function destroy(DupTranscript $transcript)
     {
         try {
             Storage::delete('public/' . $transcript->fiche_inscription);
@@ -195,24 +169,20 @@ public function store(Request $request)
 
 
      //check status method
-     public function userTranscripts()
+     public function userDupTranscripts()
      {
-         try {
-             // Get the logged-in user's ID
-             $userId = Auth::id();
-     
-             // Fetch all complaints associated with the user
-             // $userTranscripts = Complaint::where('student_id', $userId)->get();
-             $userTranscripts = Transcript::where('user_id', $userId)->paginate(4);
- 
-     
-             // Pass the complaints to a view for displaying
-             return view('transcript_status', ['userTranscripts' => $userTranscripts]);
-         } catch (\Exception $e) {
-             // Handle exceptions if any
-             return back()->withError('Error fetching user certificates');
-         }
+        try {
+            // Get the logged-in user's ID
+            $userId = Auth::id();
+    
+            // Fetch all transcripts associated with the user
+            $userDupTranscripts = DupTranscript::where('user_id', $userId)->paginate(4);
+    
+            // Pass the transcripts to the view for displaying
+            return view('dup_transcript_status', compact('userDupTranscripts'));
+        } catch (\Exception $e) {
+            // Handle exceptions if any
+            return back()->withError('Error fetching user transcripts');
+        }
      }
-
-     
 }

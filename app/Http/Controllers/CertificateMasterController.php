@@ -3,27 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Certificate;
 use Illuminate\Http\Request;
+use App\Models\CertificateMaster;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-
-class CertificateController extends Controller
+class CertificateMasterController extends Controller
 {
     public function index()
     {
         try {
-            $certificates = Certificate::all();
+            $certificates = CertificateMaster::all();
             return response()->json($certificates, 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'An error occurred.'], 500);
         }
     }
 
-    public function show(Certificate $certificate)
+    public function show(CertificateMaster $certificate)
     {
         try {
             return response()->json($certificate, 200);
@@ -56,14 +55,22 @@ class CertificateController extends Controller
                 'student_card' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'enrolle1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'enrolle2' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'enrolle3' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'school_fees1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'school_fees2' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'enrolle_defense' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'dis_cover_page' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'cert_thesis_def' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'cert_dis_def' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'cue_m1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'cue_m2' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+
+
             ]);
     
             if ($validator->fails()) {
                 // Handle validation failure, you can redirect or return a response as needed.
-                return view('false_form_filled_certificate');
+             return response()->json(['message' => 'Invalid input'], 422);
+
+                // return view('false_form_filled_certificate_master');
             }
     
             // Check if the user is authenticated
@@ -89,11 +96,15 @@ class CertificateController extends Controller
             $student_cardPath = $request->file('student_card')->store('student_card', 'public');
             $enrolle1Path = $request->file('enrolle1')->store('enrolle1', 'public');
             $enrolle2Path = $request->file('enrolle2')->store('enrolle2', 'public');
-            $enrolle3Path = $request->file('enrolle3')->store('enrolle3', 'public');
+            $school_fees1Path = $request->file('school_fees1')->store('school_fees1', 'public');
+            $school_fees2Path = $request->file('school_fees2')->store('school_fees2', 'public');
+            $enrolle_defensePath = $request->file('enrolle_defense')->store('enrolle_defense', 'public');
             $dis_cover_pagePath = $request->file('dis_cover_page')->store('dis_cover_page', 'public');
-            $cert_thesis_defPath = $request->file('cert_thesis_def')->store('cert_thesis_def', 'public');
-    
-            $certificateData = [
+            $cert_dis_defPath = $request->file('cert_dis_def')->store('cert_dis_def', 'public');
+            $cue_m1Path = $request->file('cue_m1')->store('cue_m1', 'public');
+            $cue_m2Path = $request->file('cue_m2')->store('cue_m2', 'public');
+
+            $certificateMasterData = [
                 'user_id' => $user->id,
                 'firstname' => $user->firstname,
                 'lastname' => $user->lastname,
@@ -113,9 +124,15 @@ class CertificateController extends Controller
                 'student_card' => $student_cardPath,
                 'enrolle1' => $enrolle1Path,
                 'enrolle2' => $enrolle2Path,
-                'enrolle3' => $enrolle3Path,
+                'school_fees1' => $school_fees1Path,
+                'school_fees2' => $school_fees2Path,
+                'enrolle_defense' => $enrolle_defensePath,
                 'dis_cover_page' => $dis_cover_pagePath,
-                'cert_thesis_def' => $cert_thesis_defPath,
+                'cert_dis_def' => $cert_dis_defPath,
+                'cue_m1' => $cue_m1Path,
+                'cue_m2' => $cue_m2Path,
+
+
             ];
     
             $idCardPaths = [];
@@ -126,7 +143,7 @@ class CertificateController extends Controller
                 }
             }
             
-            $certificate = $user->certificates()->create($certificateData);
+            $certificate_master = $user->certificates_master()->create($certificateMasterData);
     
             // Handle success, you can redirect or return a response as needed.
             // return view('test_certificate');
@@ -135,7 +152,7 @@ class CertificateController extends Controller
              // Determine the redirection based on the stored value
     $redirect = '';
 
-    switch ($certificate->delay) {
+    switch ($certificate_master->delay) {
         case 'moins de 5 ans':
             $redirect = 'bachelor-5'; // Route name for test1.blade.php
             break;
@@ -165,7 +182,7 @@ class CertificateController extends Controller
 
 
 
-    public function update(Request $request, Certificate $certificate)
+    public function update(Request $request, CertificateMaster $certificate)
     {
         try {
             // Validation rules for request data
@@ -238,7 +255,7 @@ class CertificateController extends Controller
         }
     }
 
-    public function destroy(Certificate $certificate)
+    public function destroy(CertificateMaster $certificate)
     {
         try {
             Storage::delete('public/' . $certificate->bulletin1);
@@ -260,7 +277,7 @@ class CertificateController extends Controller
         
                 // Fetch all complaints associated with the user
                 // $userComplaints = Complaint::where('student_id', $userId)->get();
-                $userComplaints = Certificate::where('user_id', $userId)->paginate(4);
+                $userComplaints = CertificateMaster::where('user_id', $userId)->paginate(4);
     
         
                 // Pass the complaints to a view for displaying

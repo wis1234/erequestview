@@ -29,7 +29,7 @@
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/my_style1.css')}}" rel="stylesheet">
   <style>
-    /* CSS for the spinner */
+  /* CSS for the spinner */
 .spinner {
   display: flex;
   justify-content: flex-end;
@@ -77,7 +77,7 @@
 </head>
 <body>
 
-<!-- ======= Header ======= -->
+  <!-- ======= Header ======= -->
 
 <header id="header" class="header d-flex align-items-center">
   <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -157,14 +157,15 @@
 </header>
 <!-- End Header -->
 
+
   <main id="main">
     <!-- Breadcrumbs -->
     <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-        <h2 style="font-weight: bold; font-size: 40px;">Diplôme</h2>
+        <h2 style="font-weight: bold; font-size: 40px;">Duplicata</h2>
         <ol>
             <li><a href="{{route('index')}}">Accueil</a></li>
-            <li class="white-text">Demande de Diplôme</li>
+            <li class="white-text">Duplicata de bulletin</li>
         </ol>
       </div>
     </div>
@@ -177,13 +178,13 @@
           </div>
         </div>
 
-        <form action="{{ route('diploma')}}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('dup_transcript')}}" method="post" enctype="multipart/form-data">
           @csrf
           <!-- Step 1: Information personnelle -->
           <div class="col-lg-4 form-container form-step" id="step1">
             <fieldset>
               <div class="form-group">
-                <p style="align-items: center; justify-content: center; display: grid; font-size: larger; text-decoration: underline;">INFORMATIONS PERSONNELLES</p>
+                <p style="align-items: center; justify-content: center; display: grid; font-size: larger; text-decoration: underline;">INFORMATIONS DE LA DEMANDE</p>
                 <label for="ac_year">Année académique:</label>
                 <select id="ac_year" class="form-control" name="ac_year">
                   <optgroup label="Veuillez sélectionner l'année académique">
@@ -207,10 +208,11 @@
                   </optgroup>
                 </select>
               </div>
-              <div class="form-group">
+
+              {{-- <div class="form-group">
                 <label for="mat">Matricule:</label>
                 <input type="text" name="mat" class="form-control" id="mat" placeholder="17104018" maxlength="8">
-              </div>
+              </div> --}}
 
 
               <!-- Add a "Next" button to move to the next step (Step 2) -->
@@ -224,18 +226,20 @@
           <div class="col-lg-4 form-container form-step" id="step2">
             <fieldset>
               <div class="form-group">
-                <p style="font-size: larger; text-decoration: underline;">INFORMATIONS DE LA DEMANDE</p>
-                <!-- <label for="exam_type">Semestre:</label>
+                <p style="font-size: larger; text-decoration: underline;">INFORMATIONS DU DOCUMEMT</p>
+                <label for="exam_type">Semestre:</label>
                 <select name="exam_type" id="exam_type">
-                  <option value="session normale">Semestre 1 </option>
-                  <option value="session de rattrapage">Semestre 2</option>
-                </select> -->
+                  <optgroup label="Veuillez sélectionner le semestre concerné">
+                  <option value="Semestre 1">Semestre 1 </option>
+                  <option value="Semestre 2">Semestre 2</option>
+                </optgroup>
+                </select>
               </div>
 
               <div class="form-group">
                 <label for="field">Filière:</label>
                 <select id="field" class="form-control" name="field">
-                  <optgroup label="Veuillez choisir votre filière">
+                  <optgroup label="Veuillez sélectionner votre filière">
                     <option value="Sciences Economiques">Sciences Economiques</option>
                     <option value="Sciences de Gestion">Sciences de Gestion</option>
                   </optgroup>
@@ -264,7 +268,7 @@
 
               <!-- Add "Previous" and "Next" buttons for navigation between Step 1 and Step 3 -->
               <div class="text-center">
-                <button type="button" onclick="prevStep(1)" class="btn btn-primary" style="width: 100px">Précédent</button>
+                <button type="button" onclick="prevStep(1)" class="btn btn-primary" style="width: 90px">Précédent</button>
                 <button type="button" onclick="nextStep(3)" class="btn btn-primary" style="width: 85px">Suivant</button>
               </div>
             </fieldset>
@@ -278,20 +282,27 @@
               
               </div>
               <div class="form-group">
-                <label for="fiche_inscription">Attestation:</label>
-                <input type="file" class="form-control-file" id="fiche_inscription" name="fiche_inscription" placeholder=" deux bulletins">
+                <label for="fiche_inscription">carte d'etudiant:</label>
+                <input type="file" class="form-control-file" id="fiche_inscription" name="fiche_inscription" placeholder="Votre fiche de préinscription validée">
               </div>
-              <!-- <div class="form-group">
-                <label for="fiche_inscription2">Bulletin 2:</label>
-                <input type="file" class="form-control-file" id="fiche_inscription2" name="fiche_inscription" placeholder=" deux bulletins">
-              </div> -->
+
+              <div class="form-group">
+                <label for="cip">CIP(ANIP):</label>
+                <input type="file" class="form-control-file" id="fcip" name="cip" placeholder="Votre fiche de préinscription validée">
+              </div>
+
+              <div class="form-group">
+                <label for="inscription">Fiche de préinscription validée:</label>
+                <input type="file" class="form-control-file" id="inscription" name="inscription" placeholder="Votre fiche de préinscription validée">
+              </div>
+
               <div class="form-group">
                 <label for="bio">Description:</label>
                 <textarea class="form-control" id="bio" name="description" rows="3" placeholder="Brève description du problème"></textarea>
               </div>
               <!-- Add "Previous" and "Next" buttons for navigation between Step 2 and Step 4 -->
               <div class="text-center">
-                <button type="button" onclick="prevStep(2)" class="btn btn-primary" style="width: 100px">Précédent</button>
+                <button type="button" onclick="prevStep(2)" class="btn btn-primary" style="width: 95px">Précédent</button>
                 <button type="button" onclick="nextStep(4)" class="btn btn-primary" style="width: 85px">Suivant</button>
               </div>
             </fieldset>
@@ -306,8 +317,8 @@
               </div>
               <!-- Add "Previous" and "Next" buttons for navigation between Step 3 and Step 5 -->
               <div class="text-center">
-                <button type="button" onclick="prevStep(3)" class="btn btn-primary" style="width: 100px">Précédent</button>
-                <button type="submit" onclick="nextStep(5)" class="btn btn-primary"style="width: 85px">Suivant</button>
+                <button type="button" onclick="prevStep(3)" class="btn btn-primary" style="width: 95px">Précédent</button>
+                <button type="submit" onclick="nextStep(5)" class="btn btn-primary" style="width: 85px">Suivant</button>
               </div>
             </fieldset>
           </div>
@@ -324,7 +335,7 @@
               <!-- Add "Previous" and "Next" buttons for navigation between Step 4 and Step 5 -->
               <div class="text-center">
                 <div class="spinner"></div>
-                <button type="button" onclick="prevStep(4)" class="btn btn-primary" style="margin-right: 100px; width: 100px">
+                <button type="button" onclick="prevStep(4)" class="btn btn-primary" style="margin-right: 100px; width: 90px">
                   Précédent
                 </button>
                 <!-- <button type="button" onclick="nextStep(5)" class="btn btn-primary">Suivant</button> -->

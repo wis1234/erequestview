@@ -342,7 +342,7 @@
   <div class="container" data-aos="fade-up">
 
     <div class="row justify-content-around gy-4">
-      <div class="col-lg-6 img-bg" style="background-image: url(assets/img/hero-carousel/use2.png);" data-aos="zoom-in"
+      <div class="col-lg-6 img-bg" style="background-image: url(assets/img/hero-carousel/hero-carousel-2.jpg)" data-aos="zoom-in"
         data-aos-delay="100"></div>
 
       <div class="col-lg-5 d-flex flex-column justify-content-center">
@@ -429,7 +429,7 @@
         </div><!-- End Icon Box -->
       </div>
 
-      <div class="col-lg-6 img-bg" style="background-image: url(assets/img/hero-carousel/use1.png);" data-aos="zoom-in"
+      <div class="col-lg-6 img-bg" style="background-image: url(assets/img/hero-carousel/hero-carousel-2.jpg)"& data-aos="zoom-in"
         data-aos-delay="100"></div>
     </div>
 
@@ -469,6 +469,14 @@
           <li><i class="bi bi-check-circle"></i> <span>Faciliter les échanges pour des projets de recherche interdisciplinaires.</span></li>
           <li><i class="bi bi-check-circle"></i> <span>Promouvoir l'innovation pédagogique à travers des communications ciblées.</span></li>
         </ul>
+
+                <!-- Paragraphe du doyen -->
+                <div class="dean-message">
+                <br>
+                  <h4>Message du Doyen</h4>
+                  <p>Chers étudiants, En cette nouvelle année académique, je tiens à souligner l'importance cruciale de la communication au sein de notre communauté académique à la FASEG. Nous croyons fermement que la qualité des échanges et des interactions façonne non seulement votre expérience d'apprentissage, mais aussi la dynamique de notre faculté. C'est pourquoi je vous encourage vivement à participer activement aux différents canaux de communication que nous mettons à votre disposition. (...)</p>
+                  <p>Je vous remercie pour votre attention et je vous encourage à être actifs dans nos échanges académiques. Bien cordialement, [Le Nom du Doyen] Doyen de la FASEG</p>
+                </div><!-- End Dean's Message -->
         <p>
           Une communication fluide et ouverte contribue à l'épanouissement académique, favorise la créativité et renforce le sentiment d'appartenance à une communauté dynamique.
         </p>
@@ -476,12 +484,7 @@
           Encourager les partenariats et les collaborations entre étudiants, professeurs et institutions externes renforce l'environnement académique et favorise le partage de connaissances ainsi que la croissance collective.
         </p>
         
-        <!-- Paragraphe du doyen -->
-        <div class="dean-message">
-          <h4>Message du Doyen</h4>
-          <p>Chers étudiants, En cette nouvelle année académique, je tiens à souligner l'importance cruciale de la communication au sein de notre communauté académique à la FASEG. Nous croyons fermement que la qualité des échanges et des interactions façonne non seulement votre expérience d'apprentissage, mais aussi la dynamique de notre faculté. C'est pourquoi je vous encourage vivement à participer activement aux différents canaux de communication que nous mettons à votre disposition. (...)</p>
-          <p>Je vous remercie pour votre attention et je vous encourage à être actifs dans nos échanges académiques. Bien cordialement, [Le Nom du Doyen] Doyen de la FASEG</p>
-        </div><!-- End Dean's Message -->
+
       </div>
 
     </div>

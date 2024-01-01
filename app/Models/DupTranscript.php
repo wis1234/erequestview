@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transcript extends Model
+class DupTranscript extends Model
 {
     use HasFactory;
+    protected $table = 'dup_transcripts';
+
 
     protected $fillable = [
         'ac_year',
@@ -16,7 +18,6 @@ class Transcript extends Model
         'exam_type',
         'field',
         'speciality',
-        'training_type',
         'description',
         'status',
         'feedback',

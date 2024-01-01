@@ -7,6 +7,7 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 
@@ -152,12 +153,12 @@ tr:nth-child(even) {
 
 
 
-
   </style>
 </head>
 <body>
   <div class="popup-content " id="popup">
-    <i class="bi bi-check-circle popup-icon"  style="font-size: large; font-weight:bold; color: blue">HISTORIQUE DES RECLAMATIONS</i>
+    <i class="bi bi-check-circle popup-icon"  style="font-size: large; font-weight:bold; color: blue">ETAT DE TRAITEMENT DES DEMANDES DE DUPLICATA DE BULLETIN</i>
+    {{-- <i class="bi bi-check-circle popup-icon" style="font-size: large; font-weight:bold; color: blue">DUPLICATA DE BULLETIN</i> --}}
     <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
 <!-- Display the table of complaints -->
 <div class="table-responsive">
@@ -170,11 +171,11 @@ tr:nth-child(even) {
           <th>Option</th>
           <th>Année académique</th>
           <th>Niveau d'étude</th>
-          <th>Session</th>
-          <th>Motif</th>
-          <th>UE</th>
-          <th>ECUE</th>
-          <th>Date et Heure de demande</th>
+          <th>Semestre</th>
+          {{-- <th>Motif</th> --}}
+          {{-- <th>UE</th> --}}
+          {{-- <th>ECUE</th> --}}
+          <th>Date de demande</th>
           <th>Observation</th>
           <th>Status</th>
           <th>N°</th>
@@ -184,22 +185,22 @@ tr:nth-child(even) {
       </tr>
   </thead>
   <tbody>
-      @foreach($userComplaints as $complaint)
+      @foreach($userDupTranscripts as $dup_transcript)
       <tr>
-        <td>{{ $complaint->id }}</td>
-          <td>{{ $complaint->mat }}</td>
-          <td>{{ $complaint->field }}</td>
-          <td>{{ $complaint->speciality }}</td>
-          <td>{{ $complaint->ac_year }}</td>
-          <td>{{ $complaint->ac_level }}</td>
-          <td>{{ $complaint->exam_type }}</td>
-          <td>{{ $complaint->complain_type }}</td>
-          <td>{{ $complaint->ecue_sub }}</td>
-          <td>{{ $complaint->ecue }}</td>
-          <td>{{ $complaint->created_at }}</td>
-          <td>{{ $complaint->feedback }}</td>
-          <td>{{ $complaint->status }}</td>
-          <td>{{ $complaint->id }}</td>
+        <td>{{ $dup_transcript->id }}</td>
+          <td>{{ $dup_transcript->mat }}</td>
+          <td>{{ $dup_transcript->field }}</td>
+          <td>{{ $dup_transcript->speciality }}</td>
+          <td>{{ $dup_transcript->ac_year }}</td>
+          <td>{{ $dup_transcript->ac_level }}</td>
+          <td>{{ $dup_transcript->exam_type }}</td>
+          {{-- <td>{{ $complaint->complain_type }}</td> --}}
+          {{-- <td>{{ $complaint->ecue_sub }}</td> --}}
+          {{-- <td>{{ $complaint->ecue }}</td> --}}
+          <td>{{ $dup_transcript->created_at }}</td>
+          <td>{{ $dup_transcript->feedback }}</td>
+          <td>{{ $dup_transcript->status }}</td>
+          <td>{{ $dup_transcript->id }}</td>
 
       </tr>
       @endforeach
@@ -208,23 +209,16 @@ tr:nth-child(even) {
 </div>
 <!-- Display pagination links -->
 <div class="d-flex justify-content-center">
-  {{ $userComplaints->links('pagination::bootstrap-4') }}
+  {{ $userDupTranscripts->links('pagination::bootstrap-4') }}
 </div>
 
     </p> 
-
-    <div class="header-buttons" id="auth_button">
-      {{-- <a href="#" onclick="redirectFunction()" class="register-button">Retour</a> --}}
-    </div>
    </div>
 
-
-<!-- Finger scroll hint -->
+   <!-- Finger scroll hint -->
 <div class="scroll-hint">
   <i class="fas fa-hand-point-right fa-3x animated-finger" style="color:#0056b3"></i>
 </div>
-
-
 
 
   <script>
@@ -232,15 +226,8 @@ tr:nth-child(even) {
       document.getElementById("popup").style.display = "block";
     };
 
-    //the script of the redirection  function
 
-    function redirectFunction(){
-      var index_route_redirection = "{{route('login_post')}}";
-       window.location.href = index_route_redirection;
-    }
-
-
-
+    
           // Show scroll hint on small and medium screens
           if (window.innerWidth <= 768) {
         const scrollHint = document.querySelector('.scroll-hint');
@@ -251,7 +238,6 @@ tr:nth-child(even) {
           scrollHint.style.display = 'none';
         }, 5000);
       }
-    
     
   </script>
 

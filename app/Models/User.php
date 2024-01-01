@@ -36,12 +36,12 @@ class User extends Authenticatable
 
     public function student()
     {
-        return $this->hasOne(Student::class);
+        // return $this->hasOne(Student::class);
     }
 
     public function teacher()
     {
-        return $this->hasOne(Teacher::class);
+        // return $this->hasOne(Teacher::class);
     }
 
     public function messages()
@@ -57,6 +57,16 @@ class User extends Authenticatable
     public function certificates()
     {
         return $this->hasMany(Certificate::class);
+    }
+
+    public function certificates_master()
+    {
+        return $this->hasMany(CertificateMaster::class);
+    }
+
+    public function dup_transcripts()
+    {
+        return $this->hasMany(DupTranscript::class);
     }
     
 

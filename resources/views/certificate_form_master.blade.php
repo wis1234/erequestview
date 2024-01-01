@@ -29,6 +29,7 @@
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/my_style1.css')}}" rel="stylesheet">
   <style>
+    
     /* CSS for the spinner */
 .spinner {
   display: flex;
@@ -161,10 +162,10 @@
     <!-- Breadcrumbs -->
     <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-        <h2 style="font-weight: bold; font-size: 40px;">Diplôme</h2>
+        <h2 style="font-weight: bold; font-size: 40px;">Attestation</h2>
         <ol>
             <li><a href="{{route('index')}}">Accueil</a></li>
-            <li class="white-text">Demande de Diplôme</li>
+            <li class="white-text">Demande d'Attestation</li>
         </ol>
       </div>
     </div>
@@ -177,16 +178,16 @@
           </div>
         </div>
 
-        <form action="{{ route('diploma')}}" method="post" enctype="multipart/form-data">
+        <form action="{{('certificate_master')}}" method="post" enctype="multipart/form-data">
           @csrf
           <!-- Step 1: Information personnelle -->
           <div class="col-lg-4 form-container form-step" id="step1">
             <fieldset>
               <div class="form-group">
                 <p style="align-items: center; justify-content: center; display: grid; font-size: larger; text-decoration: underline;">INFORMATIONS PERSONNELLES</p>
-                <label for="ac_year">Année académique:</label>
+                <label for="ac_year">Année de validation de la dernière UE:</label>
                 <select id="ac_year" class="form-control" name="ac_year">
-                  <optgroup label="Veuillez sélectionner l'année académique">
+                  <optgroup label="Veuillez sélectionner l'année académique de la validation de la dernière UE">
                     <option value="2022-2023">2022-2023</option>
                     <option value="2023-2024">2023-2024</option>
                     <option value="2024-2025">2024-2025</option>
@@ -199,37 +200,22 @@
                 <label for="ac_level">Niveau d'étude:</label>
                 <select id="ac_level" class="form-control" name="ac_level">
                   <optgroup label="Veuillez sélectionner votre année d'étude">
-                    <option value="Licence 1">Licence 1</option>
-                    <option value="Licence 2">Licence 2</option>
-                    <option value="Licence 3">Licence 3</option>
                     <option value="Master 1">Master 1</option>
                     <option value="Master 2">Master 2</option>
+                    <option value="phD 1">phD 1</option>
+                    <option value="phD 2">phD 2</option>
+
                   </optgroup>
                 </select>
               </div>
-              <div class="form-group">
+              {{-- <div class="form-group">
                 <label for="mat">Matricule:</label>
                 <input type="text" name="mat" class="form-control" id="mat" placeholder="17104018" maxlength="8">
-              </div>
+              </div> --}}
 
-
-              <!-- Add a "Next" button to move to the next step (Step 2) -->
-              <div class="text-center">
-                <button type="button" onclick="nextStep(2)" class="btn btn-primary" style="width: 85px">Suivant</button>
-              </div>
-            </fieldset>
-          </div>
-
-          <!-- Step 2: Information de réclamation 1 -->
-          <div class="col-lg-4 form-container form-step" id="step2">
-            <fieldset>
               <div class="form-group">
-                <p style="font-size: larger; text-decoration: underline;">INFORMATIONS DE LA DEMANDE</p>
-                <!-- <label for="exam_type">Semestre:</label>
-                <select name="exam_type" id="exam_type">
-                  <option value="session normale">Semestre 1 </option>
-                  <option value="session de rattrapage">Semestre 2</option>
-                </select> -->
+                <label for="defense_date">Date de soutenance:</label>
+                <input type="date" name="defense_date" class="form-control" id="defense_date" placeholder="date" maxlength="8">
               </div>
 
               <div class="form-group">
@@ -245,7 +231,7 @@
               <div class="form-group">
                 <label for="speciality">Spécialité:</label>
                 <select id="speciality" class="form-control" name="speciality">
-                  <optgroup label="Veuillez choisir votre spécialité">
+                  <optgroup label="Veuillez choisir votre spécialté">
                     <option value="Economie Appliquée">Economie Appliquée</option>
                     <option value="Economie et Finance des Collectivités Locales">Economie et Finance des Collectivités Locales</option>
                     <option value="Economie et Gestion des Exploitations Agricoles">Economie et Gestion des Exploitations Agricoles</option>
@@ -260,11 +246,73 @@
                 </select>
               </div>
 
+
+              <!-- Add a "Next" button to move to the next step (Step 2) -->
+              <div class="text-center">
+                <button type="button" onclick="nextStep(2)" class="btn btn-primary" style="width: 80px">Suivant</button>
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Step 2: Information de réclamation 1 -->
+          <div class="col-lg-4 form-container form-step" id="step2">
+            <fieldset>
+              <div class="form-group">
+                <p style="font-size: larger; text-decoration: underline;">INFORMATIONS  DU DOCUMEMT</p>
+                <label for="delay">Ancienneté:</label>
+                <select name="delay" id="delay">
+                  <optgroup label="Veuillez choisir l'option convenable ">
+                  <option value="moins de 5 ans">Datant de moins de 5 ans </option>
+                  <option value="5 ans et plus"> Datant de 5 ans et plus</option>
+                </optgroup>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="birth_cert">Acte de naissance:</label>
+                <input type="file" class="form-control-file" id="birth_cert" name="birth_cert" placeholder=" ">
+              </div>
+
+              <div class="form-group">
+                <label for="cip">Carte d'Identification Personnelle:</label>
+                <input type="file" class="form-control-file" id="cip" name="cip" placeholder=" ">
+              </div>
+
+              <div class="form-group">
+                <label for="id_card">Pièce d'identité(CNI ):</label>
+                <input type="file" class="form-control-file" id="id_card" name="id_card" placeholder=" ">
+              </div>
+
+              <div class="form-group">
+                <label for="student_card">Carte d'étudiant:</label>
+                <input type="file" class="form-control-file" id="student_card" name="student_card" placeholder=" ">
+              </div>
+
+              <div class="form-group">
+                <label for="enrolle1">Fiche de préinscription validée Master 1:</label>
+                <input type="file" class="form-control-file" id="enrolle1" name="enrolle1" placeholder=" ">
+              </div>
+
+              <div class="form-group">
+                <label for="enrolle2">Fiche de préinscription validée Master 2:</label>
+                <input type="file" class="form-control-file" id="enrolle2" name="enrolle2" placeholder=" ">
+              </div>
+
+              <div class="form-group">
+                <label for="school_fees1">Quittance scolarité Master 1:</label>
+                <input type="file" class="form-control-file" id="school_fees1" name="school_fees1" placeholder=" ">
+              </div>
+
+              <div class="form-group">
+                <label for="school_fees2">Quittance scolarité Master 2:</label>
+                <input type="file" class="form-control-file" id="school_fees2" name="school_fees2" placeholder=" ">
+              </div>
+
               <div class="form-group">
 
               <!-- Add "Previous" and "Next" buttons for navigation between Step 1 and Step 3 -->
               <div class="text-center">
-                <button type="button" onclick="prevStep(1)" class="btn btn-primary" style="width: 100px">Précédent</button>
+                <button type="button" onclick="prevStep(1)" class="btn btn-primary" style="width: 90px">Précédent</button>
                 <button type="button" onclick="nextStep(3)" class="btn btn-primary" style="width: 85px">Suivant</button>
               </div>
             </fieldset>
@@ -274,24 +322,47 @@
           <div class="col-lg-4 form-container form-step" id="step3">
             <fieldset>
               <div class="form-group">
-                <p style="font-size: larger; text-decoration: underline;">INFORMATIONS COMPLEMENTAIRES</p>
+                <p style="font-size: larger; text-decoration: underline;">INFORMATIONS COMPLEMENTAIRES:</p>
               
               </div>
+
+
+
+
+
               <div class="form-group">
-                <label for="fiche_inscription">Attestation:</label>
-                <input type="file" class="form-control-file" id="fiche_inscription" name="fiche_inscription" placeholder=" deux bulletins">
+                <label for="enrolle_defense">Fiche de préinscription validée de soutenance:</label>
+                <input type="file" class="form-control-file" id="enrolle_defense" name="enrolle_defense" placeholder=" ">
               </div>
-              <!-- <div class="form-group">
-                <label for="fiche_inscription2">Bulletin 2:</label>
-                <input type="file" class="form-control-file" id="fiche_inscription2" name="fiche_inscription" placeholder=" deux bulletins">
-              </div> -->
+
+              <div class="form-group">
+                <label for="dis_cover_page">Page de garde du memoire signé(après soutenance):</label>
+                <input type="file" class="form-control-file" id="dis_cover_page" name="dis_cover_page" placeholder=" ">
+              </div>
+
+              <div class="form-group">
+                <label for="cert_dis_def">Quitus de dépôt de mémoire( après soutenance):</label>
+                <input type="file" class="form-control-file" id="cert_dis_def" name="cert_dis_def" placeholder=" ">
+              </div>
+
+              <div class="form-group">
+                <label for="cue_m1">CUE Master 1(semestre 1 et 2):</label>
+                <input type="file" class="form-control-file" id="cue_m1" name="cue_m1" placeholder=" ">
+              </div>
+
+              <div class="form-group">
+                <label for="cue_m2">CUE Master 2(semestre 1 et 2):</label>
+                <input type="file" class="form-control-file" id="cue_m2" name="cue_m2" placeholder=" ">
+              </div>
+
+
               <div class="form-group">
                 <label for="bio">Description:</label>
                 <textarea class="form-control" id="bio" name="description" rows="3" placeholder="Brève description du problème"></textarea>
               </div>
               <!-- Add "Previous" and "Next" buttons for navigation between Step 2 and Step 4 -->
               <div class="text-center">
-                <button type="button" onclick="prevStep(2)" class="btn btn-primary" style="width: 100px">Précédent</button>
+                <button type="button" onclick="prevStep(2)" class="btn btn-primary" style="width: 90px">Précédent</button>
                 <button type="button" onclick="nextStep(4)" class="btn btn-primary" style="width: 85px">Suivant</button>
               </div>
             </fieldset>
@@ -302,12 +373,13 @@
             <fieldset>
               <div class="form-group">
                 <p>CONFIRMATION</p>
-                En cliquant sur SUIVANT vous confirmez les Informations renseignées précédemment
+                En cliquant sur SUIVANT vous confirmez les Informations renseignées précédemment. 
+                Vous vous rassurez également de la clarté des pièces scannées (photo claire).
               </div>
               <!-- Add "Previous" and "Next" buttons for navigation between Step 3 and Step 5 -->
               <div class="text-center">
-                <button type="button" onclick="prevStep(3)" class="btn btn-primary" style="width: 100px">Précédent</button>
-                <button type="submit" onclick="nextStep(5)" class="btn btn-primary"style="width: 85px">Suivant</button>
+                <button type="button" onclick="prevStep(3)" class="btn btn-primary" style="width: 90px">Précédent</button>
+                <button type="submit" onclick="nextStep(5)" class="btn btn-primary" style="width: 85px">Suivant</button>
               </div>
             </fieldset>
           </div>
@@ -324,7 +396,7 @@
               <!-- Add "Previous" and "Next" buttons for navigation between Step 4 and Step 5 -->
               <div class="text-center">
                 <div class="spinner"></div>
-                <button type="button" onclick="prevStep(4)" class="btn btn-primary" style="margin-right: 100px; width: 100px">
+                <button type="button" onclick="prevStep(4)" class="btn btn-primary" style="margin-right: 100px; width: 90px">
                   Précédent
                 </button>
                 <!-- <button type="button" onclick="nextStep(5)" class="btn btn-primary">Suivant</button> -->
@@ -390,6 +462,29 @@
   </div>
 </footer>
 <!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+
 
   <script>
     let currentStep = 1;
