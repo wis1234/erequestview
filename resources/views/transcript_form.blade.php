@@ -167,6 +167,13 @@
             <li><a href="{{route('index')}}">Accueil</a></li>
             <li class="white-text">demande de Bulletin</li>
         </ol>
+        {{-- session alert for record already exists --}}
+        @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+         @endif
+
       </div>
     </div>
     <!-- Registration Form Section -->
@@ -205,6 +212,8 @@
                     <option value="Licence 3">Licence 3</option>
                     <option value="Master 1">Master 1</option>
                     <option value="Master 2">Master 2</option>
+                    <option value="Master 2">phD 1</option>
+                    <option value="Master 2">phD 2</option>
                   </optgroup>
                 </select>
               </div>
@@ -351,6 +360,8 @@
                 </button>
                 <!-- <button type="button" onclick="nextStep(5)" class="btn btn-primary">Suivant</button> -->
               </div>
+
+
             </fieldset>
           </div>
        

@@ -336,8 +336,8 @@
           </li>
 
 
-          <li><a href="{{ route('transcript_status')}}"  style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Statut Bulletin</a></li>
-          <li><a href="{{ route('dup_transcript_status')}}"  style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Statut Duplicata</a></li>
+          <li><a href="{{ route('transcript_status')}}"  style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Historique</a></li>
+          {{-- <li><a href="{{ route('dup_transcript_status')}}"  style="cursor: pointer; font-weight: ; font-size: 20px; color: blue;">Statut Duplicata</a></li> --}}
 
         </ol>
       </div>

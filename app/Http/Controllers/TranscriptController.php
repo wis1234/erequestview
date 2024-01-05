@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Transcript;
 use Illuminate\Http\Request;
+use App\Models\DupTranscript;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -53,6 +54,23 @@ public function store(Request $request)
             return view('false_form_filled_transcript');
 
         }
+
+// Check if the user has already requested a transcript for the current semester and ac_level
+$semesterExists = Transcript::where('user_id', Auth::id())
+->where('ac_level', $request->input('ac_level'))
+->where('exam_type', $request->input('exam_type'))
+->exists();
+
+// check for existing semester records
+if ($semesterExists) {
+    $semester = $request->input('exam_type') === 'Semestre 1' ? 'Semestre 1' : 'Semestre 2';
+    $acLevel = $request->input('ac_level');
+    $errorMessage = "Vous avez déjà fait une demande de bulletin pour le $semester de $acLevel";
+    return redirect()->back()->with('error', $errorMessage);
+}
+
+
+
 
         $user = Auth::user();
 
@@ -195,24 +213,28 @@ public function store(Request $request)
 
 
      //check status method
+
      public function userTranscripts()
      {
          try {
-             // Get the logged-in user's ID
              $userId = Auth::id();
      
-             // Fetch all complaints associated with the user
-             // $userTranscripts = Complaint::where('student_id', $userId)->get();
+             // Fetch transcripts from Transcript model for the logged-in user
              $userTranscripts = Transcript::where('user_id', $userId)->paginate(4);
- 
      
-             // Pass the complaints to a view for displaying
-             return view('transcript_status', ['userTranscripts' => $userTranscripts]);
+             // Fetch transcripts from DupTranscript model for the logged-in user
+             $userDupTranscripts = DupTranscript::where('user_id', $userId)->paginate(4);
+     
+             // Pass both sets of data to the view for displaying
+             return view('transcript_status', [
+                 'userTranscripts' => $userTranscripts,
+                 'userDupTranscripts' => $userDupTranscripts,
+             ]);
          } catch (\Exception $e) {
-             // Handle exceptions if any
-             return back()->withError('Error fetching user certificates');
+             return back()->withError('Error fetching user transcripts');
          }
      }
+     
 
      
 }

@@ -64,159 +64,109 @@
       background: #0056b3; /* Darker blue color on hover */
     }
 
-    /* table styles */
-    /* Style the table header */
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
+  
 
-th, td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
 
-th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-}
-
-/* Style table rows */
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-/* Pagination styles */
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.pagination li {
-    list-style: none;
-    margin: 0 5px;
-    display: inline-block;
-}
-
-.pagination li a {
-    padding: 5px 10px;
-    text-decoration: none;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    color: #333;
-}
-
-.pagination li.active a {
-    background-color: #007bff;
-    color: #fff;
-    border: 1px solid #007bff;
-}
-
- /* New styles for the finger hint */
- .scroll-hint {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: none;
-      animation: fadeIn 1s ease-in-out;
+/* New styles for the report format */
+/* .dual-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
+    .dual-container .report {
+      width: calc(50% - 10px); 
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      padding: 20px;
+      background-color: #fff;
+    } */
+
+
+        /* New styles for the report format */
+        .report {
+      width: 80%; /* Adjust width as needed */
+      margin: 0 auto;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      padding: 20px;
+      background-color: #fff;
     }
-
-    /* Animation for moving the finger */
-@keyframes moveFinger {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(20px); /* Adjust the distance the finger moves */
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-.animated-finger {
-  animation: moveFinger 1s linear infinite;
-}
-
   </style>
 </head>
 <body>
   <div class="popup-content " id="popup">
-    <i class="bi bi-check-circle popup-icon"  style="font-size: large; font-weight:bold; color: blue">ETAT DE TRAITEMENT DES DEMANDES DE BULLETIN</i>
+    <i class="bi bi-check-circle popup-icon" style="font-size: large; font-weight:bold; color: blue">ETAT DE TRAITEMENT DES DEMANDES DE BULLETIN</i>
     <br><br>
-    {{-- <i class="bi bi-check-circle popup-icon" style="font-size: large; font-weight:bold; color: blue">BULLETIN</i> --}}
 
-    <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
-<!-- Display the table of complaints -->
-<div class="table-responsive">
-<table >
-  <thead>
-      <tr>
-        <th>N°</th>
-          <th>Matricule</th>
-          <th>Filière</th>
-          <th>Option</th>
-          <th>Année académique</th>
-          <th>Niveau d'étude</th>
-          <th>Semestre</th>
-          {{-- <th>Motif</th> --}}
-          {{-- <th>UE</th> --}}
-          {{-- <th>ECUE</th> --}}
-          <th>Date de demande</th>
-          <th>Observation</th>
-          <th>Status</th>
-          <th>N°</th>
+    <!-- Display the elements in two side-by-side divs with shadow effect -->
+    <div class="dual-container">
 
-
-
-      </tr>
-  </thead>
-  <tbody>
+      @if ($userTranscripts->isEmpty())
+      <p>Aucune demande de bulletin n'a été envoyée</p>
+    @else
       @foreach($userTranscripts as $transcript)
-      <tr>
-        <td>{{ $transcript->id }}</td>
-          <td>{{ $transcript->mat }}</td>
-          <td>{{ $transcript->field }}</td>
-          <td>{{ $transcript->speciality }}</td>
-          <td>{{ $transcript->ac_year }}</td>
-          <td>{{ $transcript->ac_level }}</td>
-          <td>{{ $transcript->exam_type }}</td>
-          {{-- <td>{{ $complaint->complain_type }}</td> --}}
-          {{-- <td>{{ $complaint->ecue_sub }}</td> --}}
-          {{-- <td>{{ $complaint->ecue }}</td> --}}
-          <td>{{ $transcript->created_at }}</td>
-          <td>{{ $transcript->feedback }}</td>
-          <td>{{ $transcript->status }}</td>
-          <td>{{ $transcript->id }}</td>
-
-      </tr>
+        @if ($transcript->user_id === auth()->user()->id && $transcript->exam_type === 'current_semester')
+          <p>You have already requested your transcript for this semester.</p>
+        @else
+          <div class="report">
+            <div class="report-item">
+              {{-- Display transcript details --}}
+              <p><strong>Matricule:</strong> {{ $transcript->mat }}</p>
+              <p><strong>Filière:</strong> {{ $transcript->field }}</p>
+              <p><strong>Option:</strong> {{ $transcript->speciality }}</p>
+              <p><strong>Année académique:</strong> {{ $transcript->ac_year }}</p>
+              <p><strong>Niveau d'étude:</strong> {{ $transcript->ac_level }}</p>
+              <p><strong>Semestre:</strong> {{ $transcript->exam_type }}</p>
+              <p><strong>Date de demande:</strong> {{ $transcript->created_at }}</p>
+              <p><strong>Observation:</strong> {{ $transcript->feedback }}</p>
+              <p><strong>Status:</strong> {{ $transcript->status }}</p>
+            </div>
+          </div>
+        @endif
       @endforeach
-  </tbody>
-</table>
-</div>
+    @endif
 
-<!-- Display pagination links -->
-<div class="d-flex justify-content-center">
-  {{ $userTranscripts->links('pagination::bootstrap-4') }}
-</div>
- 
+      {{-- <div class="report">
+        <!-- Second div for more elements or another section -->
+      </div> --}}
 
-      <!-- Finger scroll hint -->
-<div class="scroll-hint">
-  <i class="fas fa-hand-point-right fa-3x animated-finger" style="color:#0056b3"></i>
-</div>
+
+
+<br><br>
+      <i class="bi bi-check-circle popup-icon" style="font-size: large; font-weight:bold; color: blue">ETAT DE TRAITEMENT DES DEMANDES DE  DUPLICATA BULLETIN</i>
+<br><br>
+      <!-- Display the transcripts from DupTranscript model -->
+    @if ($userDupTranscripts->isEmpty())
+    <p>Aucune demande de duplicata de bulletin n'a été envoyée</p>
+@else
+    @foreach($userDupTranscripts as $dup_transcript)
+        @if ($dup_transcript->user_id === auth()->user()->id && $dup_transcript->exam_type === 'current_semester')
+            <p>You have already requested your duplicate transcript for this semester.</p>
+        @else
+            <div class="report">
+                <div class="report-item">
+                    {{-- Display duplicate transcript details --}}
+                    <p><strong>Matricule:</strong> {{ $dup_transcript->mat }}</p>
+                    <p><strong>Filière:</strong> {{ $dup_transcript->field }}</p>
+                    <p><strong>Option:</strong> {{ $dup_transcript->speciality }}</p>
+                    <p><strong>Année académique:</strong> {{ $dup_transcript->ac_year }}</p>
+                    <p><strong>Niveau d'étude:</strong> {{ $dup_transcript->ac_level }}</p>
+                    <p><strong>Semestre:</strong> {{ $dup_transcript->exam_type }}</p>
+                    <p><strong>Date de demande:</strong> {{ $dup_transcript->created_at }}</p>
+                    <p><strong>Observation:</strong> {{ $dup_transcript->feedback }}</p>
+                    <p><strong>Status:</strong> {{ $dup_transcript->status }}</p>
+                </div>
+            </div>
+        @endif
+    @endforeach
+@endif
+
+
+    </div>
+  </div>
+
+
 
 
 
@@ -240,9 +190,6 @@ tr:nth-child(even) {
     
 
   </script>
-
-
-{{-- @include('dup_transcript_status') --}}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
