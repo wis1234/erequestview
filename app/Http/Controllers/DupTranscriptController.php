@@ -53,6 +53,22 @@ public function store(Request $request)
 
         }
 
+        
+// Check if the user has already requested a transcript for the current semester and ac_level
+$semesterExists = DupTranscript::where('user_id', Auth::id())
+->where('ac_level', $request->input('ac_level'))
+->where('exam_type', $request->input('exam_type'))
+->exists();
+
+// check for existing semester records
+if ($semesterExists) {
+    $semester = $request->input('exam_type') === 'Semestre 1' ? 'Semestre 1' : 'Semestre 2';
+    $acLevel = $request->input('ac_level');
+    $errorMessage = "Vous avez déjà fait une demande de duplicata de bulletin pour le $semester de $acLevel";
+    return redirect()->back()->with('error', $errorMessage);
+}
+
+
         $user = Auth::user();
 
         if (!$user) {

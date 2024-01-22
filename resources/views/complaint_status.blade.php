@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>gestion des réclamations de notes</title>
+  <title>Etat de traitement des réclamation de note</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -150,7 +150,16 @@ tr:nth-child(even) {
   animation: moveFinger 1s linear infinite;
 }
 
+ /* Additional styles for accepted and rejected rows */
+ .accepted {
+        font-weight: bold;
+        color: green;
+    }
 
+    .rejected {
+        font-weight: bold;
+        color: red;
+    }
 
 
   </style>
@@ -177,6 +186,7 @@ tr:nth-child(even) {
           <th>Date et Heure de demande</th>
           <th>Observation</th>
           <th>Status</th>
+          <th>Date et Heure de traitement</th>
           <th>N°</th>
 
 
@@ -185,7 +195,8 @@ tr:nth-child(even) {
   </thead>
   <tbody>
       @foreach($userComplaints as $complaint)
-      <tr>
+      <tr class="{{ $complaint->status === 'ACCEPTE' ? 'accepted' : ($complaint->status === 'REJETE' ? 'rejected' : '') }}">
+
         <td>{{ $complaint->id }}</td>
           <td>{{ $complaint->mat }}</td>
           <td>{{ $complaint->field }}</td>
@@ -198,7 +209,18 @@ tr:nth-child(even) {
           <td>{{ $complaint->ecue }}</td>
           <td>{{ $complaint->created_at }}</td>
           <td>{{ $complaint->feedback }}</td>
-          <td>{{ $complaint->status }}</td>
+ <!-- ... (other cells) ... -->
+ <td style="font-weight:10px; color: {{ $complaint->status === 'ACCEPTE' ? 'green' : ($complaint->status === 'REJETE' ? 'red' : '') }}">
+  @if($complaint->status === 'ACCEPTE')
+      <i class="bi bi-check-circle" style="color: green;"></i> {{ $complaint->status }}
+  @elseif($complaint->status === 'REJETE')
+      <i class="bi bi-x-circle" style="color: red;"></i> {{ $complaint->status }}
+  @else
+      {{ $complaint->status }}
+  @endif
+</td>
+<td>{{ $complaint->updated_at }}</td>
+
           <td>{{ $complaint->id }}</td>
 
       </tr>

@@ -118,7 +118,7 @@
   <div class="popup-content" id="popup">
     <i class="bi bi-check-circle popup-icon"></i>
     <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
-      En cliquant sur PAYER vous accepter les termes de Payement des frais de demande de CUE datant de plus de 5 ans.
+      En cliquant sur PAYER vous accepter les termes de Payement des frais de demande de CUE datant de 5 ans et plus.
 
       {{-- <button id="pay-btn" class="button-class"> PAYER</button> --}}
 

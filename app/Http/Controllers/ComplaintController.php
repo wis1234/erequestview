@@ -10,10 +10,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Storage;
-use Exception; 
+use Exception;
 use Illuminate\Support\Facades\Auth;
-
-
 
 class ComplaintController extends Controller
 {
@@ -27,83 +25,11 @@ class ComplaintController extends Controller
         }
     }
 
-    // public function store(Request $request)
-    // {
-    //     try {
-    //         $validator = Validator::make($request->only(['fiche_inscription', 'mat', 'ac_year', 'ac_level', 'field', 'speciality', 'exam_type', 'complain_type', 'ecue', 'ecue_sub', 'description']), [
-    //             'fiche_inscription' => 'required|file|mimes:jpg,jpeg,png|max:2048',
-    //             'mat' => 'required|string',
-    //             'ac_year' => 'required|string',
-    //             'ac_level' => 'required|string',
-    //             'field' => 'required|string',
-    //             'speciality' => 'required|string',
-    //             'exam_type' => 'required|string',
-    //             'complain_type' => 'required|string',
-    //             'ecue' => 'required|string',
-    //             'ecue_sub' => 'required|string',
-    //             'description' => 'nullable|string',
-    //         ]);
-
-    //         if ($validator->fails()) {
-    //             throw new ValidationException($validator);
-    //         }
-
-    //         $mat = $request->input('mat');
-    //         $user = User::where('mat_number', $mat)->first();
-
-    //         if (!$user) {
-    //             // return response()->json(['message' => 'User not found'], Response::HTTP_NOT_FOUND);
-    //             return view('not_found');
-
-    //         }
-
-    //         $complaintData = $request->only(['ac_year', 'ac_level', 'mat', 'field', 'speciality', 'exam_type', 'complain_type', 'ecue', 'ecue_sub', 'description']);
-    //         $complaintData['student_id'] = $user->id;
-    //         $complaintData['claimant_firstname'] = $user->firstname;
-    //         $complaintData['claimant_lastname'] = $user->lastname;
-    //         $complaintData['claimant_phone'] = $user->phone;
-    //         $complaintData['claimant_email'] = $user->email;
-
-    //         $ficheInscriptionPath = $this->storeFile($request->file('fiche_inscription'));
-
-    //         if (!$ficheInscriptionPath) {
-
-    //             // return response()->json(['message' => 'Failed to store fiche_inscription file'], Response::HTTP_INTERNAL_SERVER_ERROR);
-    //             return view('false_form_filled');
-
-    //         }
-
-    //         // Create the Complaint model with the 'fiche_inscription' field set to the path
-    //         $complaint = new Complaint($complaintData);
-    //         $complaint->fiche_inscription = $ficheInscriptionPath;
-    //         $complaint->save();
-
-    //         // return response()->json(['message' => 'Complaint created successfully', 'data' => $complaint]);
-
-    //         return view('test');
-
-    //     } catch (ValidationException $e) {
-
-    //         // return response()->json(['error' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
-    //         return view('false_form_filled');
-
-
-    //     } catch (Exception $e) {
-            
-    //         // return response()->json(['message' => 'An error occurred', 'error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
-    //         return view('false_form_filled');
-
-    //     }
-    // }
-
-
-
-
     public function store(Request $request)
     {
         try {
             $validator = Validator::make($request->only(['fiche_inscription', 'ac_year', 'ac_level', 'field', 'speciality', 'exam_type', 'complain_type', 'ecue', 'ecue_sub', 'description']), [
-                'fiche_inscription' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+                'fiche_inscription.*' => 'required|file|mimes:jpg,jpeg,png|max:2048',
                 'ac_year' => 'required|string',
                 'ac_level' => 'required|string',
                 'field' => 'required|string',
@@ -114,21 +40,25 @@ class ComplaintController extends Controller
                 'ecue_sub' => 'required|string',
                 'description' => 'nullable|string',
             ]);
-    
+
             if ($validator->fails()) {
                 throw new ValidationException($validator);
             }
-    
+
             // Get the authenticated user data from the session
             $user = Auth::user();
-    
+
             if (!$user) {
+                // return response()->json(['message' => 'User not found'], Response::HTTP_NOT_FOUND);
                 return view('errors.419');
             }
-    
-            // Automatically fill fields based on the authenticated user's data
+
+            // Automatically fill the 'mat' field based on the user's mat_number
+            $mat = $user->mat_number;
+
+            // Other complaint data
             $complaintData = [
-                'mat' => $user->mat_number, // Fill 'mat' based on the user's mat_number
+                'mat' => $mat,
                 'ac_year' => $request->input('ac_year'),
                 'ac_level' => $request->input('ac_level'),
                 'field' => $request->input('field'),
@@ -144,26 +74,37 @@ class ComplaintController extends Controller
                 'claimant_phone' => $user->phone,
                 'claimant_email' => $user->email,
             ];
+
+            $ficheInscriptionPaths = [];
+
+            foreach ($request->file('fiche_inscription') as $file) {
+                $ficheInscriptionPath = $this->storeFile($file);
     
-            $ficheInscriptionPath = $this->storeFile($request->file('fiche_inscription'));
+                if (!$ficheInscriptionPath) {
+                    // return response()->json(['error' => 'Failed to store fiche inscription file.'], Response::HTTP_INTERNAL_SERVER_ERROR);
+                    return view('not_support');
+                }
     
-            if (!$ficheInscriptionPath) {
-                return view('false_form_filled');
+                $ficheInscriptionPaths[] = $ficheInscriptionPath;
             }
     
+            // Add 'fiche_inscription' field to complaint data
+            $complaintData['fiche_inscription'] = $ficheInscriptionPaths;
+    
+            // Create the Complaint model with the 'fiche_inscription' field set to the path
             $complaint = new Complaint($complaintData);
-            $complaint->fiche_inscription = $ficheInscriptionPath;
             $complaint->save();
     
+            // return response()->json(['message' => 'Complaint created successfully', 'data' => $complaint]);
             return view('test');
-    
+
         } catch (ValidationException $e) {
-            return view('false_form_filled');
-        } catch (Exception $e) {
+            return view('not_support');
+          } catch (Exception $e) {
+            // return response()->json(['message' => 'An error occurred', 'error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
             return view('false_form_filled');
         }
     }
-    
 
     public function show($id)
     {
@@ -257,18 +198,16 @@ class ComplaintController extends Controller
         Storage::disk('public')->delete($path);
     }
 
-    //check status method
+    // Check status method
     public function userComplaints()
     {
         try {
             // Get the logged-in user's ID
             $userId = Auth::id();
-    
+
             // Fetch all complaints associated with the user
-            // $userComplaints = Complaint::where('student_id', $userId)->get();
             $userComplaints = Complaint::where('student_id', $userId)->paginate(4);
 
-    
             // Pass the complaints to a view for displaying
             return view('complaint_status', ['userComplaints' => $userComplaints]);
         } catch (\Exception $e) {
@@ -276,5 +215,17 @@ class ComplaintController extends Controller
             return back()->withError('Error fetching user complaints');
         }
     }
-    
+
+    // Usage as API
+    public function getImagePaths($id)
+    {
+        $complaint = Complaint::where('id', $id)->first();
+
+        if ($complaint) {
+            $imagePaths = $complaint->fiche_inscription;
+            return response()->json(['imagePaths' => $imagePaths], 200);
+        } else {
+            return response()->json(['message' => 'Complaint not found.'], 404);
+        }
+    }
 }

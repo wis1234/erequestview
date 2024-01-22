@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>gestion des réclamations de notes</title>
+  <title>Already exists</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -66,7 +66,7 @@
     <i class="bi bi-check-circle popup-icon" style="font-size: xx-large;">😤Error!</i>
     <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
 Cet utilisateur existe déjà, veuillez vérifiez les informations et réessayez  </p>
-    <button class="popup-button" onclick="window.location.href='{{ route('login')}}'">OK</button>
+    <button class="popup-button" onclick="window.location.href='{{ route('register')}}'">OK</button>
   </div>
 
   <script>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>gestion des réclamations de notes</title>
+  <title>Problème de connexion</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -65,7 +65,7 @@
   <div class="popup-content" id="popup">
     <i class="bi bi-check-circle popup-icon " style="font-size: xx-large;">Error!</i>
     <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
-      Votre session et reéssayez.
+      Problème de connexion. Veuillez essayer de vous connecter.
     </p>
     <button class="popup-button" onclick="window.location.href='{{ route('login')}}'">OK</button>
   </div>

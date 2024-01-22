@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Payement des frais de réclamation</title>
+  <title>Payement</title>
   <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
 
   <meta content="" name="description">

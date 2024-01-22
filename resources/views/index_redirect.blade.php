@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>gestion des réclamations de notes</title>
+  <title>Services et prestations</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <!-- Favicons -->
@@ -630,11 +630,32 @@
 //   });
 // });
 
+// $(document).ready(function() {
+//   // Function to toggle the visibility of additional items
+//   $('.toggle-items').on('click', function(e) {
+//     e.preventDefault();
+//     $(this).closest('.service-title').find('.additional-items').slideToggle();
+//   });
+// });
+
+
+
+// $(document).ready(function() {
+//   // Function to toggle the visibility of additional items
+//   $('.toggle-items').on('click', function(e) {
+//     e.preventDefault(); // Prevent the default behavior of the anchor tag
+//     var parentService = $(this).closest('.service-title');
+//     parentService.find('.additional-items').slideToggle();
+//   });
+// });
+
+
 $(document).ready(function() {
-  // Function to toggle the visibility of additional items
-  $('.toggle-items').on('click', function(e) {
+  // Attach click event to a parent element (assuming .service-container is a parent)
+  $('.service-container').on('click', '.toggle-items', function(e) {
     e.preventDefault();
-    $(this).closest('.service-title').find('.additional-items').slideToggle();
+    var parentService = $(this).closest('.service-title');
+    parentService.find('.additional-items').slideToggle();
   });
 });
 

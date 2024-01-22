@@ -429,7 +429,7 @@
         </div><!-- End Icon Box -->
       </div>
 
-      <div class="col-lg-6 img-bg" style="background-image: url(assets/img/hero-carousel/hero-carousel-2.jpg)"& data-aos="zoom-in"
+      <div class="col-lg-6 img-bg" style="background-image: url(assets/img/hero-carousel/hero-carousel-3   .jpg)"& data-aos="zoom-in"
         data-aos-delay="100"></div>
     </div>
 

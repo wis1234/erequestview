@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>gestion des réclamations de notes</title>
+  <title>Etat de traitement des demandes</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -103,7 +103,7 @@
     <div class="dual-container">
 
       @if ($userTranscripts->isEmpty())
-      <p>Aucune demande de bulletin n'a été envoyée</p>
+      <p>Aucune demande de bulletin n'a été enrégistrée</p>
     @else
       @foreach($userTranscripts as $transcript)
         @if ($transcript->user_id === auth()->user()->id && $transcript->exam_type === 'current_semester')
@@ -114,13 +114,13 @@
               {{-- Display transcript details --}}
               <p><strong>Matricule:</strong> {{ $transcript->mat }}</p>
               <p><strong>Filière:</strong> {{ $transcript->field }}</p>
-              <p><strong>Option:</strong> {{ $transcript->speciality }}</p>
+              <p><strong>spécialité:</strong> {{ $transcript->speciality }}</p>
               <p><strong>Année académique:</strong> {{ $transcript->ac_year }}</p>
               <p><strong>Niveau d'étude:</strong> {{ $transcript->ac_level }}</p>
               <p><strong>Semestre:</strong> {{ $transcript->exam_type }}</p>
               <p><strong>Date de demande:</strong> {{ $transcript->created_at }}</p>
               <p><strong>Observation:</strong> {{ $transcript->feedback }}</p>
-              <p><strong>Status:</strong> {{ $transcript->status }}</p>
+              <p><strong>Status:</strong>  {{ $transcript->status }}</p>
             </div>
           </div>
         @endif
@@ -138,7 +138,7 @@
 <br><br>
       <!-- Display the transcripts from DupTranscript model -->
     @if ($userDupTranscripts->isEmpty())
-    <p>Aucune demande de duplicata de bulletin n'a été envoyée</p>
+    <p>Aucune demande de duplicata de bulletin n'a été enrégistrée</p>
 @else
     @foreach($userDupTranscripts as $dup_transcript)
         @if ($dup_transcript->user_id === auth()->user()->id && $dup_transcript->exam_type === 'current_semester')
@@ -149,7 +149,7 @@
                     {{-- Display duplicate transcript details --}}
                     <p><strong>Matricule:</strong> {{ $dup_transcript->mat }}</p>
                     <p><strong>Filière:</strong> {{ $dup_transcript->field }}</p>
-                    <p><strong>Option:</strong> {{ $dup_transcript->speciality }}</p>
+                    <p><strong>spécialité:</strong> {{ $dup_transcript->speciality }}</p>
                     <p><strong>Année académique:</strong> {{ $dup_transcript->ac_year }}</p>
                     <p><strong>Niveau d'étude:</strong> {{ $dup_transcript->ac_level }}</p>
                     <p><strong>Semestre:</strong> {{ $dup_transcript->exam_type }}</p>

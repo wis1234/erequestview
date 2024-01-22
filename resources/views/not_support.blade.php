@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Utililisateur introuvable</title>
+  <title>Mauvais remplissage du formulaire</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -20,7 +20,7 @@
     }
 
     .popup-content {
-      height: 265px;
+      height: 250px;
       width: 200px;
       display: none;
       background: #fff;
@@ -63,11 +63,11 @@
 </head>
 <body>
   <div class="popup-content" id="popup">
-    <i class="bi bi-check-circle popup-icon " style="font-size: xx-large;">Error!</i>
+    <i class="bi bi-check-circle popup-icon" style="font-size: xx-large;">😤Error!</i>
     <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
-      L'utilisateur que vous avez specifié n'existe pas.Veuillez vérifier l'email et reéssayez.
+      Le format des fichiers importés n'est pas pris en charge! Veuillez renvoyer des images claires et moins lourdes.
     </p>
-    <button class="popup-button" onclick="window.location.href='{{ route('login')}}'">OK</button>
+    <button class="popup-button" onclick="window.location.href='{{ route('complaint_form')}}'">OK</button>
   </div>
 
   <script>

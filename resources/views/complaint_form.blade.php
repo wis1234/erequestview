@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>gestion des réclamations de notes</title>
+  <title>Formulaire de réclamation de note</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <!-- Favicons -->
@@ -319,7 +319,7 @@
 
             <div class="form-group">
               <label for="fiche_inscription">Fiche de préinscription validée:</label>
-              <input type="file" class="form-control-file" id="fiche_inscription" name="fiche_inscription" placeholder="Votre fiche de préinscription validée">
+              <input type="file" class="form-control-file" id="fiche_inscription" name="fiche_inscription[]" multiple>
             </div>
             <div class="form-group">
               <label for="bio">Description:</label>

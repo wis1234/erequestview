@@ -29,7 +29,7 @@ class Complaint extends Model
          'status',
          'feedback',
          'exam_type', 
-         'fiche_inscritpiton',
+         'fiche_inscription',
          'payment_proof',
           'result', 
           'ac_level',
@@ -55,4 +55,9 @@ class Complaint extends Model
     {
         return $this->images()->create(['path' => $path]);
     }
+
+    protected $casts = [
+        'fiche_inscription' => 'array',
+    ];
+    
 }

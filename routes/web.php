@@ -315,6 +315,9 @@ Route::get('/certificates/{certificates}', function () {
 Route::get('/certificate_send', function () {
     return view('not_allowed');
 });
+Route::get('/not_support', function () {
+    return view('not_support');
+});
 
 Route::put('/certificates/{certificate}', [CertificateController::class, 'update']);
 Route::delete('/certificates/{certificate}', [CertificateController::class, 'destroy']);
