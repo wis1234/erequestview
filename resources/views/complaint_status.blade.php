@@ -184,9 +184,10 @@ tr:nth-child(even) {
           <th>UE</th>
           <th>ECUE</th>
           <th>Date et Heure de demande</th>
+          <th>Date et Heure de traitement</th>
           <th>Observation</th>
           <th>Status</th>
-          <th>Date et Heure de traitement</th>
+       
           <th>N°</th>
 
 
@@ -208,6 +209,13 @@ tr:nth-child(even) {
           <td>{{ $complaint->ecue_sub }}</td>
           <td>{{ $complaint->ecue }}</td>
           <td>{{ $complaint->created_at }}</td>
+          <td>
+            @if($complaint->updated_at == $complaint->created_at)
+               indisponible
+            @else
+              {{ $complaint->updated_at }}
+            @endif
+          </td>
           <td>{{ $complaint->feedback }}</td>
  <!-- ... (other cells) ... -->
  <td style="font-weight:10px; color: {{ $complaint->status === 'ACCEPTE' ? 'green' : ($complaint->status === 'REJETE' ? 'red' : '') }}">
@@ -219,8 +227,6 @@ tr:nth-child(even) {
       {{ $complaint->status }}
   @endif
 </td>
-<td>{{ $complaint->updated_at }}</td>
-
           <td>{{ $complaint->id }}</td>
 
       </tr>
@@ -274,6 +280,7 @@ tr:nth-child(even) {
         }, 5000);
       }
     
+      
     
   </script>
 

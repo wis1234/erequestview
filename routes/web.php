@@ -60,9 +60,7 @@ Route::middleware(['auth'])->group(function () {
         return view('diploma_form');
     })->name('diploma_form');
 
-    Route::get('/index_redirect', function () {
-        return view('not_allowed');
-    })->name('index_redirect');
+ 
 
     Route::get('/transcript_form', function () {
         return view('transcript_form');
@@ -172,6 +170,10 @@ Route::get('/', function () {
         return view('payment_sucess');
     })->name('payment_sucess');
 
+    // Route::post('/payment_sucess', function () {
+    //     return view('payment_sucess');
+    // })->name('payment_sucess');
+
     Route::get('/process', function () {
         return view('process');
     })->name('process');
@@ -196,10 +198,6 @@ Route::get('/', function () {
         return view('transcript_process');
     })->name('transcript_process');
 
-    Route::get('/index_redirect', function () {
-        return view('index_redirect');
-    })->name('index_redirect');
-
 
     Route::get('/change_password', function () {
         return view('change_password');
@@ -218,9 +216,6 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
  
 
-    Route::get('/index_redirect', function () {
-        return view('not_allowed');
-    })->name('index_redirect');
 
     Route::get('/login_post', function () {
         return view('error_login');
@@ -397,5 +392,7 @@ Route::get('/user/transcripts', [TranscriptController::class, 'userTranscripts']
 Route::get('/user/diploma', [DiplomaController::class, 'userDiploma'])->name('diploma_status')->middleware('auth');
 Route::get('/user/dup_transcript', [DupTranscriptController::class, 'userDupTranscripts'])->name('dup_transcript_status')->middleware('auth');
 
-
+Route::get('/index_redirect', function () {
+    return view('index_redirect');
+})->name('index_redirect')->middleware('auth');
 

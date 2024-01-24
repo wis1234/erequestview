@@ -65,7 +65,7 @@
   <div class="popup-content" id="popup">
     <i class="bi bi-check-circle popup-icon" style="font-size: xx-large;">😤Error!</i>
     <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
-      Le format des fichiers importés n'est pas pris en charge! Veuillez renvoyer des images claires et moins lourdes.
+      Le format des fichiers importés n'est pas pris en charge! Veuillez renvoyer des images claires et compatibles.
     </p>
     <button class="popup-button" onclick="window.location.href='{{ route('complaint_form')}}'">OK</button>
   </div>
