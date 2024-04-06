@@ -6,6 +6,7 @@
   <title>Erreur de connexion</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
 
   <!-- Add CSS for the popup -->
   <style>
@@ -63,7 +64,9 @@
 </head>
 <body>
   <div class="popup-content" id="popup">
-    <i class="bi bi-check-circle popup-icon" style="font-size: xx-large;">😤Error!</i>
+    {{-- <i class="bi bi-check-circle popup-icon" style="font-size: xx-large;">😤Error!</i> --}}
+    <i class="bi bi-x-circle text-danger popup-icon" style="font-size: xx-larger;"></i>
+
     <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
       Une erreur inattendue est survenue; veuillez essayer de vous connecter à nouveau.   </p>
     <button class="popup-button" onclick="window.location.href='{{ route('index')}}'">OK</button>

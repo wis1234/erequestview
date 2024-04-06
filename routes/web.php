@@ -10,7 +10,7 @@ use App\Http\Controllers\DiplomaController;
 use App\Http\Controllers\DupTranscriptController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PasswordResetController;
-
+use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -396,3 +396,9 @@ Route::get('/index_redirect', function () {
     return view('index_redirect');
 })->name('index_redirect')->middleware('auth');
 
+
+//generate pdf for transcript status
+
+Route::post('/generate-pdf', [PdfController::class, 'generatePdf'])->name('generate.pdf');
+Route::post('/dup_generate-pdf', [PdfController::class, 'dup_generatePdf'])->name('dup_generate.pdf');
+Route::post('/com_generate-pdf', [PdfController::class, 'com_generatePdf'])->name('com_generate.pdf');

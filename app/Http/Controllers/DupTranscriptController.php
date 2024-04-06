@@ -64,7 +64,8 @@ $semesterExists = DupTranscript::where('user_id', Auth::id())
 if ($semesterExists) {
     $semester = $request->input('exam_type') === 'Semestre 1' ? 'Semestre 1' : 'Semestre 2';
     $acLevel = $request->input('ac_level');
-    $errorMessage = "Vous avez déjà fait une demande de duplicata de bulletin pour le $semester de $acLevel";
+    $errorMessage = "Vous avez déjà fait une demande de bulletin pour le $semester de $acLevel;
+    Veuillez vous rapprocher de l'administration pour plus d'information.";
     return redirect()->back()->with('error', $errorMessage);
 }
 
@@ -192,7 +193,7 @@ if ($semesterExists) {
             $userId = Auth::id();
     
             // Fetch all transcripts associated with the user
-            $userDupTranscripts = DupTranscript::where('user_id', $userId)->paginate(4);
+            $userDupTranscripts = DupTranscript::where('user_id', $userId)->paginate(100);
     
             // Pass the transcripts to the view for displaying
             return view('dup_transcript_status', compact('userDupTranscripts'));

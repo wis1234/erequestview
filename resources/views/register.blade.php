@@ -245,7 +245,7 @@
             <button type="submit" id="register" style="width:85px; " class="btn btn-primary">S'inscrire</button>
           </div>
           <br><br>
-          <p style="color: black">Déjà inscrit ? <a href="{{ route('login')}}">Connectez-vous</a></p>
+          <p style="color: black; top: 800px; text-align: center;">Déjà inscrit ? <a href="{{ route('login')}}">Connectez-vous ici</a></p>
         </form>
       </div>
     </div>

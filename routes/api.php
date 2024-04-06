@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\TranscriptController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/get-image-paths/{mat}', [ComplaintController::class, 'getImagePaths']);
+Route::get('/get-transcript-details/{mat}', [TranscriptController::class, 'getImagePaths']);
+
 
 
 Route::put('/complaint/{id}', [ComplaintController::class, 'update'])->name('complaint_update');
 Route::delete('/complaint/{id}', [ComplaintController::class, 'destroy'])->name('complaint_delete');
 Route::post('/complaint', [ComplaintController::class, 'store'])->name('complaint_send');
+Route::get('/transcripts/details', [TranscriptController::class, 'getTranscriptDetails'])->name('getTranscriptDetails');
+
+
+
+
+//images path routing
+
+Route::get('transcripts/images/{id}', [TranscriptController::class, 'fetchImages']);

@@ -164,8 +164,8 @@
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
         <h2 style="font-weight: bold; font-size: 40px;">Bulletin</h2>
         <ol>
-            <li><a href="{{route('index')}}">Accueil</a></li>
-            <li class="white-text">demande de Bulletin</li>
+            {{-- <li><a href="{{route('index')}}">Accueil</a></li> --}}
+            <li class="white-text">Demande de Bulletin</li>
         </ol>
         {{-- session alert for record already exists --}}
         @if(session('error'))
@@ -212,8 +212,8 @@
                     <option value="Licence 3">Licence 3</option>
                     <option value="Master 1">Master 1</option>
                     <option value="Master 2">Master 2</option>
-                    <option value="Master 2">phD 1</option>
-                    <option value="Master 2">phD 2</option>
+                    <option value="phD 1">phD 1</option>
+                    <option value="phD 2">phD 2</option>
                   </optgroup>
                 </select>
               </div>
@@ -270,16 +270,25 @@
                 <label for="speciality">Spécialité:</label>
                 <select id="speciality" class="form-control" name="speciality">
                   <optgroup label="Veuillez choisir votre spécialité">
-                    <option value="Economie Appliquée">Economie Appliquée</option>
-                    <option value="Economie et Finance des Collectivités Locales">Economie et Finance des Collectivités Locales</option>
-                    <option value="Economie et Gestion des Exploitations Agricoles">Economie et Gestion des Exploitations Agricoles</option>
-                    <option value="Economie et Gestion des Micro-Finances">Economie et Gestion des Micro-Finances</option>
-                    <option value="Statistique et Econometrie">Statistique et Econometrie</option>
-                    <option value="Tronc commun de Licence 1">Tronc commun de Licence 1</option>
-                    <option value="Comptabilité et Finance">Comptabilité et Finance</option>
-                    <option value="Gestion des banques et assurances">Gestion des banques et assurances</option>
-                    <option value="Gestion des ressources humaines">Gestion des ressources humaines</option>
-                    <option value="Marketing et action commerciale">Marketing et action commerciale</option>
+                    <optgroup label="Economie">
+                      <option value="Analyse des Projets et Planification">Analyse des Projets et Planification</option>
+                      <option value="Analyse et Politique de Développement">Analyse et Politique de Développement</option>
+                      <option value="Economie Appliquée">Economie Appliquée</option>
+                      <option value="Economie et Finance des Collectivités Locales">Economie et Finance des Collectivités Locales</option>
+                      <option value="Economie et Gestion des Exploitations Agricoles">Economie et Gestion des Exploitations Agricoles</option>
+                      <option value="Economie et Gestion des Micro-Finances">Economie et Gestion des Micro-Finances</option>
+                      <option value="Economie et Gestion des Petites et Moyenne Entreprise">Economie et Gestion des Petites et Moyenne Entreprise</option>
+                      <option value="Economie et Gestion des structures Sanitaires">Economie et Gestion des structures Sanitaires</option>
+                      <option value="Statistique et Econometrie">Statistique et Econometrie</option>
+                  </optgroup>
+                  <optgroup label="Gestion">
+                      <option value="Comptabilité Audit et Controle de Gestion et Finance">Comptabilité Audit et Controle de Gestion et Finance</option>
+                      <option value="Finance Banque et Assurance">Finance Banque et Assurance</option>
+                      <option value="Gestion des Ressources Humaines">Gestion des Ressources Humaines</option>
+                      <option value="Marketing et action commerciale">Marketing et action commerciale</option>
+                      <option value="Sciences Technique et Comptable">Sciences Technique et Comptable</option>
+                  </optgroup>
+                  <option value="Tronc commun">Tronc commun</option>
                   </optgroup>
                 </select>
               </div>
@@ -303,17 +312,17 @@
               </div>
               <div class="form-group">
                 <label for="fiche_inscription">carte d'etudiant:</label>
-                <input type="file" class="form-control-file" id="fiche_inscription" name="fiche_inscription" placeholder="Votre fiche de préinscription validée">
+                <input type="file" class="form-control-file" id="fiche_inscription" name="fiche_inscription[]" multiple>
               </div>
 
               <div class="form-group">
                 <label for="cip">CIP(ANIP):</label>
-                <input type="file" class="form-control-file" id="fcip" name="cip" placeholder="Votre fiche de préinscription validée">
+                <input type="file" class="form-control-file" id="cip" name="cip[]" multiple >
               </div>
 
               <div class="form-group">
                 <label for="inscription">Fiche de préinscription validée:</label>
-                <input type="file" class="form-control-file" id="inscription" name="inscription" placeholder="Votre fiche de préinscription validée">
+                <input type="file" class="form-control-file" id="inscription" name="inscription[]" multiple >
               </div>
 
               <div class="form-group">
@@ -333,15 +342,37 @@
             <fieldset>
               <div class="form-group">
                 <p>CONFIRMATION</p>
-                En cliquant sur SUIVANT vous confirmez les Informations renseignées précédemment
+                <p style="color:black"> Veuillez verifier les informations renseignées avant de continuer.</p>
+                 
+                <button type="button" onclick="generateSummary()" class="btn btn-primary" style="width: 80px; border-radius: 50%;" data-bs-toggle="modal" data-bs-target="#summaryModal">Vérifier</button>
+          
+              </p>
+                <!-- Display populated information here -->
+                <div id="user-info"></div>
               </div>
+          
+              <!-- Add a check button -->
+              <div class="form-group form-check text-center mb-3">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <input type="checkbox" class="form-check-input" id="confirmationCheck" onclick="toggleSuivantButton()">
+                  </div>
+                  <div class="col-auto">
+                    <label class="form-check-label" for="confirmationCheck">je confirme</label>
+                  </div>
+                </div>
+              </div>
+          
               <!-- Add "Previous" and "Next" buttons for navigation between Step 3 and Step 5 -->
               <div class="text-center">
-                <button type="button" onclick="prevStep(3)" class="btn btn-primary" style="width: 95px">Précédent</button>
-                <button type="submit" onclick="nextStep(5)" class="btn btn-primary" style="width: 85px">Suivant</button>
+                <button type="button" onclick="prevStep(3)" class="btn btn-primary" style="width: 90px">Précédent</button>
+                <button type="submit" id="suivantButton" onclick="nextStep(5)" class="btn btn-primary" style="width: 80px" disabled>Suivant</button>
               </div>
             </fieldset>
           </div>
+ 
+          </div>
+
         </form>
           <!-- Step 5: Payment -->
           <div class="col-lg-4 form-container form-step" id="step5">
@@ -368,6 +399,26 @@
       </div>
     </section>
   </main>
+<!-- Modal -->
+<div id="infoModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Détails de la demande</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Contenu du modal : affichez les informations saisies ici -->
+        <div id="saisie-info"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: red">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
 
  <!-- Footer -->
  <footer id="footer" class="footer">
@@ -480,6 +531,54 @@
       document.body.appendChild(script);
     });
   </script>
+
+{{-- Ajoutez cette fonction pour générer un résumé des informations saisies --}}
+
+<script>
+function generateSummary() {
+  // Récupérez les informations saisies
+  const ac_year = document.getElementById('ac_year').value;
+  const ac_level = document.getElementById('ac_level').value;
+  // const training_type = document.getElementById('training_type').value;
+  const exam_type = document.getElementById('exam_type').value;
+  const field = document.getElementById('field').value;
+  const speciality = document.getElementById('speciality').value;
+  const description = document.getElementById('bio').value;
+
+  // Générez le résumé
+  const summary = `
+  <p style="color:black"><strong>Année académique:</strong> ${ac_year}</p>
+    <p style="color:black"><strong>Niveau d'étude:</strong> ${ac_level}</p>
+    
+    <p style="color:black"><strong>Semestre:</strong> ${exam_type}</p>
+    <p style="color:black"><strong>Filière:</strong> ${field}</p>
+    <p style="color:black"><strong>Spécialité:</strong> ${speciality}</p>
+    <p style="color:black"><strong>Description:</strong> ${description}</p>
+  `;
+
+  // Affichez le résumé dans le modal
+  document.getElementById('saisie-info').innerHTML = summary;
+
+  // Ouvrez le modal
+  const infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
+  infoModal.show();
+}
+
+</script>
+
+
+
+{{-- check button with status  --}}
+
+<script>
+  function toggleSuivantButton() {
+    var confirmationCheck = document.getElementById('confirmationCheck');
+    var suivantButton = document.getElementById('suivantButton');
+
+    // Enable/disable the "Suivant" button based on the state of the check button
+    suivantButton.disabled = !confirmationCheck.checked;
+  }
+</script>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

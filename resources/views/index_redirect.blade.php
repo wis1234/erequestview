@@ -37,6 +37,15 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/my_style1.css')}}" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Madimi+One&family=Ojuju:wght@200..800&family=Open+Sans:wght@500&family=Rock+3D&family=Rubik+Gemstones&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Madimi+One&family=Ojuju:wght@200..800&family=Open+Sans:wght@500&family=Rock+3D&family=Rubik+Gemstones&display=swap" rel="stylesheet">
+
   <style>
     .service-container {
       display: flex;
@@ -171,7 +180,7 @@
 }
 
 .icon-blink {
-  animation: blink 1s infinite; /* Change the animation duration as needed */
+  animation: blink 1s infinite; 
 }
 
 
@@ -267,10 +276,10 @@
     <!-- Breadcrumbs -->
     <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-        <h2 style="font-weight: bold; font-size: 40px;">Services</h2>
+        <h2 style="font-weight: bold; font-size: 40px;">DASHBORD</h2>
         <ol>
-            <li><a href="{{route('index')}}">Accueil</a></li>
-            <li class="white-text">Services</li>
+            {{-- <li><a href="{{route('index')}}">Accueil</a></li> --}}
+            <li class="white-text"> Services et prestations</li>
         </ol>
       </div>
     </div><!-- End Breadcrumbs -->
@@ -286,8 +295,10 @@
   <div class="service-container">
     <div class="service-title">
       <i class="fas fa-edit fa-3x"></i>
-      <h4 class="title">Réclamation</h4>
-      <a href="#" class="toggle-items" style=" font-weight: bold; font-size: 20px;">Options</a> <i class="fas fa-caret-down" ></i><br><br>
+      <h4 class="title" style="font-size:35px;   font-family: Rubik Gemstones, system-ui;
+      font-weight: 400;
+      font-style: normal;">Réclamation</h4>
+      <a href="#" class="toggle-items" style="  font-weight: bold; font-size: 20px;">Options</a> <i class="fas fa-caret-down" ></i><br><br>
   
       <!-- Additional items initially hidden -->
       <div class="additional-items" style="display: none;">
@@ -303,7 +314,9 @@
 
     <div class="service-title">
       <i class="fas fa-file-alt fa-3x"></i>
-      <h4 class="title">Bulletin</h4>
+      <h4 class="title" style="font-size:35px;   font-family: Rubik Gemstones, system-ui;
+      font-weight: 400;
+      font-style: normal;">Bulletin</h4>
       <a href="#" class="toggle-items" style=" font-weight: bold; font-size: 20px;">Options</a> <i class="fas fa-caret-down" ></i><br><br>
   
       <!-- Additional items initially hidden -->
@@ -346,7 +359,9 @@
  
       <div class="service-title">
         <i class="fas fa-award fa-3x"></i>
-        <h4 class="title">Attestation</h4>
+        <h4 class="title" style="font-size:35px;   font-family: Rubik Gemstones, system-ui;
+        font-weight: 400;
+        font-style: normal;">Attestation</h4>
         <a href="#" class="toggle-items" style=" font-weight: bold; font-size: 20px;">Options</a> <i class="fas fa-caret-down" ></i><br><br>
     
         <!-- Additional items initially hidden -->
@@ -387,7 +402,9 @@
   
         <div class="service-title">
           <i class="fas fa-graduation-cap fa-3x"></i>
-          <h4 class="title">Diplôme</h4>
+          <h4 class="title" style="font-size:35px;   font-family: Rubik Gemstones, system-ui;
+          font-weight: 400;
+          font-style: normal;">Diplôme</h4>
           <a href="#" class="toggle-items" style=" font-weight: bold; font-size: 20px;">Options</a> <i class="fas fa-caret-down" ></i><br><br>
       
           <!-- Additional items initially hidden -->
@@ -445,7 +462,9 @@
         <div class="service-title">
           {{-- <i class="fas fa-chalkboard fa-3x"></i> --}}
           <i class="fas fa-file-signature fa-3x"></i>
-          <h4 class="title">Inscription pédagogique</h4>
+          <h4 class="title"style=" font-size:35px;  font-family: Rubik Gemstones, system-ui;
+          font-weight: 400;
+          font-style: normal;">Inscription pédagogique</h4>
           <a href="#" class="toggle-items" style=" font-weight: bold; font-size: 20px;" id="optionsElement">Options</a> <i class="fas fa-caret-down" ></i><br><br>
       
           <!-- Additional items initially hidden -->
@@ -484,7 +503,9 @@
 
         <div class="service-title">
           <i class="fas fa-book fa-3x"></i>
-             <h4 class="title">Soutenance</h4>
+             <h4 class="title"style=" font-size:35px;  font-family: Rubik Gemstones, system-ui;
+             font-weight: 400;
+             font-style: normal;">Mémoire & Soutenance</h4>
           <a href="#" class="toggle-items" style=" font-weight: bold; font-size: 20px;" id="optionsElement_memo">Options</a> <i class="fas fa-caret-down" ></i><br><br>
       
           <!-- Additional items initially hidden -->

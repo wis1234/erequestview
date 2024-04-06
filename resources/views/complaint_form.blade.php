@@ -175,8 +175,8 @@
     <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
       <h2 style="font-weight: bold; font-size: 40px;">Réclamation</h2>
       <ol>
-          <li><a href="{{route('index')}}">Accueil</a></li>
-          <li class="white-text">Réclamation</li>
+          {{-- <li><a href="{{route('index')}}">Accueil</a></li> --}}
+          <li class="white-text">Réclamation de note</li>
       </ol>
     </div>
   </div>
@@ -238,16 +238,25 @@
               <label for="speciality">Spécialité:</label>
               <select id="speciality" class="form-control" name="speciality">
                 <optgroup label="Veuillez choisir votre spécialité">
-                  <option value="Economie Appliquée">Economie Appliquée</option>
-                  <option value="Economie et Finance des Collectivités Locales">Economie et Finance des Collectivités Locales</option>
-                  <option value="Economie et Gestion des Exploitations Agricoles">Economie et Gestion des Exploitations Agricoles</option>
-                  <option value="Economie et Gestion des Micro-Finances">Economie et Gestion des Micro-Finances</option>
-                  <option value="Statistique et Econometrie">Statistique et Econometrie</option>
-                  <option value="Tronc commun de Licence 1">Tronc commun de Licence 1</option>
-                  <option value="Comptabilité et Finance">Comptabilité et Finance</option>
-                  <option value="Gestion des banques et assurances">Gestion des banques et assurances</option>
-                  <option value="Gestion des ressources humaines">Gestion des ressources humaines</option>
-                  <option value="Marketing et action commerciale">Marketing et action commerciale</option>
+                  <optgroup label="Economie">
+                    <option value="Analyse des Projets et Planification">Analyse des Projets et Planification</option>
+                    <option value="Analyse et Politique de Développement">Analyse et Politique de Développement</option>
+                    <option value="Economie Appliquée">Economie Appliquée</option>
+                    <option value="Economie et Finance des Collectivités Locales">Economie et Finance des Collectivités Locales</option>
+                    <option value="Economie et Gestion des Exploitations Agricoles">Economie et Gestion des Exploitations Agricoles</option>
+                    <option value="Economie et Gestion des Micro-Finances">Economie et Gestion des Micro-Finances</option>
+                    <option value="Economie et Gestion des Petites et Moyenne Entreprise">Economie et Gestion des Petites et Moyenne Entreprise</option>
+                    <option value="Economie et Gestion des structures Sanitaires">Economie et Gestion des structures Sanitaires</option>
+                    <option value="Statistique et Econometrie">Statistique et Econometrie</option>
+                </optgroup>
+                <optgroup label="Gestion">
+                    <option value="Comptabilité Audit et Controle de Gestion et Finance">Comptabilité Audit et Controle de Gestion et Finance</option>
+                    <option value="Finance Banque et Assurance">Finance Banque et Assurance</option>
+                    <option value="Gestion des Ressources Humaines">Gestion des Ressources Humaines</option>
+                    <option value="Marketing et action commerciale">Marketing et action commerciale</option>
+                    <option value="Sciences Technique et Comptable">Sciences Technique et Comptable</option>
+                </optgroup>
+                <option value="Tronc commun">Tronc commun</option>
                 </optgroup>
               </select>
             </div>
@@ -319,11 +328,11 @@
 
             <div class="form-group">
               <label for="fiche_inscription">Fiche de préinscription validée:</label>
-              <input type="file" class="form-control-file" id="fiche_inscription" name="fiche_inscription[]" multiple>
+              <input type="file" class="form-control-file" required id="fiche_inscription" name="fiche_inscription[]" multiple>
             </div>
             <div class="form-group">
               <label for="bio">Description:</label>
-              <textarea class="form-control" id="bio" name="description" rows="3" placeholder="Brève description du problème"></textarea>
+              <textarea class="form-control" id="bio" name="description" required rows="3" placeholder="Brève description du problème"></textarea>
             </div>
             <!-- Add "Previous" and "Next" buttons for navigation between Step 2 and Step 4 -->
             <div class="text-center">
@@ -333,20 +342,40 @@
           </fieldset>
         </div>
 
-        <!-- Step 4: Confirmation -->
-        <div class="col-lg-4 form-container form-step" id="step4">
-          <fieldset>
-            <div class="form-group">
-              <p>CONFIRMATION</p>
-              En cliquant sur SUIVANT vous confirmez les Informations renseignées précédemment
-            </div>
-            <!-- Add "Previous" and "Next" buttons for navigation between Step 3 and Step 5 -->
-            <div class="text-center">
-              <button type="button" onclick="prevStep(3)" class="btn btn-primary" style="width: 90px">Précédent</button>
-              <button type="submit" onclick="nextStep(5)" class="btn btn-primary" style="width: 80px">Suivant</button>
-            </div>
-          </fieldset>
+<!-- Step 4: Confirmation -->
+<div class="col-lg-4 form-container form-step" id="step4">
+  <fieldset>
+    <div class="form-group">
+      <p>CONFIRMATION</p>
+      <p style="color:black"> Veuillez verifier les informations renseignées avant de continuer.</p>
+       
+      <button type="button" onclick="generateSummary()" class="btn btn-primary" style="width: 80px; border-radius: 50%;">Vérifier</button>
+
+    </p>
+      <!-- Display populated information here -->
+      <div id="user-info"></div>
+    </div>
+
+    <!-- Add a check button -->
+    <div class="form-group form-check text-center mb-3">
+      <div class="row align-items-center">
+        <div class="col-auto">
+          <input type="checkbox" class="form-check-input" id="confirmationCheck" onclick="toggleSuivantButton()">
         </div>
+        <div class="col-auto">
+          <label class="form-check-label" for="confirmationCheck">je confirme</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add "Previous" and "Next" buttons for navigation between Step 3 and Step 5 -->
+    <div class="text-center">
+      <button type="button" onclick="prevStep(3)" class="btn btn-primary" style="width: 90px">Précédent</button>
+      <button type="submit" id="suivantButton" onclick="nextStep(5)" class="btn btn-primary" style="width: 80px" disabled>Suivant</button>
+    </div>
+  </fieldset>
+</div>
+
       </form>
 <!-- Step 5: Payment -->
 <div class="col-lg-4 form-container form-step" id="step5">
@@ -360,7 +389,7 @@
     <!-- Add "Previous" and "Next" buttons for navigation between Step 4 and Step 5 -->
     <div class="text-center">
       <div class="spinner"></div>
-      <button type="button" onclick="prevStep(4)" class="btn btn-primary" style="margin-right: 100px; width: 90px">
+      <button type="button" onclick="prevStep(4)" class="btn btn-primary" style="margin-right: 100px; width: 90px;">
         Précédent
       </button>
       <!-- <button type="button" onclick="nextStep(5)" class="btn btn-primary">Suivant</button> -->
@@ -374,7 +403,23 @@
 </main>
 
 
-
+<!-- Add a Bootstrap modal component -->
+<div class="modal fade" id="summaryModal" tabindex="-1" aria-labelledby="summaryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="summaryModalLabel">Détails de réclamation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="summaryBody">
+        <!-- User's information will be displayed here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: red">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   
 
@@ -443,51 +488,15 @@
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
   <script>
-    let currentStep = 1;
-    const progressBar = document.getElementById('progress-bar');
-
-    function updateProgressBar() {
-      const totalSteps = 5; // Total number of steps
-      const progress = (currentStep - 1) / (totalSteps - 1) * 100;
-      progressBar.style.width = progress + '%';
-      progressBar.setAttribute('aria-valuenow', progress);
-    }
-
-    function showStep(step) {
-      const formSteps = document.querySelectorAll('.form-step');
-      formSteps.forEach((stepElement) => {
-        stepElement.style.display = 'none';
-      });
-
-      document.getElementById(`step${step}`).style.display = 'block';
-      currentStep = step;
-      updateProgressBar();
-    }
-
-    function nextStep(step) {
-      if (step <= 5 && step > currentStep) {
-        showStep(step);
-      }
-    }
-
-    function prevStep(step) {
-      if (step >= 1 && step < currentStep) {
-        showStep(step);
-      }
-    }
-
-    showStep(1);
 
     // Add an event listener for the payment button
     const paymentButton = document.getElementById('paymentButton');
     paymentButton.addEventListener('click', () => {
-      // Add the Fedapay payment script here
-      // Example script you provided:
+
       const script = document.createElement('script');
       script.src = "https://checkout.fedapay.com/js/checkout.js";
       script.setAttribute("data-public-key", "pk_live_NVw62EiQ_Yu6mvPq13vuUapq");
@@ -504,6 +513,98 @@
     });
   </script>
 
+<script>
+  let currentStep = 1;
+  const progressBar = document.getElementById('progress-bar');
+
+  function updateProgressBar() {
+    const totalSteps = 5; // Total number of steps
+    const progress = (currentStep - 1) / (totalSteps - 1) * 100;
+    progressBar.style.width = progress + '%';
+    progressBar.setAttribute('aria-valuenow', progress);
+  }
+
+  function showStep(step) {
+    const formSteps = document.querySelectorAll('.form-step');
+    formSteps.forEach((stepElement) => {
+      stepElement.style.display = 'none';
+    });
+
+    document.getElementById(`step${step}`).style.display = 'block';
+    currentStep = step;
+    updateProgressBar();
+  }
+
+  function nextStep(step) {
+    if (step <= 5 && step > currentStep) {
+      showStep(step);
+    }
+  }
+
+  function prevStep(step) {
+    if (step >= 1 && step < currentStep) {
+      showStep(step);
+    }
+  }
+
+  showStep(1);
+
+
+</script>
+
+
+
+{{-- populate user's information --}}
+
+<script>
+  function generateSummary() {
+    // Retrieve form inputs
+    var ac_year = document.getElementById('ac_year').value;
+    var ac_level = document.getElementById('ac_level').value;
+    var field = document.getElementById('field').value;
+    var speciality = document.getElementById('speciality').value;
+    var exam_type = document.getElementById('exam_type').value;
+    var complain_type = document.getElementById('complain_type').value;
+    var ecue_sub = document.getElementById('ecue_sub').value;
+    var ecue = document.getElementById('ecue').value;
+    var description = document.getElementById('bio').value;
+
+    // Generate summary
+    var summary = `
+      <p style="color:black"><strong>Année académique:</strong> ${ac_year}</p>
+      <p style="color:black"><strong>Niveau d'étude:</strong> ${ac_level}</p>
+      <p style="color:black"><strong>Filière:</strong> ${field}</p>
+      <p style="color:black"><strong>Spécialité:</strong> ${speciality}</p>
+      <p style="color:black"><strong>Session:</strong> ${exam_type}</p>
+      <p style="color:black"><strong>Motif:</strong> ${complain_type}</p>
+      <p style="color:black"><strong>Unité d'Enseignement:</strong> ${ecue_sub}</p>
+      <p style="color:black"><strong>Elément Constitutif d'Unité d'Enseignement:</strong> ${ecue}</p>
+      <p style="color:black"><strong>Description:</strong> ${description}</p>
+    `;
+
+    // Display summary in the modal
+    document.getElementById('summaryBody').innerHTML = summary;
+    
+    // Show the modal
+    var myModal = new bootstrap.Modal(document.getElementById('summaryModal'));
+    myModal.show();
+  }
+</script>
+
+{{-- check button with status  --}}
+
+<script>
+  function toggleSuivantButton() {
+    var confirmationCheck = document.getElementById('confirmationCheck');
+    var suivantButton = document.getElementById('suivantButton');
+
+    // Enable/disable the "Suivant" button based on the state of the check button
+    suivantButton.disabled = !confirmationCheck.checked;
+  }
+</script>
+
+
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
@@ -512,25 +613,10 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
  

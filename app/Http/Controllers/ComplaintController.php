@@ -206,7 +206,7 @@ class ComplaintController extends Controller
             $userId = Auth::id();
 
             // Fetch all complaints associated with the user
-            $userComplaints = Complaint::where('student_id', $userId)->paginate(4);
+            $userComplaints = Complaint::where('student_id', $userId)->paginate(1000);
 
             // Pass the complaints to a view for displaying
             return view('complaint_status', ['userComplaints' => $userComplaints]);

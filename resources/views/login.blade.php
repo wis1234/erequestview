@@ -122,8 +122,8 @@
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
         <h2 class="responsive-heading" style="font-weight: bold; font-size: 40px; " >CONNEXION</h2>
         <ol>
-          <li><a href="{{ route('index')}}" style="color: blue;">Accueil</a></li>
-          <li class="white-text">Connexion</li>
+          {{-- <li><a href="{{ route('index')}}" style="color: blue;">Accueil</a></li> --}}
+          <li class="white-text">Interface d'authentification</li>
         </ol>
       </div>
     </div><!-- End Breadcrumbs -->
@@ -197,9 +197,10 @@
 
     @endguest
 
-    <p style="color: gray; font-family: Arial, sans-serif; top: 800px;">
-      N'avez-vous pas de compte ? <a href="{{ route('register')}}">  Créez-en un</a>
-    </p>
+    <p style="color: gray; font-family: Arial, sans-serif; top: 800px; text-align: center;">
+      N'avez-vous pas de compte ? <a href="{{ route('register')}}"> Créez-en un</a>
+  </p>
+  
   </div>
 </div>
   </main>

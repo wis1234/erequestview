@@ -6,6 +6,7 @@
   <title>Mauvais remplissage du formulaire</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
 
   <!-- Add CSS for the popup -->
   <style>
@@ -63,7 +64,9 @@
 </head>
 <body>
   <div class="popup-content" id="popup">
-    <i class="bi bi-check-circle popup-icon" style="font-size: xx-large;">😤Error!</i>
+    {{-- <i class="bi bi-check-circle popup-icon" style="font-size: xx-large;">😤Error!</i> --}}
+    <i class="bi bi-x-circle text-danger popup-icon" style="font-size: xx-larger;"></i>
+
     <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
       Veuillez bien renseigner les champs du formulaire et réessayer.
     </p>

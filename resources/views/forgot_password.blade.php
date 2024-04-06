@@ -45,8 +45,8 @@
         <h2 class="responsive-heading" style="font-weight: bold; font-size: 35px;" >IDENTIFICATION</h2>
         
         <ol>
-            <li><a href="{{route('index')}}">Accueil</a></li>
-            <li class="white-text">Demande de code</li>
+            {{-- <li><a href="{{route('index')}}">Accueil</a></li> --}}
+            <li class="white-text">Le code de réinitialisation du mot de passe sera envoyé dans votre boîte élèctronique.</li>
         </ol>
         
       </div>

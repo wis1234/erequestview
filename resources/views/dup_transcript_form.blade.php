@@ -164,8 +164,8 @@
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
         <h2 style="font-weight: bold; font-size: 40px;">Duplicata</h2>
         <ol>
-            <li><a href="{{route('index')}}">Accueil</a></li>
-            <li class="white-text">Duplicata de bulletin</li>
+            {{-- <li><a href="{{route('index')}}">Accueil</a></li> --}}
+            <li class="white-text">Demande de duplicata bulletin</li>
         </ol>
                 {{-- session alert for record already exists --}}
                 @if(session('error'))

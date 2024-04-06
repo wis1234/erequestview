@@ -67,7 +67,7 @@
     <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
       Le code de réinitialisation que vous avez renseigné est incorrect ou est expiré.
     </p>
-    <button class="popup-button" onclick="window.location.href='{{ route('verify_code')}}'">OK</button>
+    <button class="popup-button" onclick="window.location.href='{{ route('send_verification_code')}}'">OK</button>
   </div>
 
   <script>
