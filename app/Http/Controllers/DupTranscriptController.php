@@ -49,7 +49,7 @@ public function store(Request $request)
 
         if ($validator->fails()) {
             // return response()->json(['message' => 'Invalid input'], 422);
-            return view('false_form_filled_transcript');
+            return view('false_form_filled_dup_transcript');
 
         }
 
@@ -117,7 +117,7 @@ if ($semesterExists) {
 
     } catch (\Exception $e) {
         // return response()->json(['message' => 'Error creating transcript'], 500);
-        return view('false_form_filled_transcript');
+        return view('false_form_filled_dup_transcript');
     }
 }
 

@@ -3,9 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Erreur inattendue</title>
+  <title>Unexpected error</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <!-- Favicons -->
+  <link href="{{ asset('assets/img/favicon.jpeg') }}" rel="icon">
+  <link href="{{ asset('assets/img/apple-touch-icon.jpeg') }}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/css/my_style1.css')}}" rel="stylesheet">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
 
   <!-- Add CSS for the popup -->
@@ -22,7 +45,7 @@
 
     .popup-content {
       height: 250px;
-      width: 200px;
+      width: 260px;
       display: none;
       background: #fff;
       padding: 20px;
@@ -42,12 +65,12 @@
     }
 
     .popup-icon {
-      font-size: 80px;
-      color: #dc3545; /* Red color for error */
+      font-size: 40px;
+      color: #b30d0dde;
     }
 
     .popup-button {
-      background: #007bff; /* Blue color for the button */
+      background:  #05138fde; /* Blue color for the button */
       color: #fff;
       border: none;
       padding: 10px 20px;
@@ -64,8 +87,7 @@
 </head>
 <body>
   <div class="popup-content" id="popup">
-    {{-- <i class="bi bi-check-circle popup-icon" style="font-size: xx-large;">😤Error!</i> --}}
-    <i class="bi bi-x-circle text-danger popup-icon" style="font-size: xx-larger;"></i>
+    <i class="bi bi-x-circle text-danger popup-icon"></i>
 
     <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
       Une erreur inattendue est survenue. Veuillez réessayer plus tard    </p>

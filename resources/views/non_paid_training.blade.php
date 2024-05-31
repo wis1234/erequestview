@@ -123,14 +123,14 @@
       {{-- <button id="pay-btn" class="button-class"> PAYER</button> --}}
 
     </p>
-          <form action="{{('payment_sucess')}}" method="POST" style="margin-left: 30px;">
+          <form action="{{('payment_sucess')}}" method="GET" style="margin-left: 30px;">
         <script
           src="https://checkout.fedapay.com/js/checkout.js"
           data-public-key="pk_live_NVw62EiQ_Yu6mvPq13vuUapq"
           data-button-text="PAYER"
           data-button-class="button-class"
           data-transaction-amount="100"
-          data-transaction-description="Paiement des frais de réclamation"
+          data-transaction-description="Paiement des frais de demande de cue"
           data-currency-iso="XOF"   
           data-widget-description="Facilement et simplement, réclamez et faites vos demande d'acte academique  en ligne"
           data-widget-image="E:\P_Projects\dissertation-main\public\dissertation_UI\assets\img\logo.jpeg"

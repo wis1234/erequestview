@@ -123,7 +123,7 @@
       {{-- <button id="pay-btn" class="button-class"> PAYER</button> --}}
 
     </p>
-          <form action="{{('payment_sucess')}}" method="POST" style="margin-left: 30px;">
+          <form action="{{('payment_sucess')}}" method="GET" style="margin-left: 30px;">
         <script
           src="https://checkout.fedapay.com/js/checkout.js"
           data-public-key="pk_live_NVw62EiQ_Yu6mvPq13vuUapq"

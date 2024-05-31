@@ -26,11 +26,12 @@ class PasswordResetNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->line('You are receiving this email because we received a verification code request for your account.')
-        ->line('Your verification code is: ' . $this->verificationCode)
-        ->line('If you did not request this code, no further action is required.');
-        // ->line('Best Regards,')
-        // ->line('eRequest from LATESC. All rights reserved.');
-            // ->salutation('© ' . date('Y') . ' eGraC from LaTESC. All rights reserved.');
+            ->greeting('Salut ' . $notifiable->firstname . '!')
+            ->line('Vous avez reçu cet e-mail car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte.')
+            ->line('**Votre code de vérification est : ' . $this->verificationCode . '**')
+            ->line("Si vous n'avez pas demandé cette réinitialisation, aucune autre action n'est requise.")
+            ->salutation('Cordialement, eRequest');
     }
+    
+    
 }

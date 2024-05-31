@@ -9,6 +9,7 @@
     <meta content="" name="keywords">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    {{-- <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap" rel="stylesheet"> --}}
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +25,7 @@
             align-items: center;
             min-height: 100vh;
             background: #fff;
+            font-family: 'Chakra Petch', sans-serif;
         }
 
         .popup-content {
@@ -75,6 +77,23 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
+
+            /* Media Queries for additional responsiveness */
+@media (max-width: 768px) {
+  .item {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .item {
+    padding: 10px;
+  }
+
+}
+        }
+        .dual_container .table {
+            margin:10px
         }
 
         .report {
@@ -206,7 +225,6 @@
             }
         }
 
-         /* Styles for watermark */
         /* Styles for watermark */
 @media print {
     .report::after {
@@ -222,7 +240,25 @@
         z-index: 9999;
         pointer-events: none;
     }
+
+
+    .signature-container {
+        position: fixed;
+        top: 40px; /* Adjust the position as needed */
+        left: 50%;
+        transform: translateX(-50%);
+        display: block !important;
+        font-weight: bold;
+        font-size: 20px;
+        
+      }
+
+      .signature {
+        width: 200px; /* Adjust the width of the signature image */
+        height: auto; /* Maintain aspect ratio */
+      }
 }
+
 
     
     </style>
@@ -236,13 +272,13 @@
         <!-- Title for the first grid -->
         <div class="strong-items">
             <i class="bi bi-check-circle popup-icon"
-                style="font-size: 30px; font-family: Rubik Gemstones, system-ui; font-weight: 400; font-style: normal; font_style:normal; margin:5px; font-weight:bold; color: blue">ETAT DE TRAITEMENT DES DEMANDES</i>
+                style="font-size: 30px; font-family: Rubik Gemstones, system-ui; font-weight: 400; font-style: normal; font_style:normal; margin:5px; font-weight:bold; color: gray">ETAT DE TRAITEMENT DES RECLAMATIONS</i>
         </div>
         <br><br>
 
                           <!-- Print icon -->
             <div class="no-print" style="font-size: 20px; cursor: pointer; top:50px; margin-left: 10px">
-             <i class="fas fa-print" style="font-size: 20px; cursor: pointer; top:50px; margin-left: 10px" onclick="openPrintModal()">Imprimer</i>
+                <i id="printIcon" class="fas fa-print" style="font-size: 20px; cursor: pointer; top:50px; margin-left: 10px; display: none;" onclick="openPrintModal()">Imprimer</i>
             </div> <br><br><br>
         <!-- Search bar -->
         <div class="search-container">
@@ -259,35 +295,38 @@
         </div>
         <!-- Display the elements in a grid -->
         <div class="dual-container">
-            @if ($userComplaints->isEmpty())
-            <p> <strong> Aucune  réclamation de note n'a été enregistrée </strong></p>
-            @else
             @foreach($userComplaints as $complaint)
-            <div class="report" data-search="{{ strtolower('ADR' . $complaint->id) }} {{ strtolower($complaint->mat) }} {{ strtolower($complaint->field) }} {{ strtolower($complaint->speciality) }} {{ strtolower($complaint->ac_year) }} {{ strtolower($complaint->ac_level) }} {{ strtolower($complaint->exam_type) }} {{ strtolower($complaint->complain_type) }} {{ strtolower($complaint->ecue_sub) }} {{ strtolower($complaint->ecue) }} {{ strtolower($complaint->created_at) }} {{ strtolower($complaint->updated_at) }} {{ strtolower($complaint->feedback) }} {{ strtolower($complaint->status) }}">
-                <table>
+            <div class="report" data-search="{{ strtolower('ADR' . $complaint->id) }} {{ strtolower($complaint->mat) }} {{ strtolower($complaint->mat) }} {{ strtolower($complaint->field) }} {{ strtolower($complaint->program) }} {{ strtolower($complaint->ac_year) }} {{ strtolower($complaint->ac_level) }} {{ strtolower($complaint->exam_type) }} {{ strtolower($complaint->complain_type) }} {{ strtolower($complaint->ue) }} {{ strtolower($complaint->ecue) }} {{ strtolower($complaint->created_at) }} {{ strtolower($complaint->updated_at) }} {{ strtolower($complaint->feedback) }} {{ strtolower($complaint->semester) }} {{ strtolower($complaint->field) }} {{ strtolower($complaint->program) }} {{ strtolower($complaint->ac_year) }} {{ strtolower($complaint->ac_level) }} {{ strtolower($complaint->exam_type) }} {{ strtolower($complaint->complain_type) }} {{ strtolower($complaint->ue) }} {{ strtolower($complaint->ecue) }} {{ strtolower($complaint->created_at) }} {{ strtolower($complaint->updated_at) }} {{ strtolower($complaint->feedback) }} {{ strtolower($complaint->status) }}">
+                <table class="table">
+                       {{-- signature --}}
+                 <div class="signature-container" style="display: none ">
+                        RECEPISSE DE RECLAMATION
+                         <br><br>
+                         {{$complaint-> claimant_lastname}} {{$complaint-> claimant_firstname}} 
+                </div>
                     <tr>
                         <th>RECLAMATION N°</th>
                         <th>ADR{{ $complaint->id }} </th>
                     </tr>
                     <tr>
                         <td class="bold">Matricule:</td>
-                        <td>{{ $complaint->mat }}</td>
+                        <td>{{ $complaint->mat_number }}</td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <td class="bold">Nom:</td>
                         <td>{{$complaint-> claimant_lastname}}</td>
                     </tr>
                     <tr>
                         <td class="bold">Prénom:</td>
                         <td>{{$complaint-> claimant_firstname}}</td>
-                    </tr>
+                    </tr> --}}
                     <tr>
-                        <td class="bold">Filière:</td>
-                        <td>{{ $complaint->field }}</td>
+                        <td class="bold no-print">Filière:</td>
+                        <td class="no-print">{{ $complaint->field }}</td>
                     </tr>
                     <tr>
                         <td class="bold">Spécialité:</td>
-                        <td>{{ $complaint->speciality }}</td>
+                        <td>{{ $complaint->program }}</td>
                     </tr>
                     <tr>
                         <td class="bold">Année académique:</td>
@@ -301,17 +340,40 @@
                         <td class="bold">Session:</td>
                         <td>{{ $complaint->exam_type }}</td>
                     </tr>
+
+                    <tr>
+                        <td class="bold">Semestre:</td>
+                        <td>{{ $complaint->semester }}</td>
+                    </tr>
+
                     <tr>
                         <td class="bold">Motif:</td>
                         <td>{{ $complaint->complain_type }}</td>
                     </tr>
                     <tr>
                         <td class="bold">UE:</td>
-                        <td>{{ $complaint->ecue_sub }}</td>
+                        <td>{{ $complaint->ue }}</td>
                     </tr>
                     <tr>
                         <td class="bold">ECUE:</td>
                         <td>{{ $complaint->ecue }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Note sur 20:</td>
+                        <td>{{ $complaint->grade_over_20 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Note coefficiée:</td>
+                        <td>{{ $complaint->coef_grade }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Validation:</td>
+                        <td>{{ $complaint->validation }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="bold">Numéro séquentiel:</td>
+                        <td>{{ $complaint->seq_number }}</td>
                     </tr>
                     <tr>
                         <td class="bold">DESCRIPTION:</td>
@@ -324,11 +386,12 @@
                     <tr>
                         <td class="bold">Date et Heure de traitement:</td>
                         <td>
-                            @if($complaint->created_at == $complaint->updated_at)
-                                Indisponible
-                            @else
-                                {{ $complaint->updated_at }}
-                            @endif
+                        @if($complaint->created_at == $complaint->updated_at || $complaint->status == 'En cours de traitement...')
+                         Indisponible
+                        @else
+                        {{ $complaint->treat_time }}
+                        @endif
+
                         </td>
                     </tr>
 
@@ -371,114 +434,7 @@
             <i class="fas fa-info-circle"></i> NO DATA FOUND
         </div>
     </div>
-
-
-    {{-- pdf download form --}}
-
-    <form id="com_pdf-form" action="{{ route('com_generate.pdf') }}" method="POST" style="display: none;">
-        @csrf
-        <textarea name="com_content" id="com_content">
-            <div class="dual-container" id="complaintContainer">
-              @if ($userComplaints->isEmpty())
-              <p> <strong> Aucune réclamation de note n'a été enregistrée </strong></p>
-              @else
-                          
-                                <div class="report">
-                                    <div class="report-item">
-                                        {{-- Display transcript details --}}
-                                        <page>
-                                        <table style="border-collapse: collapse; border-spacing: 10px; width: 100%;">
-                                          <tr>
-                                              <th colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">RECLAMATION N°</th>
-                                              <td colspan="2" style="border: 1px solid black; text-align: center;">ADR{{ $complaint->id }}</td>
-                                          </tr>
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Matricule:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->mat }}</td>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Nom:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->lastname }}</td>
-                                          </tr>
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Prénom:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->firstname }}</td>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Filière:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->field }}</td>
-                                          </tr>
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Spécialité:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->speciality }}</td>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Année académique:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->ac_year }}</td>
-                                          </tr>
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Niveau d'étude:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->ac_level }}</td>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Semestre:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->exam_type }}</td>
-                                          </tr>
-                                          
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Date et Heure de demande:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->created_at }}</td>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Date de traitement:</td>
-                                              <td style="border: 1px solid black;">
-                                                    @if($complaint->created_at == $complaint->updated_at)
-                                                        Indisponible
-                                                    @else
-                                                        {{ $complaint->updated_at }}
-                                                    @endif
-                                                </td>
-                                          </tr>
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Observation:</td>
-                                              <td colspan="3" style="border: 1px solid black;">
-                                                  @if ($complaint->feedback == "")
-                                                      Aucune observation pour le moment
-                                                  @else
-                                                      {{ $complaint->feedback }}
-                                                  @endif
-                                              </td>
-                                          </tr>
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Status:</td>
-                                              <td colspan="3" style="border: 1px solid black;">
-                                                
-                                                    <span style="font-weight: bold; color:
-                                                      @switch($complaint->status)
-                                                      @case('REJETE')
-                                                      red;
-                                                      @break
-                                                      @case('ACCEPTE')
-                                                      green;
-                                                      @break
-                                                      @default
-                                                      black; /* or any default color */
-                                                      @endswitch
-                                                      ">
-                                                        @if($complaint->status === 'ACCEPTE')
-                                                            ACCEPTE <i class="bi bi-check-circle" style="color: green;"></i>
-                                                        @elseif($complaint->status === 'REJETE')
-                                                            REJETE <i class="bi bi-x-circle" style="color: red;"></i>
-                                                        @else
-                                                            {{ $complaint->status }}
-                                                        @endif
-                                                    </span>
-                                                
-                                              </td>
-                                          </tr>
-                                      </table>
-                                    </page>
-                                        <br> <!-- Add a line break for spacing between tables -->
-                                    </div>
-                                </div>
-                           
-                        @endif
-                    @endforeach
-                @endif
-            </div>
-        </textarea>
-    </form>
-
+ 
 <!-- Print modal -->
 <div id="printModal" class="modal">
   <div class="modal-content">
@@ -511,25 +467,30 @@
             const noDataMessage = document.getElementById("noDataMessage");
 
             searchInput.addEventListener("keyup", function () {
-                const searchTerm = searchInput.value.toLowerCase();
-                let found = false;
+            const searchTerm = searchInput.value.toLowerCase();
+            let found = false;
 
-                reports.forEach(report => {
-                    const searchData = report.getAttribute("data-search").toLowerCase();
-                    if (searchData.includes(searchTerm)) {
-                        report.style.display = "block";
-                        found = true;
-                    } else {
-                        report.style.display = "none";
-                    }
-                });
-
-                if (found) {
-                    noDataMessage.classList.remove("show");
+            reports.forEach(report => {
+                const searchData = report.getAttribute("data-search").toLowerCase();
+                if (searchData.includes(searchTerm)) {
+                    report.style.display = "block";
+                    found = true;
                 } else {
-                    noDataMessage.classList.add("show");
+                    report.style.display = "none";
                 }
             });
+
+            if (found) {
+                noDataMessage.classList.remove("show");
+                // Show the print icon if a matching report is found
+                document.getElementById("printIcon").style.display = "block";
+            } else {
+                noDataMessage.classList.add("show");
+                // Hide the print icon if no matching report is found
+                document.getElementById("printIcon").style.display = "none";
+            }
+        });
+        
         };
 
         // Open print modal
@@ -552,45 +513,16 @@
                 alert("Document not found!");
             }
         }
-        // Close print modal
-function closePrintModal() {
-    document.getElementById("printModal").style.display = "none";
-}
 
     </script>
 
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const com_pdfForm = document.getElementById('com_pdf-form');
-        const com_content = document.getElementById('com_content').value;
-        const com_pdfBtn = document.getElementById('com_pdf-btn');
-  
-        pdfBtn.addEventListener('click', function () {
-            const form = new FormData(com_pdfForm);
-            fetch(com_pdfForm.action, {
-                method: 'POST',
-                body: form,
-            })
-            .then(response => response.blob())
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'com_report.pdf';
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    });
-  </script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <footer>
+        @yield('footer')
+    </footer>
+
 </body>
+
 
 </html>

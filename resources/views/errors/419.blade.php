@@ -6,6 +6,27 @@
   <title>Session expired</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+    <!-- Favicons -->
+    <link href="{{ asset('assets/img/favicon.jpeg') }}" rel="icon" >
+    <link href="{{ asset('assets/img/apple-touch-icon.jpeg') }}" rel="apple-touch-icon">
+  
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap" rel="stylesheet">
+  
+  
+    <!-- Vendor CSS Files -->
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
   <!-- Add CSS for the popup -->
   <style>
@@ -20,8 +41,8 @@
     }
 
     .popup-content {
-      height: 250px;
-      width: 200px;
+      height: 280px;
+      width: 250px;
       display: none;
       background: #fff;
       padding: 20px;
@@ -41,15 +62,17 @@
     }
 
     .popup-icon {
-      font-size: 80px;
-      color: #dc3545; /* Red color for error */
+      font-size: 60px;
+      color:#b30d0dde;/* Red color for error */
+      font-weight: bolder
+      
     }
 
     .popup-button {
-      background: #007bff; /* Blue color for the button */
+      background: #05138fde; /* Blue color for the button */
       color: #fff;
       border: none;
-      padding: 10px 20px;
+      /* padding: 10px 20px; */
       border-radius: 4px;
       font-weight: bold;
       cursor: pointer;
@@ -63,7 +86,7 @@
 </head>
 <body>
   <div class="popup-content" id="popup">
-    <i class="bi bi-check-circle popup-icon" style="font-size: xx-large;">😤Error!</i>
+    <i class="bi bi-x-circle text-danger popup-icon"></i>
     <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
       Votre session est expirée, veuillez vous connecter à nouveau. </p>
     <button class="popup-button" onclick="window.location.href='{{ route('login')}}'">OK</button>

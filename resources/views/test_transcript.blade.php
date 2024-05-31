@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Payement des frais de demande de bulletin</title>
+  <title>Payement des frais de demande de cue / bulletin</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <!-- Favicons -->
@@ -119,20 +119,20 @@
       En cliquant sur PAYER vous accepter les termes de paiement des frais de demande de bulletin.  <!-- Vous pouvez désormais vous <a href="login.html" style="color: #333; font-weight: bold;">connecter</a> avec votre Nouveau
       mot de passe -->
     </p>
-    <form action="{{('payment_sucess')}}" method="POST" style="margin-left: 30px;">
-      <script
+    <form action="{{('payment_sucess')}}" method="GET" style="margin-left: 30px;">
+        <script
           src="https://checkout.fedapay.com/js/checkout.js"
           data-public-key="pk_live_NVw62EiQ_Yu6mvPq13vuUapq"
           data-button-text="PAYER"
           data-button-class="button-class"
           data-transaction-amount="100"
-          data-transaction-description="Paiement des frais de réclamation"
+          data-transaction-description="Paiement des frais de demande de cue"
           data-currency-iso="XOF"   
           data-widget-description="Facilement et simplement, réclamez et faites vos demande d'acte academique  en ligne"
           data-widget-image="E:\P_Projects\dissertation-main\public\dissertation_UI\assets\img\logo.jpeg"
           data-widget-title="eGraC">
         </script>
-       </form>
+      </form>
   </div>
 
   <script>

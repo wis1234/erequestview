@@ -10,6 +10,8 @@ use App\Http\Controllers\DiplomaController;
 use App\Http\Controllers\DupTranscriptController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\PedRegistrationController;
+use App\Http\Controllers\RetakeController;
 use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,9 +50,9 @@ Route::middleware(['auth'])->group(function () {
         return view('certificate_form');
     })->name('certificate_form');
 
-    Route::get('/complaint_form', function () {
-        return view('complaint_form');
-    })->name('complaint_form');
+    // Route::get('/complaint_form', function () {
+    //     return view('complaint_form');
+    // })->name('complaint_form');
 
     Route::get('/false_form_filled', function () {
         return view('false_form_filled');
@@ -290,7 +292,7 @@ Route::get('/complaint', function () {
 });
 
 Route::post('/complaint', [ComplaintController::class, 'store'])->name('complaint_send');
-// Route::get('/complaint/{id}', [ComplaintController::class, 'show'])->name('complaint_one');
+Route::get('/complaint_form', [ComplaintController::class, 'showComplaintForm'])->name('complaint_form');
 Route::get('/complaint/{id}', function () {
     return view('not_allowed');
 });
@@ -391,6 +393,9 @@ Route::get('/user/certificates', [CertificateController::class, 'userCertificate
 Route::get('/user/transcripts', [TranscriptController::class, 'userTranscripts'])->name('transcript_status')->middleware('auth');
 Route::get('/user/diploma', [DiplomaController::class, 'userDiploma'])->name('diploma_status')->middleware('auth');
 Route::get('/user/dup_transcript', [DupTranscriptController::class, 'userDupTranscripts'])->name('dup_transcript_status')->middleware('auth');
+Route::get('/user/ped_registration', [PedRegistrationController::class, 'userPedRegistration'])->name('ped_registration_status')->middleware('auth');
+Route::get('/user/retake', [RetakeController::class, 'userRetake'])->name('retake_status')->middleware('auth');
+
 
 Route::get('/index_redirect', function () {
     return view('index_redirect');
@@ -402,3 +407,48 @@ Route::get('/index_redirect', function () {
 Route::post('/generate-pdf', [PdfController::class, 'generatePdf'])->name('generate.pdf');
 Route::post('/dup_generate-pdf', [PdfController::class, 'dup_generatePdf'])->name('dup_generate.pdf');
 Route::post('/com_generate-pdf', [PdfController::class, 'com_generatePdf'])->name('com_generate.pdf');
+
+//profile picture routing
+
+Route::get('/app', function () {
+    return view('layouts.app');
+})->name('app');
+
+// complaints claim lunch status routing
+
+Route::get('/get-claim-lunch-value', [ComplaintController::class, 'getClaimLunchValue']);
+Route::get('/status', [ComplaintController::class, 'getStatus'])->name('status');
+
+//pedagogiq registration lunch status
+
+Route::get('/get-ped-lunch-value', [PedRegistrationController::class, 'getPedLunchValue']);
+Route::get('/status', [PedRegistrationController::class, 'getStatus'])->name('status');
+
+//retake lunch status
+
+Route::get('/get-retake-lunch-value', [RetakeController::class, 'getRetakeLunchValue']);
+Route::get('/status', [RetakeController::class, 'getStatus'])->name('status');
+
+
+// pedagogique registrations routing
+
+Route::post('/PedRegistration', [PedRegistrationController::class, 'store'])->name('PedRegistration_send');
+Route::get('/ped_registration_form', [PedRegistrationController::class, 'showPedRegistrationForm'])->name('ped_registration_form');
+Route::get('/complaint/{id}', function () {
+    return view('not_allowed');
+});
+
+// pedagogique registrations routing
+
+Route::post('/Retake', [RetakeController::class, 'store'])->name('Retake_send');
+Route::get('/retake_form', [RetakeController::class, 'showRetakeForm'])->name('retake_form');
+
+
+//minutor routing for getting hour
+Route::get('/complaint/hour/check', [ComplaintController::class, 'getHour'])->name('hour');
+Route::get('/ped/hour/check', [PedRegistrationController::class, 'getHour'])->name('hour');
+Route::get('/retake/hour/check', [RetakeController::class, 'getHour'])->name('hour');
+
+
+//profile update routing
+Route::post('/profile/update', [AuthController::class, 'updateProfile'])->name('profile.update');

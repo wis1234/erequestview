@@ -123,7 +123,7 @@
       {{-- <button id="pay-btn" class="button-class"> PAYER</button> --}}
 
     </p>
-          <form action="{{('payment_sucess')}}" method="GET" style="margin-left: 30px;">
+      <form action="{{('payment_sucess')}}" method="GET" style="margin-left: 30px;">
         <script
           src="https://checkout.fedapay.com/js/checkout.js"
           data-public-key="pk_live_NVw62EiQ_Yu6mvPq13vuUapq"
@@ -136,7 +136,7 @@
           data-widget-image="E:\P_Projects\dissertation-main\public\dissertation_UI\assets\img\logo.jpeg"
           data-widget-title="eGraC">
         </script>
-       </form>
+      </form>
   </div>
 
   <script type="text/javascript">

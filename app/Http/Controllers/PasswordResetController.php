@@ -30,14 +30,16 @@ class PasswordResetController extends Controller
             $user = User::where('email', $request->input('email'))->first();
 
             if (!$user) {
-                return view('not_found');
+                // return view('not_found');
+                return redirect()->route('forgot_password')->with('error', "Email non reconnue, veuillez reéssayer.");
+
             }
 
             // Generate a unique verification code
             $verificationCode = mt_rand(100000, 999999); // Generate a 6-digit verification code
 
             // Set an expiration time for the code
-            $verificationCodeExpiry = now()->addMinutes(30); // Adjust the time as needed
+            $verificationCodeExpiry = now()->addMinutes(5); // Adjust the time as needed
 
             // Store the verification code and expiration time in the user's record
             $user->reset_code = $verificationCode;
@@ -50,7 +52,7 @@ class PasswordResetController extends Controller
             return view('send_verification_code');
         } catch (\Exception $e) {
             // Handle exceptions here
-            return view('error');
+            return redirect()->route('forgot_password')->with('error', "une erreur inattendue est survenue.");
         }
     }
 
@@ -72,7 +74,9 @@ class PasswordResetController extends Controller
             $user = User::where('reset_code', $request->input('verification_code'))->first();
 
             if (!$user) {
-                return view('invalid_or_expiry');
+                // return view('invalid_or_expiry');
+                return redirect()->route('send_verification_code')->with('error', "Code invalide ou expiré, veuillez reéssayer.");
+
             }
 
             // Check if the reset code is not expired
@@ -80,11 +84,15 @@ class PasswordResetController extends Controller
                 return view('change_password');
             }
 
-            return view('invalid_or_expiry');
+            // return view('invalid_or_expiry');
+            return redirect()->route('send_verification_code')->with('error', "Code invalide ou expiré, veuillez reéssayer.");
+
 
         } catch (\Exception $e) {
             // Handle exceptions here
-            return view('error');
+            // return view('error');
+            return redirect()->route('send_verification_code')->with('error', "Code invalide ou expiré, veuillez reéssayer.");
+
         }
     }
 
@@ -107,7 +115,9 @@ class PasswordResetController extends Controller
             $user = User::where('reset_code', $request->input('verification_code'))->first();
 
             if (!$user) {
-                return view('error');
+                // return view('error');
+                return redirect()->route('change_password')->with('error', "une erreur inattendue est survenue.");
+
             }
 
             // Update the user's password and reset the reset_code and reset_code_expiry
@@ -120,7 +130,9 @@ class PasswordResetController extends Controller
             return view('change_password_sucess');
         } catch (\Exception $e) {
             // Handle exceptions here
-            return view('error');
+            // return view('error');
+            return redirect()->route('change_password')->with('error', "une erreur inattendue est survenue.");
+
         }
     }
 }

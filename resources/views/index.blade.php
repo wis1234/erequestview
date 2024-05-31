@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>gestion des réclamations de notes</title>
+  <title>Accueil e-Request</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -30,42 +30,9 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
+<link rel="stylesheet" href="{{ asset('assets/css/index.css')}}">
 
-    <!-- Ajouter le style pour la boîte de pop-up -->
-    <style>
-      /* Style pour la boîte de pop-up */
-      .popup {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: 100px;
-        width: 100px;
-        height: 100%;
-        /* background-color: rgba(255, 255, 255, 0.9); */
-        z-index: 9999;
-         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-      }
-  
-      .popup-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
-  
-      .close-popup {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size:x-large;
-        cursor: pointer;
-      }
-    </style>
+    
 
 
 </head>
@@ -76,9 +43,9 @@
   <header id="header" class="header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
+      <a href="{{route('index')}}" class="logo d-flex align-items-center">
         <img src="assets/img/logo.jpeg" alt="FASEG">
+        <span class="faseg" style="color: black">FASEG UAC</span>
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -86,7 +53,7 @@
       <nav id="navbar" class="navbar">
         <ul>
 
-          <li><a href="index.html">Accueil</a></li>
+          <li><a href="{{route('index')}}">Accueil</a></li>
           <!-- <li><a href="process.html">Demarche</a></li> -->
           <li class="dropdown"><a href=""><span>Démarches</span> <i
             class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -150,32 +117,30 @@
     </div>
   </header>
   <!-- End Header -->
+  <section>
+    <div class="service-container">
+      <div class="service-title">
+        <div class="user"  > 
+   
+        <div style="font-size:40px; font-weight:bold; color:white ; align-item:center;"> <strong>BIENVENUE</strong></div>
+        <div id="popup-text" style="font-size: 20px; font-weight:bold; text-transform:uppercase"></div>  
+          <div class="small-title">
+              sur <strong >e-Request</strong><br><br>
+              <p style="font-weight: 100; color:black">La plateforme dédiée aux réclamations,  et demande
+                d'actes académiques <br><br>
+                <button type="button" class="btn_register" onclick="window.location.href='{{ route('register')}}'" >Commencer</button>
 
+              </p>
+
+          </div>
+  
+      </div>
+       
+      </div>
+
+  </section>
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero">
-
-    <div class="info d-flex align-items-center">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6 text-center">
-            <h2 data-aos="fade-down" style="margin-top: 30px;">Bienvenue <span></span></h2>
-            <p data-aos="fade-up">La FASEG à votre service autrement</p>
-            <!-- <p data-aos="fade-up"> </p> -->
-
-            <p data-aos="fade-up">Désormais, vos réclamations de note et demande d'actes academiques en toute simplicité et en toute facilité</p>
-
-            <div id="popup" class="popup">
-              <div class="popup-content">
-                <span class="close-popup" onclick="closePopup()">&times;</span>
-                <div id="popup-text"></div>
-              </div>
-            </div>
-
-            <a data-aos="fade-up" data-aos-delay="200" href="{{ route('register')}}" class="btn-get-started">Commencer</a>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
 
@@ -195,11 +160,15 @@
       </a>
 
     </div>
+    {{-- <div class="carousel slide">
+      Faites désormais vos reclamations de note, demande d'actes académiques
+      en un seul clic
+    </div> --}}
 
-  </section><!-- End Hero Section -->
+  </section>
+  
+  <!-- End Hero Section -->
 
-
-{{-- additional informations to clarify the user index page --}}
 
 <!-- ======= Additonal content begining ======= -->
 <section id="blog" class="blog">
@@ -217,7 +186,7 @@
 
           <div class="post-content d-flex flex-column">
 
-            <h3 class="post-title">Facilitez vos procédures académiques</h3>
+            <h3 class="post-title">Réclamation de note</h3>
 
             <div class="meta d-flex align-items-center">
               <div class="d-flex align-items-center">
@@ -230,7 +199,9 @@
             </div>
 
             <p>
-              Simplifiez vos procédures académiques en gérant facilement vos réclamations, notes et demandes d'actes en ligne. Profitez d'une plateforme intuitive pour une expérience simplifiée.
+              Simplifiez vos démarches administratives pour faire une réclamation de note.
+               Profitez de votre plateforme pour une expérience simplifiée. Plus simple et rapidement
+               pour exprimer votre avis.
             </p>
 
             <hr>
@@ -253,7 +224,7 @@
 
           <div class="post-content d-flex flex-column">
 
-            <h3 class="post-title">Gérez vos notes et réclamations en toute simplicité</h3>
+            <h3 class="post-title">Actes académiques</h3>
 
             <div class="meta d-flex align-items-center">
               <div class="d-flex align-items-center">
@@ -266,7 +237,9 @@
             </div>
 
             <p>
-              Gérez efficacement vos notes et réclamations académiques en ligne. Simplifiez le processus et accédez rapidement à toutes vos informations académiques.
+              Depuis votre position, vous pouvez désormais soumettre votre dossier de demande
+              d'actes académiques, suivre l'évolution de son traitement et passer récuperer votre 
+              document à bon escient
             </p>
 
             <hr>
@@ -289,7 +262,7 @@
 
           <div class="post-content d-flex flex-column">
 
-            <h3 class="post-title">Recevez rapidement vos documents académiques</h3>
+            <h3 class="post-title">Inscription pédagogique</h3>
 
             <div class="meta d-flex align-items-center">
               <div class="d-flex align-items-center">
@@ -302,12 +275,13 @@
             </div>
 
             <p>
-              Obtenez rapidement vos documents académiques en quelques clics. Simplifiez vos demandes pour une gestion aisée de votre parcours académique.
+              Faites vos inscriptions pédagogiques au même endroit. Nous n'aurez plus de quittance à valider
+              ni un réçu à déposer. Veuillez suivre les instructions du systeme pour en finir
             </p>
 
             <hr>
 
-            <a href="blog-details.html" class="readmore stretched-link"><span>Explorer davantage</span><i
+            <a href="blog-details.html" class="readmore stretched-link"><span>En savoir plus</span><i
                 class="bi bi-arrow-right"></i></a>
 
           </div>
@@ -346,40 +320,27 @@
         data-aos-delay="100"></div>
 
       <div class="col-lg-5 d-flex flex-column justify-content-center">
-        <h3>Facilitez vos démarches académiques avec notre plateforme</h3>
-        <p>Gérez vos études de manière intuitive. Profitez de fonctionnalités simples pour vos réclamations, notes, et demandes académiques en ligne.</p>
+        <h3>Scannage des pièces</h3>
+        <p>Afin de vous rassurer que votre dossier ne sera rejeté, veuillez utiliser des photos claires et nettes. Aussi
+          devez-vous vous rassurer d'avoir un solde suffisant capable de couvrir le coût du service ou de la prestation
+          demandée
+        </p>
+      </div>
 
         <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
           <i class="bi bi-easel flex-shrink-0"></i>
           <div>
             <h4><a href="" class="stretched-link">Gestion simplifiée</a></h4>
             <p>Accédez facilement à vos informations et gérez vos démarches académiques en toute simplicité pour une expérience sans tracas.</p>
-          </div>
-        </div><!-- End Icon Box -->
-
-        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="200">
-          <i class="bi bi-patch-check flex-shrink-0"></i>
-          <div>
-            <h4><a href="" class="stretched-link">Fiabilité assurée</a></h4>
             <p>Nos services vous offrent une fiabilité totale pour garantir la sécurité et la confidentialité de vos données académiques.</p>
-          </div>
-        </div><!-- End Icon Box -->
-
-        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
-          <i class="bi bi-brightness-high flex-shrink-0"></i>
-          <div>
-            <h4><a href="" class="stretched-link">Accessibilité optimale</a></h4>
             <p>Profitez d'une plateforme facile d'accès vous permettant de gérer vos démarches académiques de n'importe où et à tout moment.</p>
-          </div>
-        </div><!-- End Icon Box -->
-
-        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
-          <i class="bi bi-brightness-high flex-shrink-0"></i>
-          <div>
-            <h4><a href="" class="stretched-link">Assistance personnalisée</a></h4>
             <p>Notre équipe est disponible pour vous offrir un support personnalisé et répondre à toutes vos questions académiques.</p>
+
           </div>
-        </div><!-- End Icon Box -->
+        </div>
+        <!-- End Icon Box -->
+
+
 
       </div>
     </div>
@@ -393,54 +354,79 @@
 
     <div class="row justify-content-around gy-4">
       <div class="col-lg-5 d-flex flex-column justify-content-center">
-        <h3>Facilitez vos démarches académiques</h3>
-        <p>Optimisez la gestion de vos demandes académiques et de réclamations. Obtenez rapidement vos bulletins, attestations et diplômes, et demandez facilement des duplicatas en cas de besoin.</p>
+        <h3>Services et prestations</h3>
+        {{-- <p>Optimisez la gestion de vos demandes académiques et de réclamations. Obtenez rapidement vos bulletins, attestations et diplômes, et demandez facilement des duplicatas en cas de besoin.</p> --}}
 
         <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
           <i class="bi bi-easel flex-shrink-0"></i>
           <div>
-            <h4><a href="" class="stretched-link">Demande de réclamation</a></h4>
-            <p>Effectuez facilement des demandes de réclamation en ligne pour résoudre tout problème lié à vos résultats académiques.</p>
+            <h4><a href="" class="stretched-link">Réclamation</a></h4>
+            <p>Effectuez facilement des réclamations en ligne pour résoudre tout problème lié à vos résultats académiques.</p>
           </div>
         </div><!-- End Icon Box -->
 
         <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="200">
           <i class="bi bi-patch-check flex-shrink-0"></i>
           <div>
-            <h4><a href="" class="stretched-link">Bulletins et attestations</a></h4>
-            <p>Recevez vos bulletins et attestations officielles rapidement et en toute simplicité via notre plateforme en ligne sécurisée.</p>
+            <h4><a href="" class="stretched-link">Demande de CUE, d'Attestation et de Diplôme</a></h4>
+            <p>Faites une demande du certfifcat d'unité d'enseignement demande d'ttestation de succès en toute simplicité</p>
           </div>
         </div><!-- End Icon Box -->
 
         <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
           <i class="bi bi-brightness-high flex-shrink-0"></i>
           <div>
-            <h4><a href="" class="stretched-link">Demande de diplôme</a></h4>
-            <p>Initiez votre demande de diplôme officiel en ligne pour obtenir rapidement votre document attestant de votre réussite académique.</p>
+            <h4><a href="" class="stretched-link">Authenticité de diplôme, Certificat de scolarité, duplicata d'acte académique </a></h4>
+            <p>Faites et suivre la demande de votre diplôme, de votre authencité de diplôme ou du duplicata d'un document</p>
           </div>
         </div><!-- End Icon Box -->
 
         <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
           <i class="bi bi-brightness-high flex-shrink-0"></i>
           <div>
-            <h4><a href="" class="stretched-link">Duplicatas et attestations</a></h4>
-            <p>Demandez facilement des duplicatas de vos diplômes ou attestations en cas de perte ou de besoin supplémentaire.</p>
+            <h4><a href="" class="stretched-link">Inscription pédagogique, Dépôt de mémoire , Frais de soutenance et autres</a></h4>
+            <p>
+              Payez vos frais de soutenance, faites vos inscriptions pédagogiques et dépôt de votre mémoire de
+              fin de formation
+            </p>
           </div>
         </div><!-- End Icon Box -->
       </div>
 
-      <div class="col-lg-6 img-bg" style="background-image: url(assets/img/hero-carousel/hero-carousel-3   .jpg)"& data-aos="zoom-in"
+      <div class="col-lg-6 img-bg" style="background-image: url(assets/img/hero-carousel/hero-carousel-3.jpg)"& data-aos="zoom-in"
         data-aos-delay="100"></div>
     </div>
 
   </div>
 </section><!-- End Alt Services Section 2 -->
 
+<section id="alt-services" class="alt-services">
+  <div class="container" data-aos="fade-up">
 
+    <div class="row justify-content-around gy-4">
+
+      <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
+        <div style = "height:20px">
+          <img style=" height:80px" src="assets/img/logo.jpeg" alt="FASEG">
+        </div>
+     
+       <div>
+           <h4><a href="" class="stretched-link">Message du doyen</a></h4>
+           <p>Accédez facilement à vos informations et gérez vos démarches académiques en toute simplicité pour une expérience sans tracas.</p>
+           <p>Nos services vous offrent une fiabilité totale pour garantir la sécurité et la confidentialité de vos données académiques.</p>
+           <p>Profitez d'une plateforme facile d'accès vous permettant de gérer vos démarches académiques de n'importe où et à tout moment.</p>
+           <p>Notre équipe est disponible pour vous offrir un support personnalisé et répondre à toutes vos questions académiques.</p>
+
+       </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
    <!-- ======= Service Details Section ======= -->
-<section id="service-details" class="service-details">
+
+{{-- <section id="service-details" class="service-details">
   <div class="container" data-aos="fade-up" data-aos-delay="100">
 
     <div class="row gy-4">
@@ -490,32 +476,35 @@
     </div>
 
   </div>
-</section><!-- End Service Details Section -->
+</section> --}}
+
+<!-- End Service Details Section -->
 
 
 
  <!-- ======= Footer ======= -->
- <footer id="footer" class="footer">
-
+ <footer id="footer" class="footer" >
   <div class="footer-content position-relative">
     <div class="container">
+ <hr>
+    </div>
+  </div>
+  <div class="footer-legal text-center position-relative footer-content">
+    <div class="container">
       <div class="row">
-
-
-         
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>FASEG-UAC</h4>
           <ul>
-            <li><a href="#"><strong>Phone:</strong> +229 97247851</a></li>
-            <li><a href="#"><strong>Email:</strong>ronaldoownpurpose@gmail.com</a></li>
+            <li><a href=""><strong>Phone:</strong> 97247851</a></li>
+            <li><a  href="#"><strong>Email:</strong>faseg-uac@yahoo.fr</a></li>
           </ul>
         </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Nos Services</h4>
-          <ul>
-            <li><a href="#">Réclamation de note</a></li>
-            <li><a href="#">Demande d'acte academique</a></li>
+        <div class="col-lg-2 col-md-3 footer-links ">
+          <h4>Services et prestations</h4>
+          <ul >
+            <li><a  href="route('complaint_form')">Réclamation</a></li>
+            <li><a  href="route('transcript_form')">Actes académiques</a></li>
+            <li><a href="">Inscription pédagogique</a></li>
 
           </ul>
         </div>
@@ -531,29 +520,24 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Liens utiles</h4>
           <ul>
-            <li><a href="contact.html">A propos</a></li>
-            <li><a href="#">Termes et confidentialités</a></li>
-
+            <li><a  href="#">À propos</a></li>
+            <li><a  href="#">Termes et confidentialités</a></li>
           </ul>
         </div>
-        <!-- End footer links column-->
-
-
       </div>
-    </div>
-  </div>
 
-  <div class="footer-legal text-center position-relative">
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>faseg/uac</span></strong>. All Rights Reserved
-      </div>
+      <hr>
+
+
       <div class="credits">
-
+        <!-- Your credits content here -->
       </div>
     </div>
+    <div class="copyright">
+      &copy; Copyright <strong><span>e-Request</span></strong>. All Rights Reserved
+    </div>
   </div>
-
+  
 </footer>
 <!-- End Footer -->
 
@@ -573,39 +557,9 @@
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+<script src="assets/js/index.js"></script>
 
 
-  <!-- Code JavaScript pour la boîte de pop-up -->
-  {{-- <script>
-    // Fonction pour afficher la boîte de pop-up
-    function showPopup() {
-      var popup = document.getElementById('popup');
-      var popupText = document.getElementById('popup-text');
-      popup.style.display = 'block';
-
-      // Texte à afficher progressivement
-      var textToDisplay = "Plus besoin de vous déplacer pour soumettre vos dossiers de réclamation et de demande d'actes académique";
-      var currentIndex = 0;
-      var interval = setInterval(function() {
-        if (currentIndex <= textToDisplay.length) {
-          popupText.textContent = textToDisplay.substring(0, currentIndex);
-          currentIndex++;
-        } else {
-          clearInterval(interval);
-          setTimeout(closePopup, 3000); // Ferme la boîte après 3 secondes
-        }
-      }, 100); // Change le texte toutes les 100 millisecondes
-    }
-
-    // Fonction pour fermer la boîte de pop-up
-    function closePopup() {
-      var popup = document.getElementById('popup');
-      popup.style.display = 'none';
-    }
-
-    // Afficher la boîte de pop-up après le chargement de la page
-    window.addEventListener('load', showPopup);
-  </script> --}}
 </body>
 
 </html>
