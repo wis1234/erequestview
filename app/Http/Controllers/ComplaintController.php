@@ -39,10 +39,17 @@ class ComplaintController extends Controller
                 'program' => 'required|string',
                 'tc' => 'nullable|string',
                 'jury' => 'nullable|string',
+<<<<<<< HEAD
                 'seq_number' => 'nullable|string',
                 'grade_over_20'=> 'nullable|string',
                 'coef_grade'=> 'nullable|string',
                 'validation'=> 'nullable|string',
+=======
+                'seq_number' => 'required|string',
+                'grade_over_20'=> 'required|integer',
+                'coef_grade'=> 'required|integer',
+                'validation'=> 'required|string',
+>>>>>>> 0f197e5e6821d6a3ae420e25197a08a25e64ae1c
                 'exam_type' => 'required|string',
                 'complain_type' => 'required|string',
                 'ecue' => 'required|string',
@@ -60,8 +67,13 @@ class ComplaintController extends Controller
             $user = Auth::user();
 
             if (!$user) {
+<<<<<<< HEAD
                 // return response()->json(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
                 return view('errors.419');
+=======
+                return response()->json(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+                // return view('errors.419');
+>>>>>>> 0f197e5e6821d6a3ae420e25197a08a25e64ae1c
             }
 
 
@@ -121,7 +133,11 @@ class ComplaintController extends Controller
 
             // return response()->json(['error' => 'Validation error', 'error' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
 
+<<<<<<< HEAD
             return redirect()->route('complaint_form')->with('error', "Mauvais remplissage du formulaire, veuillez vérifier les informations renseignées et réessayer.");
+=======
+            return redirect()->route('complaint_form')->with('error', "Mauvais remplissage du formulaire, veuillez vérifier les informations rensignées et réessayer.");
+>>>>>>> 0f197e5e6821d6a3ae420e25197a08a25e64ae1c
         } catch (Exception $e) {
             // return response()->json(['error' => 'An error occurred', 'error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
             // return view('false_form_filled');

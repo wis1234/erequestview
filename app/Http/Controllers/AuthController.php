@@ -128,7 +128,11 @@ class AuthController extends Controller
     public function updateProfile(Request $request)
     {
         $request->validate([
+<<<<<<< HEAD
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:3048',
+=======
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+>>>>>>> 0f197e5e6821d6a3ae420e25197a08a25e64ae1c
         ]);
     
         $user = Auth::user();

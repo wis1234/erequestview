@@ -207,7 +207,11 @@ class RetakeController extends Controller
               $userId = Auth::id();
   
               // Fetch all complaints associated with the user
+<<<<<<< HEAD
               $userRetake = Retake::where('user_id', $userId)->paginate(2);
+=======
+              $userRetake = Retake::where('user_id', $userId)->paginate(1000);
+>>>>>>> 0f197e5e6821d6a3ae420e25197a08a25e64ae1c
   
               // Pass the complaints to a view for displaying
               return view('retake_status', ['userRetake' => $userRetake]);

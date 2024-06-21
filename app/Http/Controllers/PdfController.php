@@ -75,10 +75,17 @@ class PdfController extends Controller
          <div class="watermark">' . $watermark . '</div>
             ' . $content . '
 
+<<<<<<< HEAD
             <diV class="page-title"></div>
             <br> <br> <br>
             <div class="signature"></div>
             <diV class="page-title"> </div>
+=======
+            <diV class="page-title"> Chef Service Informatique</div>
+            <br> <br> <br> <br>
+            <div class="signature"></div>
+            <diV class="page-title"> Mme DIDAGBE Nadège Ines </div>
+>>>>>>> 0f197e5e6821d6a3ae420e25197a08a25e64ae1c
 
         </body>
         </html>';
