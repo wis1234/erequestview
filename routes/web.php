@@ -416,7 +416,6 @@ Route::post('/generate-pdf', [PdfController::class, 'generatePdf'])->name('gener
 Route::post('/dup_generate-pdf', [PdfController::class, 'dup_generatePdf'])->name('dup_generate.pdf');
 Route::post('/com_generate-pdf', [PdfController::class, 'com_generatePdf'])->name('com_generate.pdf');
 
-<<<<<<< HEAD
 
 //preserve from browsers direct access
 Route::get('/generate-pdf', function () {
@@ -429,8 +428,6 @@ Route::get('/com_generate-pdf', function () {
     return view('not_allowed');
 });
 
-=======
->>>>>>> 0f197e5e6821d6a3ae420e25197a08a25e64ae1c
 //profile picture routing
 
 Route::get('/app', function () {
@@ -460,21 +457,18 @@ Route::get('/ped_registration_form', [PedRegistrationController::class, 'showPed
 Route::get('/complaint/{id}', function () {
     return view('not_allowed');
 });
-<<<<<<< HEAD
+
 Route::get('/PedRegistration', function () {
     return view('not_allowed');
 });
-=======
->>>>>>> 0f197e5e6821d6a3ae420e25197a08a25e64ae1c
+
 
 // pedagogique registrations routing
 
 Route::post('/Retake', [RetakeController::class, 'store'])->name('Retake_send');
-<<<<<<< HEAD
+
 Route::get('/Retake', [RetakeController::class, 'showRetakeForm'])->name('retake_form');
 
-=======
->>>>>>> 0f197e5e6821d6a3ae420e25197a08a25e64ae1c
 Route::get('/retake_form', [RetakeController::class, 'showRetakeForm'])->name('retake_form');
 
 
@@ -486,9 +480,8 @@ Route::get('/retake/hour/check', [RetakeController::class, 'getHour'])->name('ho
 
 //profile update routing
 Route::post('/profile/update', [AuthController::class, 'updateProfile'])->name('profile.update');
-<<<<<<< HEAD
+
 Route::get('/profile/update', function () {
     return view('not_allowed');
 });
-=======
->>>>>>> 0f197e5e6821d6a3ae420e25197a08a25e64ae1c
+
