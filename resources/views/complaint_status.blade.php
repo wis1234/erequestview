@@ -1,80 +1,172 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Etat de traitement des demandes</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Etat de traitement des données</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <!-- Favicons -->
+  <link href="{{ asset('assets/img/favicon.jpeg') }}" rel="icon">
+  <link href="{{ asset('assets/img/apple-touch-icon.jpeg') }}" rel="apple-touch-icon">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&family=Ojuju:wght@200..800&family=Open+Sans:wght@500&family=Rock+3D&family=Rubik+Gemstones&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Add CSS for the popup -->
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: #fff;
-        }
 
-        .popup-content {
-            height: 80%;
-            width: 95%;
-            display: none;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            animation: fadeIn 1s ease-in-out;
-        }
+  <!-- Vendor CSS Files -->
+  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
+  <!-- Template Main CSS File -->
+  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/css/my_style1.css')}}" rel="stylesheet">
+  
 
-            100% {
-                opacity: 1;
-            }
-        }
+  
 
-        .popup-icon {
-            font-size: 80px;
-            color: green
-        }
+  <style>
+  
+/* CSS for the spinner */
+/* General styling */
+body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
 
-        .popup-button {
-            background: #007bff;
-            /* Blue color for the button */
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+  
+    /*handle error in the section*/
+    
+.popup-content {
+  position: relative;
+      height: auto;
+      width: 100%;
+      display: none;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
+      text-align: center;
+     /* animation: fadeIn 1s ease-in-out;*/
+    }
 
-        .popup-button:hover {
-            background: #0056b3;
-            /* Darker blue color on hover */
-        }
+    .table{
+
+      height: 100%;
+      width: 100%;
+      background: #fff;
+      padding: 5px;
+      border-radius: 8px;
+     /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);*/
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .dual-container {
+        flex-direction: column;
+      }
+
+      .dual-container {
+        flex: 0 0 calc(100% - 20px);
+      }
+    }
+
+
+    .popup-icon {
+      font-size: 50px;
+      color: #dc3545; 
+      position: absolute;
+      top: 5px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      z-index: 1;
+      transform: translate(-50%, -50%)
+    }
+
+.icon-text{
+  position: relative;
+  color: #555;
+  font-size: 20px;
+  margin-top: 30px
+}
+
+
+     /*  first div  */
+
+     .service-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 10px;
+    }
+      .service-title {
+        /* flex: 0 0 calc(50% - 20px); */
+      background-color: #05138fde;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+      width: 100%;
+      height: 300px;
+      color: #fff
+    }
+
+    .small-title{
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+      width: 100%;
+      height: 270px;
+      font-size: 20px;
+      font-weight: bold;
+      color: black
+      /* margin-top: 5px */
+    }
+    .dont-show{
+    display:none;
+}
 
         /* New styles for the report format */
         .dual-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
+        }
+
+            /* Media Queries for additional responsiveness */
+@media (max-width: 768px) {
+  .item {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .item {
+    padding: 10px;
+  }
+
+}
+        
+        .dual_container .table {
+            margin:10px
         }
 
         .report {
@@ -85,7 +177,7 @@
             width: 280px;
         }
 
-        @media only screen and (min-width: 600px) {
+        @media only screen and (min-width: 250px) {
             .report {
                 width: auto;
             }
@@ -175,9 +267,55 @@
 
         @media print {
               /* Masquer le titre */
-    .strong-items {
+    .strong-items, .no-print {
         display: none;
     }
+.dual-container{
+position: fixed;
+top:100px;
+align-content:center;
+justify-content:center;
+width:90%;
+margin:10px;
+color:black;
+/* font-weight:bold */
+
+}
+.report, .table{
+    color:black;
+    /* font-weight:bold; */
+    background:transparent;
+}
+
+.signature-container {
+        position: fixed;
+        top: 10px; /* Adjust the position as needed */
+        left: 50%;
+        transform: translateX(-50%);
+        display: block !important;
+        font-weight: bold;
+        font-size: 20px;
+        background-attachment: fixed;
+        background-size:cover;
+        background-position: center;
+        background-repeat:no-repeat;
+        
+      }
+      .signature-container img{
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        left: 80%;
+
+      }
+      body{
+        color:black;
+        /* font-weight:bold */
+      }
+.dont-show{
+    display:none;
+}
+
 
     /* Masquer la barre de recherche */
     .search-container {
@@ -206,7 +344,6 @@
             }
         }
 
-         /* Styles for watermark */
         /* Styles for watermark */
 @media print {
     .report::after {
@@ -218,31 +355,68 @@
         left: 0;
         width: 100%; /* Largeur du filigrane pour couvrir toute la largeur de la page */
         text-align: center; /* Centrer le texte horizontalement */
-        opacity: 0.9; /* Opacité du filigrane */
+        opacity: 1.5; /* Opacité du filigrane */
         z-index: 9999;
         pointer-events: none;
     }
+
+
+    .signature-container {
+        position: fixed;
+        top: 10px; /* Adjust the position as needed */
+        left: 50%;
+        transform: translateX(-50%);
+        display: block !important;
+        font-weight: bold;
+        font-size: 20px;
+        background-attachment: fixed;
+        background-size:cover;
+        background-position: center;
+        background-repeat:no-repeat;
+        
+      }
+
+      .signature {
+        width: 200px; /* Adjust the width of the signature image */
+        height: auto; /* Maintain aspect ratio */
+      }
 }
 
-    
-    </style>
 
-
+  </style>
 </head>
 
-<body>
+<body >
+ 
+
+<main id="main">
+<section>
+    <div class="service-container no-print">
+      <div class="service-title">
+        <div class="user"  > 
+   
+        <div style="font-size:35px; font-weight:bold; align-item:center">HISTORIQUE</div>
+        <div id="popup-text" style="font-size: 20px; font-weight:bold; text-transform:uppercase"></div>  
+     
+          <div class="small-title">
+              Etat de traitement des réclamations de note.<br><br>
+              <p style="font-weight: 100; color:black">
+             Veuillez consulter ci-dessous l'état de traitement des réclamations de note.
+              </p>
+
+          </div>
   
-    <div class="popup-content" id="popup">
-        <!-- Title for the first grid -->
-        <div class="strong-items">
-            <i class="bi bi-check-circle popup-icon"
-                style="font-size: 30px; font-family: Rubik Gemstones, system-ui; font-weight: 400; font-style: normal; font_style:normal; margin:5px; font-weight:bold; color: blue">ETAT DE TRAITEMENT DES DEMANDES</i>
-        </div>
-        <br><br>
+      </div>
+       
+      </div>
+
+  </section>
+
+<div class="popup-content" id="popup">
 
                           <!-- Print icon -->
             <div class="no-print" style="font-size: 20px; cursor: pointer; top:50px; margin-left: 10px">
-             <i class="fas fa-print" style="font-size: 20px; cursor: pointer; top:50px; margin-left: 10px" onclick="openPrintModal()">Imprimer</i>
+                <i id="printIcon" class="fas fa-print" style="font-size: 20px; cursor: pointer; top:50px; margin-left: 10px; display: none;" onclick="openPrintModal()">Imprimer</i>
             </div> <br><br><br>
         <!-- Search bar -->
         <div class="search-container">
@@ -257,37 +431,50 @@
         </div>
 
         </div>
+
+        <!-- <button id="downloadPDF">Download as PDF</button> -->
+
         <!-- Display the elements in a grid -->
+
         <div class="dual-container">
-            @if ($userComplaints->isEmpty())
-            <p> <strong> Aucune  réclamation de note n'a été enregistrée </strong></p>
-            @else
             @foreach($userComplaints as $complaint)
-            <div class="report" data-search="{{ strtolower('ADR' . $complaint->id) }} {{ strtolower($complaint->mat) }} {{ strtolower($complaint->field) }} {{ strtolower($complaint->speciality) }} {{ strtolower($complaint->ac_year) }} {{ strtolower($complaint->ac_level) }} {{ strtolower($complaint->exam_type) }} {{ strtolower($complaint->complain_type) }} {{ strtolower($complaint->ecue_sub) }} {{ strtolower($complaint->ecue) }} {{ strtolower($complaint->created_at) }} {{ strtolower($complaint->updated_at) }} {{ strtolower($complaint->feedback) }} {{ strtolower($complaint->status) }}">
-                <table>
+            <div class="report" data-search="{{ strtolower('ADR' . $complaint->id) }} {{ strtolower($complaint->mat) }} {{ strtolower($complaint->mat) }} {{ strtolower($complaint->field) }} {{ strtolower($complaint->program) }} {{ strtolower($complaint->ac_year) }} {{ strtolower($complaint->ac_level) }} {{ strtolower($complaint->exam_type) }} {{ strtolower($complaint->complain_type) }} {{ strtolower($complaint->ue) }} {{ strtolower($complaint->ecue) }} {{ strtolower($complaint->created_at) }} {{ strtolower($complaint->updated_at) }} {{ strtolower($complaint->feedback) }} {{ strtolower($complaint->semester) }} {{ strtolower($complaint->field) }} {{ strtolower($complaint->program) }} {{ strtolower($complaint->ac_year) }} {{ strtolower($complaint->ac_level) }} {{ strtolower($complaint->exam_type) }} {{ strtolower($complaint->complain_type) }} {{ strtolower($complaint->ue) }} {{ strtolower($complaint->ecue) }} {{ strtolower($complaint->created_at) }} {{ strtolower($complaint->updated_at) }} {{ strtolower($complaint->feedback) }} {{ strtolower($complaint->status) }}">
+                <table class="table">
+                       {{-- signature --}}
+                 <div class="signature-container" style="display: none ">
+                        RECEPISSE DE RECLAMATION
+                        @if(auth()->user()->image)
+    <img src="{{ Storage::url(auth()->user()->image) }}" alt="Profile Image" class="profile-image">
+@else
+<div class="circle-icon" style="border-radius: 50%">
+                            <i class="fas fa-user fa-4x" style="color: #fff;"></i>
+                        </div>
+@endif
+                         <!-- {{$complaint-> claimant_lastname}} {{$complaint-> claimant_firstname}}  -->
+                </div>
                     <tr>
                         <th>RECLAMATION N°</th>
                         <th>ADR{{ $complaint->id }} </th>
                     </tr>
                     <tr>
                         <td class="bold">Matricule:</td>
-                        <td>{{ $complaint->mat }}</td>
+                        <td>{{ $complaint->mat_number }}</td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <td class="bold">Nom:</td>
                         <td>{{$complaint-> claimant_lastname}}</td>
                     </tr>
                     <tr>
                         <td class="bold">Prénom:</td>
                         <td>{{$complaint-> claimant_firstname}}</td>
-                    </tr>
+                    </tr> --}}
                     <tr>
                         <td class="bold">Filière:</td>
                         <td>{{ $complaint->field }}</td>
                     </tr>
                     <tr>
                         <td class="bold">Spécialité:</td>
-                        <td>{{ $complaint->speciality }}</td>
+                        <td>{{ $complaint->program }}</td>
                     </tr>
                     <tr>
                         <td class="bold">Année académique:</td>
@@ -301,17 +488,40 @@
                         <td class="bold">Session:</td>
                         <td>{{ $complaint->exam_type }}</td>
                     </tr>
+
+                    <tr>
+                        <td class="bold">Semestre:</td>
+                        <td>{{ $complaint->semester }}</td>
+                    </tr>
+
                     <tr>
                         <td class="bold">Motif:</td>
                         <td>{{ $complaint->complain_type }}</td>
                     </tr>
                     <tr>
                         <td class="bold">UE:</td>
-                        <td>{{ $complaint->ecue_sub }}</td>
+                        <td>{{ $complaint->ue }}</td>
                     </tr>
                     <tr>
                         <td class="bold">ECUE:</td>
                         <td>{{ $complaint->ecue }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Note sur 20:</td>
+                        <td>{{ $complaint->grade_over_20 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Note coefficiée:</td>
+                        <td>{{ $complaint->coef_grade }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Validation:</td>
+                        <td>{{ $complaint->validation }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="bold">Numéro séquentiel:</td>
+                        <td>{{ $complaint->seq_number }}</td>
                     </tr>
                     <tr>
                         <td class="bold">DESCRIPTION:</td>
@@ -324,11 +534,12 @@
                     <tr>
                         <td class="bold">Date et Heure de traitement:</td>
                         <td>
-                            @if($complaint->created_at == $complaint->updated_at)
-                                Indisponible
-                            @else
-                                {{ $complaint->updated_at }}
-                            @endif
+                        @if($complaint->created_at == $complaint->updated_at || $complaint->status == 'En cours de traitement...')
+                         Indisponible
+                        @else
+                        {{ $complaint->treat_time }}
+                        @endif
+
                         </td>
                     </tr>
 
@@ -366,119 +577,153 @@
             @endforeach
         </div>
 
+        <div class="dual-container">
+            @foreach($userComplaints as $complaint)
+            <div class="report dont-show" data-search="{{ strtolower('ADR' . $complaint->id) }} {{ strtolower($complaint->mat) }} {{ strtolower($complaint->mat) }} {{ strtolower($complaint->field) }} {{ strtolower($complaint->program) }} {{ strtolower($complaint->ac_year) }} {{ strtolower($complaint->ac_level) }} {{ strtolower($complaint->exam_type) }} {{ strtolower($complaint->complain_type) }} {{ strtolower($complaint->ue) }} {{ strtolower($complaint->ecue) }} {{ strtolower($complaint->created_at) }} {{ strtolower($complaint->updated_at) }} {{ strtolower($complaint->feedback) }} {{ strtolower($complaint->semester) }} {{ strtolower($complaint->field) }} {{ strtolower($complaint->program) }} {{ strtolower($complaint->ac_year) }} {{ strtolower($complaint->ac_level) }} {{ strtolower($complaint->exam_type) }} {{ strtolower($complaint->complain_type) }} {{ strtolower($complaint->ue) }} {{ strtolower($complaint->ecue) }} {{ strtolower($complaint->created_at) }} {{ strtolower($complaint->updated_at) }} {{ strtolower($complaint->feedback) }} {{ strtolower($complaint->status) }}">
+                <table class="table">
+                       {{-- signature --}}
+                 <div class="signature-container" style="display: none ">
+                        <!-- RECEPISSE DE RECLAMATION -->
+                         <br><br>
+                         {{$complaint-> claimant_lastname}} {{$complaint-> claimant_firstname}} 
+                </div>
+                    <tr>
+                        <th>RECLAMATION N°</th>
+                        <th>ADR{{ $complaint->id }} </th>
+                    </tr>
+                    <tr>
+                        <td class="bold">Matricule:</td>
+                        <td>{{ $complaint->mat_number }}</td>
+                    </tr>
+                    {{-- <tr>
+                        <td class="bold">Nom:</td>
+                        <td>{{$complaint-> claimant_lastname}}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Prénom:</td>
+                        <td>{{$complaint-> claimant_firstname}}</td>
+                    </tr> --}}
+                    <tr>
+                        <td class="bold">Filière:</td>
+                        <td>{{ $complaint->field }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Spécialité:</td>
+                        <td>{{ $complaint->program }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Année académique:</td>
+                        <td>{{ $complaint->ac_year }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Niveau d'étude:</td>
+                        <td>{{ $complaint->ac_level }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Session:</td>
+                        <td>{{ $complaint->exam_type }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="bold">Semestre:</td>
+                        <td>{{ $complaint->semester }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="bold">Motif:</td>
+                        <td>{{ $complaint->complain_type }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">UE:</td>
+                        <td>{{ $complaint->ue }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">ECUE:</td>
+                        <td>{{ $complaint->ecue }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Note sur 20:</td>
+                        <td>{{ $complaint->grade_over_20 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Note coefficiée:</td>
+                        <td>{{ $complaint->coef_grade }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Validation:</td>
+                        <td>{{ $complaint->validation }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="bold">Numéro séquentiel:</td>
+                        <td>{{ $complaint->seq_number }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">DESCRIPTION:</td>
+                        <td>{{ $complaint->description }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Date et Heure de demande:</td>
+                        <td>{{ $complaint->created_at }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Date et Heure de traitement:</td>
+                        <td>
+                        @if($complaint->created_at == $complaint->updated_at || $complaint->status == 'En cours de traitement...')
+                         Indisponible
+                        @else
+                        {{ $complaint->treat_time }}
+                        @endif
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="bold">Observation:</td>
+                        <td>{{ $complaint->feedback }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Status:</td>
+                        <td>
+                            <span style="font-weight: bold; color:
+                              @switch($complaint->status)
+                              @case('REJETE')
+                              red;
+                              @break
+                              @case('ACCEPTE')
+                              green;
+                              @break
+                              @default
+                              black; /* or any default color */
+                              @endswitch
+                              ">
+                                @if($complaint->status === 'ACCEPTE')
+                                    ACCEPTE <i class="bi bi-check-circle" style="color: green;"></i>
+                                @elseif($complaint->status === 'REJETE')
+                                    REJETE <i class="bi bi-x-circle" style="color: red;"></i>
+                                @else
+                                    {{ $complaint->status }}
+                                @endif
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            @endforeach
+        </div>
+
+
         <!-- No data message -->
         <div class="no-data" id="noDataMessage">
             <i class="fas fa-info-circle"></i> NO DATA FOUND
         </div>
     </div>
 
-
-    {{-- pdf download form --}}
-
-    <form id="com_pdf-form" action="{{ route('com_generate.pdf') }}" method="POST" style="display: none;">
-        @csrf
-        <textarea name="com_content" id="com_content">
-            <div class="dual-container" id="complaintContainer">
-              @if ($userComplaints->isEmpty())
-              <p> <strong> Aucune réclamation de note n'a été enregistrée </strong></p>
-              @else
-                          
-                                <div class="report">
-                                    <div class="report-item">
-                                        {{-- Display transcript details --}}
-                                        <page>
-                                        <table style="border-collapse: collapse; border-spacing: 10px; width: 100%;">
-                                          <tr>
-                                              <th colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">RECLAMATION N°</th>
-                                              <td colspan="2" style="border: 1px solid black; text-align: center;">ADR{{ $complaint->id }}</td>
-                                          </tr>
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Matricule:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->mat }}</td>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Nom:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->lastname }}</td>
-                                          </tr>
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Prénom:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->firstname }}</td>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Filière:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->field }}</td>
-                                          </tr>
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Spécialité:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->speciality }}</td>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Année académique:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->ac_year }}</td>
-                                          </tr>
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Niveau d'étude:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->ac_level }}</td>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Semestre:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->exam_type }}</td>
-                                          </tr>
-                                          
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Date et Heure de demande:</td>
-                                              <td style="border: 1px solid black;">{{ $complaint->created_at }}</td>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Date de traitement:</td>
-                                              <td style="border: 1px solid black;">
-                                                    @if($complaint->created_at == $complaint->updated_at)
-                                                        Indisponible
-                                                    @else
-                                                        {{ $complaint->updated_at }}
-                                                    @endif
-                                                </td>
-                                          </tr>
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Observation:</td>
-                                              <td colspan="3" style="border: 1px solid black;">
-                                                  @if ($complaint->feedback == "")
-                                                      Aucune observation pour le moment
-                                                  @else
-                                                      {{ $complaint->feedback }}
-                                                  @endif
-                                              </td>
-                                          </tr>
-                                          <tr>
-                                              <td class="bold" style="border: 1px solid black; font-weight: bold;">Status:</td>
-                                              <td colspan="3" style="border: 1px solid black;">
-                                                
-                                                    <span style="font-weight: bold; color:
-                                                      @switch($complaint->status)
-                                                      @case('REJETE')
-                                                      red;
-                                                      @break
-                                                      @case('ACCEPTE')
-                                                      green;
-                                                      @break
-                                                      @default
-                                                      black; /* or any default color */
-                                                      @endswitch
-                                                      ">
-                                                        @if($complaint->status === 'ACCEPTE')
-                                                            ACCEPTE <i class="bi bi-check-circle" style="color: green;"></i>
-                                                        @elseif($complaint->status === 'REJETE')
-                                                            REJETE <i class="bi bi-x-circle" style="color: red;"></i>
-                                                        @else
-                                                            {{ $complaint->status }}
-                                                        @endif
-                                                    </span>
-                                                
-                                              </td>
-                                          </tr>
-                                      </table>
-                                    </page>
-                                        <br> <!-- Add a line break for spacing between tables -->
-                                    </div>
-                                </div>
-                           
-                        @endif
-                    @endforeach
-                @endif
-            </div>
-        </textarea>
-    </form>
-
+     <!-- Display pagination links -->
+     <div class="no-print">
+         {{$userComplaints->links('pagination::bootstrap-4') }}
+    </div>
+ 
 <!-- Print modal -->
 <div id="printModal" class="modal">
   <div class="modal-content">
@@ -491,6 +736,13 @@
       </div>
   </div>
 </div>
+
+</main>
+
+
+  
+
+
 
 <script>
   // Close print modal
@@ -511,25 +763,30 @@
             const noDataMessage = document.getElementById("noDataMessage");
 
             searchInput.addEventListener("keyup", function () {
-                const searchTerm = searchInput.value.toLowerCase();
-                let found = false;
+            const searchTerm = searchInput.value.toLowerCase();
+            let found = false;
 
-                reports.forEach(report => {
-                    const searchData = report.getAttribute("data-search").toLowerCase();
-                    if (searchData.includes(searchTerm)) {
-                        report.style.display = "block";
-                        found = true;
-                    } else {
-                        report.style.display = "none";
-                    }
-                });
-
-                if (found) {
-                    noDataMessage.classList.remove("show");
+            reports.forEach(report => {
+                const searchData = report.getAttribute("data-search").toLowerCase();
+                if (searchData.includes(searchTerm)) {
+                    report.style.display = "block";
+                    found = true;
                 } else {
-                    noDataMessage.classList.add("show");
+                    report.style.display = "none";
                 }
             });
+
+            if (found) {
+                noDataMessage.classList.remove("show");
+                // Show the print icon if a matching report is found
+                document.getElementById("printIcon").style.display = "block";
+            } else {
+                noDataMessage.classList.add("show");
+                // Hide the print icon if no matching report is found
+                document.getElementById("printIcon").style.display = "none";
+            }
+        });
+        
         };
 
         // Open print modal
@@ -552,45 +809,51 @@
                 alert("Document not found!");
             }
         }
-        // Close print modal
-function closePrintModal() {
-    document.getElementById("printModal").style.display = "none";
-}
 
     </script>
 
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const com_pdfForm = document.getElementById('com_pdf-form');
-        const com_content = document.getElementById('com_content').value;
-        const com_pdfBtn = document.getElementById('com_pdf-btn');
-  
-        pdfBtn.addEventListener('click', function () {
-            const form = new FormData(com_pdfForm);
-            fetch(com_pdfForm.action, {
-                method: 'POST',
-                body: form,
-            })
-            .then(response => response.blob())
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'com_report.pdf';
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    });
-  </script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
 
+    <script>
+  // Function to generate and download PDF
+  function generatePDF() {
+    // Create new jsPDF instance
+    var doc = new jsPDF();
+
+    // Iterate through each report and add its content to the PDF
+    $('.report').each(function(index) {
+      var reportContent = $(this).html();
+      doc.fromHTML(reportContent, 15, 15);
+      if (index !== $('.report').length - 1) {
+        doc.addPage();
+      }
+    });
+
+    // Save the PDF with a specific filename
+    doc.save('user_complaints.pdf');
+  }
+
+  // Attach click event to the download button
+  $('#downloadPDF').click(function() {
+    // Generate and download PDF
+    generatePDF();
+  });
+</script>
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  
+</body>
 </html>
+ 

@@ -358,7 +358,7 @@
 
               <div class="form-group">
                 <label for="bio">Description:</label>
-                <textarea class="form-control" id="bio" name="description" rows="3" placeholder="Brève description du problème"></textarea>
+                <textarea class="form-control" id="bio" name="description" rows="3" placeholder="Description en quelques mots..."></textarea>
               </div>
               <!-- Add "Previous" and "Next" buttons for navigation between Step 2 and Step 4 -->
               <div class="text-center">

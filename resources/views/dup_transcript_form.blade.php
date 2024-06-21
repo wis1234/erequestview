@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Formulaire de demande de duplicata de bulletin.</title>
+  <title>Formulaire de demande de duplicata de cue.</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <!-- Favicons -->
@@ -16,6 +16,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
     rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -29,6 +30,11 @@
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/my_style1.css')}}" rel="stylesheet">
   <style>
+    body{
+      
+      font-family: 'Chakra Petch', sans-serif;
+
+    }
   /* CSS for the spinner */
 .spinner {
   display: flex;
@@ -82,9 +88,9 @@
 <header id="header" class="header d-flex align-items-center">
   <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-    <a href="index.html" class="logo d-flex align-items-center">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
+    <a href="{{route('index')}}" class="logo d-flex align-items-center">
       <img src="assets/img/logo.jpeg" alt="FASEG">
+      <span class="faseg" style="color: black">FASEG UAC</span>
     </a>
 
     <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -165,7 +171,7 @@
         <h2 style="font-weight: bold; font-size: 40px;">Duplicata</h2>
         <ol>
             {{-- <li><a href="{{route('index')}}">Accueil</a></li> --}}
-            <li class="white-text">Demande de duplicata bulletin</li>
+            <li class="white-text">Demande de duplicata cue</li>
         </ol>
                 {{-- session alert for record already exists --}}
                 @if(session('error'))
@@ -232,7 +238,7 @@
           <div class="col-lg-4 form-container form-step" id="step2">
             <fieldset>
               <div class="form-group">
-                <p style="font-size: larger; text-decoration: underline;">INFORMATIONS DU DOCUMEMT</p>
+                <p style="font-size: larger; text-decoration: underline;">INFORMATIONS DU DOCUMENT</p>
                 <label for="exam_type">Semestre:</label>
                 <select name="exam_type" id="exam_type">
                   <optgroup label="Veuillez sélectionner le semestre concerné">
@@ -304,7 +310,7 @@
 
               <div class="form-group">
                 <label for="bio">Description:</label>
-                <textarea class="form-control" id="bio" name="description" rows="3" placeholder="Brève description du problème"></textarea>
+                <textarea class="form-control" id="bio" name="description" rows="3" placeholder="Description en quelques mots..."></textarea>
               </div>
               <!-- Add "Previous" and "Next" buttons for navigation between Step 2 and Step 4 -->
               <div class="text-center">
@@ -319,15 +325,35 @@
             <fieldset>
               <div class="form-group">
                 <p>CONFIRMATION</p>
-                En cliquant sur SUIVANT vous confirmez les Informations renseignées précédemment
+                <p style="color:black"> Veuillez verifier les informations renseignées avant de continuer.</p>
+                 
+                <button type="button" onclick="generateSummary()" class="btn btn-primary" style="width: 80px; border-radius: 5px;" data-bs-toggle="modal" data-bs-target="#summaryModal">Vérifier</button>
+          
+              </p>
+                <!-- Display populated information here -->
+                <div id="user-info"></div>
               </div>
+          
+              <!-- Add a check button -->
+              <div class="form-group form-check text-center mb-3">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <input type="checkbox" class="form-check-input" id="confirmationCheck" onclick="toggleSuivantButton()">
+                  </div>
+                  <div class="col-auto">
+                    <label class="form-check-label" for="confirmationCheck">je confirme</label>
+                  </div>
+                </div>
+              </div>
+          
               <!-- Add "Previous" and "Next" buttons for navigation between Step 3 and Step 5 -->
               <div class="text-center">
-                <button type="button" onclick="prevStep(3)" class="btn btn-primary" style="width: 95px">Précédent</button>
-                <button type="submit" onclick="nextStep(5)" class="btn btn-primary" style="width: 85px">Suivant</button>
+                <button type="button" onclick="prevStep(3)" class="btn btn-primary" style="width: 90px">Précédent</button>
+                <button type="submit" id="suivantButton" onclick="nextStep(5)" class="btn btn-primary" style="width: 80px" disabled>Suivant</button>
               </div>
             </fieldset>
           </div>
+
         </form>
           <!-- Step 5: Payment -->
           <div class="col-lg-4 form-container form-step" id="step5">
@@ -352,6 +378,25 @@
       </div>
     </section>
   </main>
+
+  <!-- Modal -->
+<div id="infoModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Détails de la demande de duplicata de cue</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Contenu du modal : affichez les informations saisies ici -->
+        <div id="saisie-info"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: red">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
 
  <!-- Footer -->
  <footer id="footer" class="footer">
@@ -463,6 +508,54 @@
       script.setAttribute("data-widget-title", "eGraC");
       document.body.appendChild(script);
     });
+  </script>
+
+  {{-- Ajoutez cette fonction pour générer un résumé des informations saisies --}}
+
+<script>
+  function generateSummary() {
+    // Récupérez les informations saisies
+    const ac_year = document.getElementById('ac_year').value;
+    const ac_level = document.getElementById('ac_level').value;
+    // const training_type = document.getElementById('training_type').value;
+    const exam_type = document.getElementById('exam_type').value;
+    const field = document.getElementById('field').value;
+    const speciality = document.getElementById('speciality').value;
+    const description = document.getElementById('bio').value;
+  
+    // Générez le résumé
+    const summary = `
+    <p style="color:black"><strong>Année académique:</strong> ${ac_year}</p>
+      <p style="color:black"><strong>Niveau d'étude:</strong> ${ac_level}</p>
+      
+      <p style="color:black"><strong>Semestre:</strong> ${exam_type}</p>
+      <p style="color:black"><strong>Filière:</strong> ${field}</p>
+      <p style="color:black"><strong>Spécialité:</strong> ${speciality}</p>
+      <p style="color:black"><strong>Description:</strong> ${description}</p>
+    `;
+  
+    // Affichez le résumé dans le modal
+    document.getElementById('saisie-info').innerHTML = summary;
+  
+    // Ouvrez le modal
+    const infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
+    infoModal.show();
+  }
+  
+  </script>
+  
+  
+  
+  {{-- check button with status  --}}
+  
+  <script>
+    function toggleSuivantButton() {
+      var confirmationCheck = document.getElementById('confirmationCheck');
+      var suivantButton = document.getElementById('suivantButton');
+  
+      // Enable/disable the "Suivant" button based on the state of the check button
+      suivantButton.disabled = !confirmationCheck.checked;
+    }
   </script>
 
   <!-- Vendor JS Files -->

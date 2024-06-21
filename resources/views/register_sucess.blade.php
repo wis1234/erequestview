@@ -3,10 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Inscription réussie</title>
+  <title>Inscription réussie.</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
 
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <!-- Favicons -->
+  <link href="{{ asset('assets/img/favicon.jpeg') }}" rel="icon">
+  <link href="{{ asset('assets/img/apple-touch-icon.jpeg') }}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/css/my_style1.css')}}" rel="stylesheet">
   <!-- Add CSS for the popup -->
   <style>
     body {
@@ -20,15 +45,22 @@
     }
 
     .popup-content {
-      height: 250px;
-      width: 200px;
+      position: absolute;
+      bottom: 150px;
+      height: 380px;
+      width: 350px;
       display: none;
       background: #fff;
-      padding: 20px;
+      color:black;
+      font-size: 20px;
       border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+
       text-align: center;
+      align-items:center;
       animation: fadeIn 1s ease-in-out;
+      margin: 10px;
     }
 
     @keyframes fadeIn {
@@ -41,12 +73,27 @@
     }
 
     .popup-icon {
-      font-size: 80px;
-      color: #28a745; /* Green color for success */
+      position: relative;
+      top: -75px;
+      font-size: 110px;
+      width: 100px;
+      color: #28a745; 
+      background-color:  white;
+      border-radius: 200%
+
+    }
+    .content{
+      position: relative;
+      top:-40px;
+      margin:10px;
+      display:block;
+      font-size:20px;
+      /* font-weight: bolder; */
     }
 
     .popup-button {
-      background: #007bff; /* Blue color for the button */
+      background:  #05138fde;
+      border-radius: 20px;
       color: #fff;
       border: none;
       padding: 10px 20px;
@@ -57,15 +104,19 @@
     }
 
     .popup-button:hover {
-      background: #0056b3; /* Darker blue color on hover */
+      background: #0056b3; 
     }
+
   </style>
+
+
 </head>
+
 <body>
   <div class="popup-content" id="popup">
-    <i class="bi bi-check-circle popup-icon" style="font-size: xx-large";>🥳Super!</i>
-    <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
-      Vous vous êtes inscrit avec succès.Veuillez vous connecter pour continuer.
+  <i class="bi bi-check-circle popup-icon"></i>
+    <p style="color:black" class = "content">
+      Votre compte <strong>e-Request</strong> a été crée avec succès.Veuillez vous connecter en utilisant l'email et le passe spécifié lors de l'inscription.
       <!-- Vous pouvez désormais vous <a href="login.html" style="color: #333; font-weight: bold;">connecter</a> avec votre Nouveau
       mot de passe -->
     </p>

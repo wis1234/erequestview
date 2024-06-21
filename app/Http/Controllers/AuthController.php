@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -38,10 +40,14 @@ class AuthController extends Controller
 
             // Redirect on successful registration
             return view('register_sucess');
+            // return redirect()->route('register_sucess')->with('error', "Une erreur inattendue est survenue, veuillez reéssayer s'il vous plaît");
+
             
         } catch (\Exception $e) {
             // Handle the exception and redirect to error.html
-            return view('already_exists');
+              return redirect()->route('register')->with('error', "Cet email a dèjà été utilisé");
+
+            // return view('already_exists');
         }
     }
 
@@ -60,7 +66,7 @@ class AuthController extends Controller
         if ($user) {
             return response()->json(['message' => 'User retrieved successfully', 'user' => $user]);
         } else {
-            return response()->json(['error' => 'User not found'], 404);
+            return redirect()->route('register')->with('error', "Utilisateur non retrouvé");
         }
     }
 
@@ -119,26 +125,71 @@ class AuthController extends Controller
     }
 
 
-    // Handle the login form submission
-    public function login(Request $request)
+    public function updateProfile(Request $request)
     {
-        // Validate the login data
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:3048',
         ]);
-
-        // Attempt to log in the user
-        if (Auth::attempt($credentials)) {
-            // Authentication successful
-            return view('index_redirect'); // Redirect to the dashboard or any other page
+    
+        $user = Auth::user();
+        if ($request->hasFile('image')) {
+            // Delete the old image if exists
+            if ($user->image) {
+                Storage::disk('public')->delete($user->image);
+            }
+    
+            // Store the new image using storeFile method
+            $path = $this->storeFile($request->file('image'));
+    
+            // Update the user's image path
+            $user->image = $path;
+            $user->save();
         }
-
-        // Authentication failed, redirect back to the login form
-        return view('invalid_credential'); // Redirect to the dashboard or any other page
+    
+        return redirect()->back()->with('success', 'Profile picture updated successfully.');
+    }
+    
+    private function storeFile($file)
+    {
+        if (!$file || !$file->isValid()) {
+            return null;
+        }
+    
+        return $file->store('profile_images', 'public');
     }
 
-
+    public function login(Request $request)
+    {
+        try {
+            // Validate the login data
+            $credentials = $request->validate([
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+    
+            // Check if the user exists
+            $userExists = User::where('email', $credentials['email'])->exists();
+    
+            if (!$userExists) {
+                return redirect()->route('login')->with('error', "Aucun compte n'est associé à cet email. Veuillez vérifier et reéssayer");
+            }
+    
+            if (Auth::attempt($credentials)) {
+                // Authentication successful
+                return redirect()->route('index_redirect'); // Redirect to the dashboard or any other page
+            } else {
+                // Authentication failed, redirect back to the login form with an error message
+                return redirect()->route('login')->with('error', 'Mot de passe incorrecte. Veuillez vérifier et reéssayer'); 
+                // return view('invalid_credential');
+            }
+        } catch (ValidationException $e) {
+            // Handle validation errors
+            return redirect()->route('login')->withErrors($e->validator->errors()->all())->withInput();
+        } catch (\Exception $e) {
+            // Handle other exceptions
+            return redirect()->route('login')->with('error', 'Une erreur inattendue s\'est produite. Veuillez réessayer.');
+        }
+    }
     public function logout()
 {
     Auth::logout(); // Log the user out

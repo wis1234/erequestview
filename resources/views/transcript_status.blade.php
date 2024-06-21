@@ -12,6 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Madimi+One&family=Ojuju:wght@200..800&family=Open+Sans:wght@500&family=Rock+3D&family=Rubik+Gemstones&display=swap" rel="stylesheet">
+  {{-- <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap" rel="stylesheet"> --}}
+
 
   <!-- Add CSS for the popup -->
   <style>
@@ -23,6 +25,7 @@
       align-items: center;
       min-height: 100vh;
       background: #fff;
+      /* font-family: Chakra Petcha ; */
     }
     .signature-container{
       display: none !important;
@@ -48,6 +51,32 @@
       }
     }
 
+
+    .service-title {
+        /* flex: 0 0 calc(50% - 20px); */
+      background-color: #05138fde;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+      width: 100%;
+      height: 300px;
+      color: #fff
+    }
+
+    .small-title{
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+      width: 100%;
+      height: 270px;
+      font-size: 20px;
+      font-weight: bold;
+      color: black
+      /* margin-top: 5px */
+    }
     .popup-icon {
       font-size: 80px;
       color: green
@@ -141,7 +170,9 @@
 
     @media print {
       
-      
+      .pdf_hidden, hr{
+        display: none !important;
+      }
       /* page header on printed sheet */
 
       .header {
@@ -258,35 +289,59 @@
  
 }
 
+
  </style>
 </head>
 <body>
 
 <div class="popup-content " id="popup">
   <div class="header">
-    RECEPICEE DE DEMANDE D'ACTE ACADEMIQUE
+    RECEPISSE DE DEMANDE D'ACTE ACADEMIQUE
     <br><br><br><br>
     @if(count($userTranscripts) > 0)
-    {{"RECEPICEE N°". auth()->user()->id }}
+    {{auth()->user()->firstname ." ". auth()->user()->lastname  }}
 @endif
      
 </div>
 
 
+<div class="service-container no-print">
+      <div class="service-title">
+        <div class="user"  > 
+   
+        <div style="font-size:35px; font-weight:bold; align-item:center">HISTORIQUE</div>
+        <div id="popup-text" style="font-size: 20px; font-weight:bold; text-transform:uppercase"></div>  
+     
+          <div class="small-title">
+              Etat de traitement des demandes de cue<br><br>
+              <p style="font-weight: 100; color:black">
+             Veuillez consulter ci-dessous l'état de traitement des demande de cue.
+              </p>
 
-  <!-- Title for the first grid -->
-  <div class="strong-items">
-    <i class="bi bi-check-circle popup-icon" style="font-size: 30px; font-family: Rubik Gemstones, system-ui;
-    font-weight: 400; font-style: normal; font_style:normal; margin:5px; font-weight:bold; color: gray">ETAT DE TRAITEMENT DES DEMANDES DE CUE</i>
-  </div>
-  <br><br>
+          </div>
+  
+      </div>
+       
+      </div>
 
 
   <!-- Pour la recherche des demandes de bulletin -->
-  <input type="text" id="searchTranscript" placeholder="Rechercher dans les demandes de bulletin...">
+  {{-- <input type="text" id="searchTranscript" placeholder="Rechercher dans les demandes de bulletin..."> --}}
+  <div class="search-container"><br><br><br>
+
+    <div class="input-group">
+        
+        <input class="form-control border-end-0 border rounded-pill search-input" type="search" value="ADR" id="searchTranscript" >
+ 
+    </input> 
+        <span class="input-group-append">
+        </span>
+    </div>
+
+    </div>
   <br><br>
   <div>
-    <button class="btn btn-primary" id="pdf-btn">Download PDF</button>
+    <button class="btn btn-primary pdf_hidden" id="pdf-btn">Mes demandes</button><br>
   </div><br>
   <hr>
   <!-- Display the elements in two side-by-side divs with shadow effect -->
@@ -396,9 +451,10 @@
           </tr>
 
           <tr class="pBtn">
-            <td>Action:</td>
-            <td >
+            <td></td>
+            <td colspan="2" >
                 <button class="popup-button imprimer-btn">Imprimer</button>
+                
             </td>
         </tr>
       </table>
@@ -420,11 +476,27 @@
             @if ($userTranscripts->isEmpty())
                 <p><strong>Aucune demande de bulletin n'a été enregistrée</strong></p>
             @else
+            <div class="page-title"> &nbsp&nbsp&nbsp&nbsp&nbspRECAPITULATIF DES DEMANDES DE CERTIFICAT D'UNITE D'ENSEIGNEMENT
+              <hr>
+              <br>
+
+               <div style="
+                  font-weight:bold;
+                  display:flex;
+                  justify-content:center;
+                  align-items:center;" > {{ $transcript->lastname }} {{ $transcript->firstname }} 
+                <br>
+               
+              </div> 
+             
+            </div> 
+            
+            
                 @foreach($userTranscripts as $transcript)
                     @if ($transcript->user_id === auth()->user()->id && $transcript->exam_type === 'current_semester')
                         <p>You have already requested your transcript for this semester.</p>
                     @else
-                      
+
                             <div class="report">
                                 <div class="report-item">
                                     {{-- Display transcript details --}}
@@ -530,29 +602,42 @@
   <div class="no-data" id="noDataMessage">
     <i class="fas fa-info-circle"></i> NO DATA FOUND
   </div>
-  <div class="signature-container">
+  {{-- <div class="signature-container">
     Chef service informatique
     <br><br><br>
     Mme Inès Nadège DIDAGBE
-  </div>
+  </div> --}}
 
   <!-- Title for the second grid -->
-  <div class="strong-items">
+  <!-- <div class="strong-items">
     <i class="bi bi-check-circle popup-icon" style="font-size: 30px; font-family: Rubik Gemstones, system-ui;
     font-weight: 400; font-style: normal; font_style:normal; margin:5px; font-weight:bold; color: gray">ETAT DE TRAITEMENT DES DEMANDES DE DUPLICATA CUE</i>
-  </div>
+  </div> -->
   <br><br>
-  <div>
-    <button class="btn btn-primary" id="dup_pdf-btn">Download PDF</button>
+  <!-- <div>
+    <button class="btn btn-primary pdf_hidden" id="dup_pdf-btn">Download PDF</button>
   </div><br>
-  <hr>
+  <hr> -->
+
+  <div class="search-container">
+
+    <div class="input-group">
+        
+        <input class="form-control border-end-0 border rounded-pill search-input" type="search" id="searchDupTranscript" >
+ 
+    </input> 
+        <span class="input-group-append">
+        </span>
+    </div>
+
+    </div>
   <!-- Pour la recherche des demandes de duplicata de bulletin -->
-  <input type="text" id="searchDupTranscript" placeholder="Rechercher dans les demandes de duplicata de bulletin...">
+  {{-- <input type="text" id="searchDupTranscript" placeholder="Rechercher dans les demandes de duplicata de bulletin..."> --}}
   <br><br>
   <!-- Second grid -->
-  <div class="dual-container" id="dupTranscriptContainer">
+  <!-- <div class="dual-container" id="dupTranscriptContainer">
 
-      <!-- Display the transcripts from DupTranscript model -->
+       Display the transcripts from DupTranscript model 
       @if ($userDupTranscripts->isEmpty())
       <p> <strong> Aucune demande de duplicata de bulletin n'a été enregistrée </strong></p>
       @else
@@ -573,11 +658,11 @@
             </tr>
             <tr>
               <td class="bold">Nom:</td>
-              <td>{{ $transcript->lastname }}</td>
+              <td>{{ $dup_transcript->lastname }}</td>
           </tr>
           <tr>
             <td class="bold">Prénom:</td>
-            <td>{{ $transcript->firstname }}</td>
+            <td>{{ $dup_transcript->firstname }}</td>
         </tr>
             <tr>
                 <td>Filière:</td>
@@ -639,13 +724,13 @@
                     ">
                     @switch($dup_transcript->status)
                     @case('REJETE')
-                    REJETE <i class="fas fa-times-circle"></i> <!-- Replace with appropriate icon class for rejection -->
+                    REJETE <i class="fas fa-times-circle"></i>  Replace with appropriate icon class for rejection 
                     @break
                     @case('ACCEPTE')
-                    ACCEPTE  <i class="fas fa-check-circle"></i> <!-- Replace with appropriate icon class for acceptance -->
+                    ACCEPTE  <i class="fas fa-check-circle"></i>  Replace with appropriate icon class for acceptance 
                     @break
                     @case('RETIRE')
-                    RETIRE <i class="fas fa-check-circle"></i> <!-- Replace with appropriate icon class for retirement -->
+                    RETIRE <i class="fas fa-check-circle"></i>  Replace with appropriate icon class for retirement 
                     @break
                     @default
                     {{ $dup_transcript->status }}
@@ -654,7 +739,7 @@
                 </td>
             </tr>
             <tr class="pBtn">
-              <td>Action:</td>
+              <td></td>
               <td colspan="2">
                   <button class="popup-button imprimer-btn">Imprimer</button>
               </td>
@@ -666,7 +751,7 @@
       @endforeach
       @endif
 
-  </div>
+  </div> -->
 
 
   <!-- No data message -->
@@ -681,6 +766,11 @@
           @if ($userDupTranscripts->isEmpty())
           <p> <strong> Aucune demande de duplicata de bulletin n'a été enregistrée </strong></p>
           @else
+          <hr>
+          <div > <strong>RECAPITULATIF DES DEMANDES DE DUPLICATA DE CUE</strong> 
+            <hr>
+           
+          </div> 
           @foreach($userDupTranscripts as $dup_transcript)
           @if ($dup_transcript->user_id === auth()->user()->id && $dup_transcript->exam_type === 'current_semester')
           <p>You have already requested your duplicate transcript for this semester.</p>
@@ -692,7 +782,7 @@
                                     <page>
                                     <table style="border-collapse: collapse; border-spacing: 10px; width: 100%;">
                                       <tr>
-                                          <th colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">DEMANDE DE CUE N°</th>
+                                          <th colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">DEMANDE DE DUPICATA DE CUE N°</th>
                                           <td colspan="2" style="border: 1px solid black; text-align: center;">ADR{{ $dup_transcript->id }}</td>
                                       </tr>
                                       <tr>
@@ -741,7 +831,7 @@
                                           <td class="bold" style="border: 1px solid black; font-weight: bold;">Status:</td>
                                           <td colspan="3" style="border: 1px solid black;">
                                               <span style="font-weight: bold; color:
-                                                  @switch($transcript->status)
+                                                  @switch($dup_transcript->status)
                                                       @case('REJETE')
                                                           red;
                                                           @break
@@ -785,7 +875,7 @@
 </form>
 
 <script>
-  window.onload = function () {
+ window.onload = function () {
     document.getElementById("popup").style.display = "block";
 
     // Search functionality
@@ -793,71 +883,82 @@
     const searchDupTranscript = document.getElementById("searchDupTranscript");
     const transcriptReports = document.querySelectorAll("#transcriptContainer .report");
     const dupTranscriptReports = document.querySelectorAll("#dupTranscriptContainer .report");
+    const imprimerBtns = document.querySelectorAll(".imprimer-btn"); // Sélectionne tous les boutons Imprimer
     const noDataMessage = document.getElementById("noDataMessage");
     const noDataMessageDup = document.getElementById("noDataMessageDup");
 
     // Function to filter transcript reports
     function filterTranscriptReports(searchTerm) {
-      let found = false;
+        let found = false;
 
-      transcriptReports.forEach(report => {
-        const searchData = report.innerText.toLowerCase();
-        if (searchData.includes(searchTerm)) {
-          report.style.display = "block";
-          found = true;
-        } else {
-          report.style.display = "none";
-        }
-      });
+        transcriptReports.forEach((report, index) => {
+            const searchData = report.innerText.toLowerCase();
+            if (searchData.includes(searchTerm)) {
+                report.style.display = "block";
+                found = true;
+                // Affiche le bouton Imprimer correspondant au rapport trouvé
+                imprimerBtns[index].style.display = "block";
+            } else {
+                report.style.display = "none";
+                // Cache le bouton Imprimer si le rapport est caché
+                imprimerBtns[index].style.display = "none";
+            }
+        });
 
-      return found;
+        return found;
     }
 
     // Function to filter duplicate transcript reports
     function filterDupTranscriptReports(searchTerm) {
-      let found = false;
+        let found = false;
 
-      dupTranscriptReports.forEach(report => {
-        const searchData = report.innerText.toLowerCase();
-        if (searchData.includes(searchTerm)) {
-          report.style.display = "block";
-          found = true;
-        } else {
-          report.style.display = "none";
-        }
-      });
+        dupTranscriptReports.forEach((report, index) => {
+            const searchData = report.innerText.toLowerCase();
+            if (searchData.includes(searchTerm)) {
+                report.style.display = "block";
+                found = true;
+                // Affiche le bouton Imprimer correspondant au rapport trouvé
+                imprimerBtns[index + transcriptReports.length].style.display = "block";
+            } else {
+                report.style.display = "none";
+                // Cache le bouton Imprimer si le rapport est caché
+                imprimerBtns[index + transcriptReports.length].style.display = "none";
+            }
+        });
 
-      return found;
+        return found;
     }
 
     // Event listener for transcript search input
     searchTranscript.addEventListener("input", function () {
-      const searchTerm = this.value.toLowerCase();
-      const transcriptFound = filterTranscriptReports(searchTerm);
+        const searchTerm = this.value.toLowerCase();
+        const transcriptFound = filterTranscriptReports(searchTerm);
 
-      if (transcriptFound) {
-        noDataMessage.style.display = "none";
-      } else {
-        noDataMessage.style.display = "block";
-      }
+        if (transcriptFound) {
+            noDataMessage.style.display = "none";
+        } else {
+            noDataMessage.style.display = "block";
+        }
     });
 
     // Event listener for duplicate transcript search input
     searchDupTranscript.addEventListener("input", function () {
-      const searchTerm = this.value.toLowerCase();
-      const dupTranscriptFound = filterDupTranscriptReports(searchTerm);
+        const searchTerm = this.value.toLowerCase();
+        const dupTranscriptFound = filterDupTranscriptReports(searchTerm);
 
-      if (dupTranscriptFound) {
-        noDataMessageDup.style.display = "none";
-      } else {
-        noDataMessageDup.style.display = "block";
-      }
+        if (dupTranscriptFound) {
+            noDataMessageDup.style.display = "none";
+        } else {
+            noDataMessageDup.style.display = "block";
+        }
     });
 
-    // Initially hide the no data messages
+    // Initially hide the no data messages and Imprimer buttons
     noDataMessage.style.display = "none";
     noDataMessageDup.style.display = "none";
-  };
+    imprimerBtns.forEach(btn => (btn.style.display = "none"));
+};
+
 </script>
 
 <script>

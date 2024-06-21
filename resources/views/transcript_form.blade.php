@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Formulaire de demande de bulletin</title>
+  <title>Formulaire de demande de cue</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <!-- Favicons -->
@@ -16,6 +16,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
     rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -29,51 +30,208 @@
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/my_style1.css')}}" rel="stylesheet">
   <style>
+  
   /* CSS for the spinner */
-.spinner {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center; 
-  width: 2cm;
-  height: 2cm;
-  border: 3px solid #ccc;
-  border-top: 3px solid #007bff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 20px; /* Adjust spacing as needed */
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-    .form-container {
+  /* General styling */
+  body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+  
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+  
+      /* Form container and step styling */.form-container {
+      max-width: 400px;
+      margin: 20px auto;
       padding: 20px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      margin: 0 auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-    .progress-container {
-      margin-bottom: 20px;
+  
+    .form-group {
+      margin-bottom: 15px;
+      font-weight: bold;
+      
     }
-    /* Additional styling for progress bar */
-    #progress-bar-container {
-      background-color: #f0f0f0;
-      border-radius: 10px;
+  
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
     }
-    #progress-bar {
-      background-color: #007bff;
-      border-radius: 10px;
+  
+    select, input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
     }
-    /* Reduce the width of the title */
-    .form-step p {
-      font-size: 30px;
+  
+    .hidden {
+      display: none;
     }
-  </style>
+  
+      .form-step p {
+        font-size: larger;
+        text-decoration: none;
+      }
+  
+      /* Button styling */
+      .btn-primary {
+        min-width: 100px !important;
+        width: 100px;
+        background-color: #05138fde;
+        border-radius: 20px;
+      }
+      .verify {
+        width: 80px;
+        border-radius: 50%;
+      }
+      /* Progress bar styling */
+      .progress-container {
+        margin-bottom: 20px;
+      }
+  
+      #progress-bar-container {
+        background-color: #f0f0f0;
+        border-radius: 10px;
+      }
+  
+      #progress-bar {
+        background-color: #05138fde;
+        border-radius: 10px;
+      }
+  
+  
+      /* Spinner styling */
+      .spinner {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 2cm;
+        height: 2cm;
+        border: 8px solid #ccc;
+        border-top: 8px solid #05138fde;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+  
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+  
+      /* Responsive adjustments */
+      @media screen and (min-width: 768px) {
+        .form-container {
+          max-width: 100%;
+        }
+  
+        .form-step {
+          width: 100%;
+        }
+      }
+  
+      /*handle error in the section*/
+      
+  .popup-content {
+    position: relative;
+        height: auto;
+        width: auto;
+        display: none;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        animation: fadeIn 1s ease-in-out;
+      }
+  
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+  
+      .popup-icon {
+        font-size: 50px;
+        color: #dc3545; 
+        position: absolute;
+        top: 5px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        z-index: 1;
+        transform: translate(-50%, -50%)
+      }
+  
+  .icon-text{
+    position: relative;
+    color: #555;
+    font-size: 20px;
+    margin-top: 30px
+  }
+  
+  
+       /*  first div  */
+  
+       .service-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 10px;
+      }
+        .service-title {
+          /* flex: 0 0 calc(50% - 20px); */
+        background-color: #05138fde;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        height: 300px;
+        color: #fff
+      }
+  
+      .small-title{
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        height: 270px;
+        font-size: 20px;
+        font-weight: bold;
+        color: black
+        /* margin-top: 5px */
+      }
+      .step_title{
+        
+      font-weight: bolder;
+      text-align: center;
+      color: #05138fde;
+      font-size: 15px
+    }
+    .form-step .step_title p{
+      font-weight: bold;
+      font-size: 20px
+    }
+  
+    </style>
 </head>
 <body>
 
@@ -82,9 +240,9 @@
 <header id="header" class="header d-flex align-items-center">
   <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-    <a href="index.html" class="logo d-flex align-items-center">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
+    <a href="{{route('index')}}" class="logo d-flex align-items-center">
       <img src="assets/img/logo.jpeg" alt="FASEG">
+      <span class="faseg" style="color: black">FASEG UAC</span>
     </a>
 
     <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -160,22 +318,42 @@
 
   <main id="main">
     <!-- Breadcrumbs -->
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
-      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-        <h2 style="font-weight: bold; font-size: 40px;">Bulletin</h2>
-        <ol>
-            {{-- <li><a href="{{route('index')}}">Accueil</a></li> --}}
-            <li class="white-text">Demande de Bulletin</li>
-        </ol>
-        {{-- session alert for record already exists --}}
-        @if(session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-         @endif
+    <section>
+      <div class="service-container">
+        <div class="service-title">
+          <div class="user"  > 
+     
+          <div style="font-size:40px; font-weight:bold; align-item:center">CUE</div>
+          <div id="popup-text" style="font-size: 20px; font-weight:bold; text-transform:uppercase"></div>  
+            <div class="small-title">
+                Demande de Certificat d'Unité d'Enseignement <br><br>
+                <p style="font-weight: 100; color:black">Veuillez remplir soyeusement le formulaire ci-dessous <br>
+                 
+                </p>
 
-      </div>
-    </div>
+            </div>
+    
+        </div>
+         
+        </div>
+       
+    </section>
+
+    {{-- @session alert--}}
+
+@if(session('error'))
+<div class="popup-content" id="popup">
+  <i class="bi bi-x-circle text-danger popup-icon"></i>
+ 
+  <div class="icon-text">
+    {{ session('error') }}
+  </div>
+
+</div>
+
+</div>
+@endif
+
     <!-- Registration Form Section -->
     <section id="registration-form" class="registration-form">
       <div class="container">
@@ -191,44 +369,47 @@
           <div class="col-lg-4 form-container form-step" id="step1">
             <fieldset>
               <div class="form-group">
-                <p style="align-items: center; justify-content: center; display: grid; font-size: larger; text-decoration: underline;">INFORMATIONS DE LA DEMANDE</p>
+                <p class="step_title">INFORMATIONS DE LA DEMANDE</p>
                 <label for="ac_year">Année académique:</label>
                 <select id="ac_year" class="form-control" name="ac_year">
-                  <optgroup label="Veuillez sélectionner l'année académique">
+                  {{-- <option value="">Veuillez sélectionner l'année académique</option> --}}
                     <option value="2022-2023">2022-2023</option>
                     <option value="2023-2024">2023-2024</option>
                     <option value="2024-2025">2024-2025</option>
                     <option value="2025-2026">2025-2026</option>
                     <option value="2026-2027">2026-2027</option>
-                  </optgroup>
                 </select>
               </div>
               <div class="form-group">
-                <label for="ac_level">Niveau d'étude:</label>
-                <select id="ac_level" class="form-control" name="ac_level">
-                  <optgroup label="Veuillez sélectionner votre année d'étude">
-                    <option value="Licence 1">Licence 1</option>
-                    <option value="Licence 2">Licence 2</option>
-                    <option value="Licence 3">Licence 3</option>
-                    <option value="Master 1">Master 1</option>
-                    <option value="Master 2">Master 2</option>
-                    <option value="phD 1">phD 1</option>
-                    <option value="phD 2">phD 2</option>
-                  </optgroup>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="training_type">Options:</label>
-                <select id="training_type" class="form-control" name="training_type">
-                  <optgroup label="Veuillez choisir l'option convenable">
-                    <option value="paid_training">Formation payante</option>
-                    <option value="non_paid_training">Formation non payante</option>
-                    <option value="together_l1">Tronc commun L1</option>
-                    <option value="more_than_five">5ans d'ancienneté ou plus </option>
+                <label for="programs">Niveau d'étude:</label>
+                <select id="programs" class="form-control" name="ac_level">
+                 <option value="">Veuillez sélectionner votre niveau d'étude</option>
+                    <option value="Licence1">Licence 1</option>
+                    <option value="Licence2">Licence 2</option>
+                    <option value="Licence3">Licence 3</option>
+                    <option value="Master1">Master 1</option>
+                    <option value="Master2">Master 2</option>
+                    <option value="phD1">phD 1</option>
+                    <option value="phD2">phD 2</option>
+                    <option value="phD3">phD 3</option>
 
-                  </optgroup>
                 </select>
               </div>
+              <div class="form-group">
+                  <label for="field">Filière:</label>
+                  <select id="field" class="form-control" name="field">
+                    {{-- <option>Veuillez choisir une filière</option> --}}
+                    <optgroup label="FIlières">
+                      <option value="Sciences Economiques">Sciences Economiques</option>
+                      <option value="Sciences de Gestion">Sciences de Gestion</option>
+                    </optgroup>
+                    <optgroup label="Cas Particulier">
+                      <option value="TC">Tronc commun</option>
+                    </optgroup>
+                   
+                  </select>
+                </div>
+           
               {{-- <div class="form-group">
                 <label for="mat">Matricule:</label>
                 <input type="text" name="mat" class="form-control" id="mat" placeholder="17104018" maxlength="8">
@@ -246,50 +427,62 @@
           <div class="col-lg-4 form-container form-step" id="step2">
             <fieldset>
               <div class="form-group">
-                <p style="font-size: larger; text-decoration: underline;">INFORMATIONS DU DOCUMEMT</p>
-                <label for="exam_type">Semestre:</label>
-                <select name="exam_type" id="exam_type">
-                  <optgroup label="Veuillez sélectionner le semestre concerné">
-                  <option value="Semestre 1">Semestre 1 </option>
-                  <option value="Semestre 2">Semestre 2</option>
-                </optgroup>
-                </select>
+                <p class="step_title">INFORMATIONS DU DOCUMEMT</p>
+                
+                <div class="form-group">
+                <label for="training_type">Année de validation de la dernière UE:</label>
+                <select class="form-control" name="training_type" id="training_type">
+                  <option value="2013">2013</option>
+                  <option value="2014">2014</option>
+                  <option value="2015">2015</option>
+                  <option value="2016">2016</option>
+                  <option value="2017">2017</option>
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+              </select>  
               </div>
 
-              <div class="form-group">
-                <label for="field">Filière:</label>
-                <select id="field" class="form-control" name="field">
-                  <optgroup label="Veuillez sélectionner votre filière">
-                    <option value="Sciences Economiques">Sciences Economiques</option>
-                    <option value="Sciences de Gestion">Sciences de Gestion</option>
+                <div class="form-group">
+                  <label for="speciality">Spécialité:</label>
+                  <select id="speciality" class="form-control" name="speciality">
+                      {{-- <option value="">Veuillez choisir une spécialité</option> --}}
+                      <optgroup label="Economie">
+                        <option value="EGSS">EGSS</option>
+                        <option value="EGEA">EGEA</option>
+                        <option value="EAPD">EAPD</option>
+                        <option value="EFCL">EFCL</option>
+                        <option value="APD">APD</option>
+                        <option value="APP">APP</option>
+                
+                        <option value="EMF">EMF</option>
+                        <option value="LESA">LESA</option>
+                    </optgroup>
+                    <optgroup label="Gestion">
+                      <option value="MKTS">MKTS</option>
+                      <option value="CACG">CACG</option>
+                      <option value="GRH">GRH</option>
+                      <option value="FBA">FBA</option>
+                      <option value="LSTCF">LSTCF</option>
+                      <option value="EGPME">EGPME</option>
+  
+                    </optgroup>
+                  <optgroup label="Cas particulier">
+                    <option value="TC">Tronc commmun</option>
                   </optgroup>
-                </select>
-              </div>
+                  </select>
+                </div>
+  
 
-              <div class="form-group">
-                <label for="speciality">Spécialité:</label>
-                <select id="speciality" class="form-control" name="speciality">
-                  <optgroup label="Veuillez choisir votre spécialité">
-                    <optgroup label="Economie">
-                      <option value="Analyse des Projets et Planification">Analyse des Projets et Planification</option>
-                      <option value="Analyse et Politique de Développement">Analyse et Politique de Développement</option>
-                      <option value="Economie Appliquée">Economie Appliquée</option>
-                      <option value="Economie et Finance des Collectivités Locales">Economie et Finance des Collectivités Locales</option>
-                      <option value="Economie et Gestion des Exploitations Agricoles">Economie et Gestion des Exploitations Agricoles</option>
-                      <option value="Economie et Gestion des Micro-Finances">Economie et Gestion des Micro-Finances</option>
-                      <option value="Economie et Gestion des Petites et Moyenne Entreprise">Economie et Gestion des Petites et Moyenne Entreprise</option>
-                      <option value="Economie et Gestion des structures Sanitaires">Economie et Gestion des structures Sanitaires</option>
-                      <option value="Statistique et Econometrie">Statistique et Econometrie</option>
-                  </optgroup>
-                  <optgroup label="Gestion">
-                      <option value="Comptabilité Audit et Controle de Gestion et Finance">Comptabilité Audit et Controle de Gestion et Finance</option>
-                      <option value="Finance Banque et Assurance">Finance Banque et Assurance</option>
-                      <option value="Gestion des Ressources Humaines">Gestion des Ressources Humaines</option>
-                      <option value="Marketing et action commerciale">Marketing et action commerciale</option>
-                      <option value="Sciences Technique et Comptable">Sciences Technique et Comptable</option>
-                  </optgroup>
-                  <option value="Tronc commun">Tronc commun</option>
-                  </optgroup>
+                <label for="semesters">Semestre:</label>
+                <select name="exam_type" id="semesters" disabled>
+                 
+                    <option value="" class="form-control">Veuillez selectionner un semestre</option>
                 </select>
               </div>
 
@@ -307,27 +500,27 @@
           <div class="col-lg-4 form-container form-step" id="step3">
             <fieldset>
               <div class="form-group">
-                <p style="font-size: larger; text-decoration: underline;">INFORMATIONS COMPLEMENTAIRES</p>
+                <p class="step_title">INFORMATIONS COMPLEMENTAIRES</p>
               
               </div>
               <div class="form-group">
                 <label for="fiche_inscription">carte d'etudiant:</label>
-                <input type="file" class="form-control-file" id="fiche_inscription" name="fiche_inscription[]" multiple>
+                <input type="file" class="form-control-file" id="fiche_inscription" name="fiche_inscription">
               </div>
 
               <div class="form-group">
                 <label for="cip">CIP(ANIP):</label>
-                <input type="file" class="form-control-file" id="cip" name="cip[]" multiple >
+                <input type="file" class="form-control-file" id="cip" name="cip" >
               </div>
 
               <div class="form-group">
                 <label for="inscription">Fiche de préinscription validée:</label>
-                <input type="file" class="form-control-file" id="inscription" name="inscription[]" multiple >
+                <input type="file" class="form-control-file" id="inscription" name="inscription" >
               </div>
 
               <div class="form-group">
                 <label for="bio">Description:</label>
-                <textarea class="form-control" id="bio" name="description" rows="3" placeholder="Brève description du problème"></textarea>
+                <textarea class="form-control" id="bio" name="description" rows="3" placeholder="Description en quelques mots..."></textarea>
               </div>
               <!-- Add "Previous" and "Next" buttons for navigation between Step 2 and Step 4 -->
               <div class="text-center">
@@ -341,11 +534,12 @@
           <div class="col-lg-4 form-container form-step" id="step4">
             <fieldset>
               <div class="form-group">
-                <p>CONFIRMATION</p>
+                <p class="step_title">CONFIRMATION</p>
                 <p style="color:black"> Veuillez verifier les informations renseignées avant de continuer.</p>
                  
-                <button type="button" onclick="generateSummary()" class="btn btn-primary" style="width: 80px; border-radius: 50%;" data-bs-toggle="modal" data-bs-target="#summaryModal">Vérifier</button>
-          
+                <button type="button" onclick="generateSummary()" class="btn btn-primary verify"  style="width: 120px; border-radius: 5%;">
+                  <i class="fas fa-check" style="align-content: center; ">verifier</i> 
+              </button>          
               </p>
                 <!-- Display populated information here -->
                 <div id="user-info"></div>
@@ -396,7 +590,7 @@
             </fieldset>
           </div>
        
-      </div>
+      </div> 
     </section>
   </main>
 <!-- Modal -->
@@ -404,7 +598,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Détails de la demande</h5>
+        <h5 class="modal-title">Détails de la demande de cue</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -421,58 +615,65 @@
  
 
  <!-- Footer -->
- <footer id="footer" class="footer">
-  <!-- Your footer content here -->
-</footer>
 
-<footer id="footer" class="footer">
-  <div class="footer-content position-relative">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>FASEG-UAC</h4>
-          <ul>
-            <li><a href="#"><strong>Phone:</strong> +229 97247851</a></li>
-            <li><a href="#"><strong>Email:</strong> ronaldoownpurpose@gmail.com</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-2 col-md/3 footer-links">
-          <h4>Nos Services</h4>
-          <ul>
-            <li><a href="#">Réclamation de note</a></li>
-            <li><a href="#">Demande d'acte académique</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Réseaux sociaux</h4>
-          <div class="social-links d-flex mt-3">
-            <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+  <footer id="footer" class="footer" >
+    <div class="footer-content position-relative">
+      <div class="container">
+   <hr>
+      </div>
+    </div>
+    <div class="footer-legal text-center position-relative footer-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>FASEG-UAC</h4>
+            <ul>
+              <li><a style="color: black " href=""><strong>Phone:</strong> 97247851</a></li>
+              <li><a style="color: black " href="#"><strong>Email:</strong>ronaldoagbohou@gmail.com</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-3 footer-links ">
+            <h4>Services et prestations</h4>
+            <ul style="color: black ">
+              <li><a style="color: black " href="route('complaint_form')">Réclamation</a></li>
+              <li><a style="color: black " href="route('transcript_form')">Actes académiques</a></li>
+              <li><a style="color: black " href="">Inscription pédagogique</a></li>
+  
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Réseaux sociaux</h4>
+            <div class="social-links d-flex mt-3">
+              <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Liens utiles</h4>
+            <ul>
+              <li><a style="color: black " href="contact.html">À propos</a></li>
+              <li><a style="color: black " href="#">Termes et confidentialités</a></li>
+            </ul>
           </div>
         </div>
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Liens utiles</h4>
-          <ul>
-            <li><a href="contact.html">À propos</a></li>
-            <li><a href="#">Termes et confidentialités</a></li>
-          </ul>
+  
+        <hr>
+  
+  
+        <div class="credits">
+          <!-- Your credits content here -->
         </div>
       </div>
-    </div>
-  </div>
-  <div class="footer-legal text-center position-relative">
-    <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>FASEG/UAC</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- Your credits content here -->
+        &copy; Copyright <strong><span>e-Request</span></strong>. All Rights Reserved
       </div>
     </div>
-  </div>
-</footer>
+    
+  </footer>
+  <!-- End Footer -->
+
 <!-- End Footer -->
 
   <script>
@@ -538,9 +739,9 @@
 function generateSummary() {
   // Récupérez les informations saisies
   const ac_year = document.getElementById('ac_year').value;
-  const ac_level = document.getElementById('ac_level').value;
-  // const training_type = document.getElementById('training_type').value;
-  const exam_type = document.getElementById('exam_type').value;
+  const programs = document.getElementById('programs').value;
+  const training_type = document.getElementById('training_type').value;
+  const semesters = document.getElementById('semesters').value;
   const field = document.getElementById('field').value;
   const speciality = document.getElementById('speciality').value;
   const description = document.getElementById('bio').value;
@@ -548,9 +749,9 @@ function generateSummary() {
   // Générez le résumé
   const summary = `
   <p style="color:black"><strong>Année académique:</strong> ${ac_year}</p>
-    <p style="color:black"><strong>Niveau d'étude:</strong> ${ac_level}</p>
-    
-    <p style="color:black"><strong>Semestre:</strong> ${exam_type}</p>
+    <p style="color:black"><strong>Niveau d'étude:</strong> ${programs}</p>
+    <p style="color:black"><strong>Année de validation de la dernière UE:</strong> ${training_type}</p>
+    <p style="color:black"><strong>Semestre:</strong> ${semesters}</p>
     <p style="color:black"><strong>Filière:</strong> ${field}</p>
     <p style="color:black"><strong>Spécialité:</strong> ${speciality}</p>
     <p style="color:black"><strong>Description:</strong> ${description}</p>
@@ -590,5 +791,216 @@ function generateSummary() {
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    window.onload = function () {
+      document.getElementById("popup").style.display = "block";
+    };
+  </script>
+
+
+
+<script>
+    const programs = {
+      Licence1: {
+    semesters: ["Semestre 1", "Semestre 2"],
+    ues: {
+      "Semestre 1": [
+            "Mathématiques 1",
+        ],
+        "Semestre 2": [
+            "Fondements Microéconomiques",
+        ]
+    },
+    ecues: {
+      "Mathématiques 1": ["Analyse", "Algèbre Matricielle"],
+        "Fondements Macroéconomiques": ["Macroéconomie"],
+      
+    }
+  },
+  Licence2: {
+    semesters: ["Semestre 1", "Semestre 2", "Semestre 3", "Semestre 4"],
+    ues: {
+      "Semestre 1": [
+            "Mathématiques 1",
+        ],
+        "Semestre 2": [
+            "Fondements Microéconomiques",
+        ]
+    },
+    ecues: {
+      "Mathématiques 1": ["Analyse", "Algèbre Matricielle"],
+        "Fondements Macroéconomiques": ["Macroéconomie"],
+      
+    }
+  },
+  Licence3: {
+    semesters: ["Semestre 1", "Semestre 2", "Semestre 3", "Semestre 4","Semestre 5", "Semestre 6" ],
+    ues: {
+      "Semestre 1": [
+            "Mathématiques 1",
+        ],
+        "Semestre 2": [
+            "Fondements Microéconomiques",
+        ]
+    },
+    ecues: {
+      "Mathématiques 1": ["Analyse", "Algèbre Matricielle"],
+        "Fondements Macroéconomiques": ["Macroéconomie"],
+      
+    }
+  },
+  Master1: {
+    semesters: ["Semestre 1", "Semestre 2",],
+    ues: {
+      "Semestre 1": [
+            "Mathématiques 1",
+        ],
+        "Semestre 2": [
+            "Fondements Microéconomiques",
+        ]
+    },
+    ecues: {
+      "Mathématiques 1": ["Analyse", "Algèbre Matricielle"],
+        "Fondements Macroéconomiques": ["Macroéconomie"],
+      
+    }
+  },
+  Master2: {
+    semesters: ["Semestre 1", "Semestre 2", "Semestre 3", "Semestre 4"],
+    ues: {
+      "Semestre 1": [
+            "Mathématiques 1",
+        ],
+        "Semestre 2": [
+            "Fondements Microéconomiques",
+        ]
+    },
+    ecues: {
+      "Mathématiques 1": ["Analyse", "Algèbre Matricielle"],
+        "Fondements Macroéconomiques": ["Macroéconomie"],
+      
+    }
+  },
+  phD1: {
+    semesters: ["Semestre 1", "Semestre 2"],
+    ues: {
+      "Semestre 1": [
+            "Mathématiques 1",
+        ],
+        "Semestre 2": [
+            "Fondements Microéconomiques",
+        ]
+    },
+    ecues: {
+      "Mathématiques 1": ["Analyse", "Algèbre Matricielle"],
+        "Fondements Macroéconomiques": ["Macroéconomie"],
+      
+    }
+  },
+  phD2: {
+    semesters: ["Semestre 1", "Semestre 2", "Semestre 3", "Semestre 4"],
+    ues: {
+      "Semestre 1": [
+            "Mathématiques 1",
+        ],
+        "Semestre 2": [
+            "Fondements Microéconomiques",
+        ]
+    },
+    ecues: {
+      "Mathématiques 1": ["Analyse", "Algèbre Matricielle"],
+        "Fondements Macroéconomiques": ["Macroéconomie"],
+      
+    }
+  },
+  phD3: {
+    semesters: ["Semestre 1", "Semestre 2", "Semestre 3", "Semestre 4","Semestre 5", "Semestre 6"],
+    ues: {
+      "Semestre 1": [
+            "Mathématiques 1",
+        ],
+        "Semestre 2": [
+            "Fondements Microéconomiques",
+        ]
+    },
+    ecues: {
+      "Mathématiques 1": ["Analyse", "Algèbre Matricielle"],
+        "Fondements Macroéconomiques": ["Macroéconomie"],
+      
+    }
+  },
+
+};
+
+
+const programsDropdown = document.getElementById('programs');
+    const semestersDropdown = document.getElementById('semesters');
+    const uesDropdown = document.getElementById('ues');
+    const ecuesDropdown = document.getElementById('ecues');
+    const courseDetailsDiv = document.getElementById('courseDetails');
+
+    // Populate Semesters Dropdown based on Program Selection
+    programsDropdown.addEventListener('change', () => {
+        const selectedProgram = programsDropdown.value;
+        const semesters = programs[selectedProgram].semesters;
+        populateDropdown(semestersDropdown, semesters);
+        semestersDropdown.disabled = false;
+        uesDropdown.disabled = true;
+        ecuesDropdown.disabled = true;
+        courseDetailsDiv.style.display = 'none';
+    });
+
+    // Populate UE Dropdown based on Semester Selection
+    semestersDropdown.addEventListener('change', () => {
+        const selectedProgram = programsDropdown.value;
+        const selectedSemester = semestersDropdown.value;
+        const ues = programs[selectedProgram].ues[selectedSemester];
+        populateDropdown(uesDropdown, ues);
+        uesDropdown.disabled = false;
+        ecuesDropdown.disabled = true;
+        courseDetailsDiv.style.display = 'none';
+    });
+
+    // Populate ECUE Dropdown based on UE Selection
+    uesDropdown.addEventListener('change', () => {
+        const selectedProgram = programsDropdown.value;
+        const selectedUE = uesDropdown.value;
+        const ecues = programs[selectedProgram].ecues[selectedUE];
+        populateDropdown(ecuesDropdown, ecues);
+        ecuesDropdown.disabled = false;
+        courseDetailsDiv.style.display = 'none';
+    });
+
+    // Helper function to populate dropdowns
+    function populateDropdown(dropdown, optionsArray) {
+        dropdown.innerHTML = '';
+        const defaultOption = document.createElement('option');
+        defaultOption.text = 'Select';
+        dropdown.add(defaultOption);
+        optionsArray.forEach(option => {
+            const newOption = document.createElement('option');
+            newOption.text = option;
+            dropdown.add(newOption);
+        });
+    }
+
+    // Helper function to display course details
+    function displayCourseDetails(ecues) {
+        courseDetailsDiv.innerHTML = '';
+        const heading = document.createElement('h4');
+        heading.textContent = 'Related ECUEs:';
+        courseDetailsDiv.appendChild(heading);
+        const ecueList = document.createElement('ul');
+        ecues.forEach(ecue => {
+            const listItem = document.createElement('li');
+            listItem.textContent = ecue;
+            ecueList.appendChild(listItem);
+        });
+        courseDetailsDiv.appendChild(ecueList);
+        courseDetailsDiv.style.display = 'block';
+    }
+
+</script>
 </body>
 </html>

@@ -29,34 +29,6 @@
   {{-- <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/my_style1.css')}}" rel="stylesheet"> --}}
   <style>
-    /* Center the button */
-    .button-class {
-      display: flex;
-      margin-top:10%;
-      margin-left: 30%;
-      margin-right: 30%;
-      text-align: center;
-      justify-content: center;
-      align-items: center;
-      /* height: 100vh; */
-      border-radius: 5px;
-      font-size: large;
-
-      box-shadow: 0px 0px 10px rgba(0, 0, 255, 0.5); /* Adjust the shadow as needed */
-      background-color: blue;
-      color: white;
-    }
-
-    /* Add shadow and change the button color to blue */
-    .button-class button {
-      box-shadow: 0px 0px 10px rgba(0, 0, 255, 0.5); /* Adjust the shadow as needed */
-      background-color: blue;
-      color: white;
-    }
-
-
-
-
     body {
       margin: 0;
       padding: 0;
@@ -68,15 +40,22 @@
     }
 
     .popup-content {
-      height: 350px;
-      width: 300px;
+      position: absolute;
+      bottom: 150px;
+      height: 400px;
+      width: 350px;
       display: none;
       background: #fff;
-      padding: 20px;
+      color:black;
+      font-size: 20px;
       border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+
       text-align: center;
+      align-items:center;
       animation: fadeIn 1s ease-in-out;
+      margin: 10px;
     }
 
     @keyframes fadeIn {
@@ -89,12 +68,25 @@
     }
 
     .popup-icon {
-      font-size: 80px;
-      color: #28a745; /* Green color for success */
+      position: relative;
+      top: -80px;
+      font-size: 130px;
+      width: 100px;
+      color: #28a745; 
+      background-color:  white;
+      border-radius: 200%
+
+    }
+    .content{
+      position: absolute;
+      top:130px;
+      margin:10px;
+      display:block
     }
 
     .popup-button {
-      background: #007bff; /* Blue color for the button */
+      background:  #05138fde;
+      border-radius: 20px;
       color: #fff;
       border: none;
       padding: 10px 20px;
@@ -105,8 +97,9 @@
     }
 
     .popup-button:hover {
-      background: #0056b3; /* Darker blue color on hover */
+      background: #0056b3; 
     }
+
   </style>
 
 
@@ -115,24 +108,24 @@
 <body>
   <div class="popup-content" id="popup">
     <i class="bi bi-check-circle popup-icon"></i>
-    <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
+    <p style="color:black" class = "content">
       En cliquant sur PAYER vous accepter les termes de paiement des frais de demande d'attestation   <!-- Vous pouvez désormais vous <a href="login.html" style="color: #333; font-weight: bold;">connecter</a> avec votre Nouveau
       mot de passe -->
     </p>
-    <form action="{{('payment_sucess')}}" method="POST" style="margin-left: 30px;">
-      <script
+    <form action="{{('payment_sucess')}}" method="GET" style="margin-left: 30px;">
+        <script
           src="https://checkout.fedapay.com/js/checkout.js"
           data-public-key="pk_live_NVw62EiQ_Yu6mvPq13vuUapq"
           data-button-text="PAYER"
           data-button-class="button-class"
           data-transaction-amount="100"
-          data-transaction-description="Paiement des frais de réclamation"
+          data-transaction-description="Paiement des frais de demande d'attestation"
           data-currency-iso="XOF"   
           data-widget-description="Facilement et simplement, réclamez et faites vos demande d'acte academique  en ligne"
           data-widget-image="E:\P_Projects\dissertation-main\public\dissertation_UI\assets\img\logo.jpeg"
           data-widget-title="eGraC">
         </script>
-       </form>
+      </form>
   </div>
 
   <script>

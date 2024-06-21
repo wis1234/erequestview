@@ -18,15 +18,26 @@ class Complaint extends Model
          'complain_type', 
          'mat_number',
          'field',
-         'speciality',
+         'program',
+         'tc',
+         'jury',
+         'seq_number',
+         'grade_over_20',
+         'coef_grade',
+         'validation',
          'claimant_firstname',
         'claimant_lastname',
          'claimant_phone', 
          'claimant_email',
          'ecue',
-         'ecue_sub', 
+         'ue',
+         'semester', 
          'description', 
          'status',
+         'claim_lunch',
+         'current_time',
+         'hour',
+         'end',
          'feedback',
          'exam_type', 
          'fiche_inscription',
@@ -37,6 +48,16 @@ class Complaint extends Model
           'ac_year',
     ];
 
+
+
+    // Mutator to set current_time when claim_lunch is set to "lunched"
+    public function setClaimLunchAttribute($value)
+    {
+        $this->attributes['claim_lunch'] = $value;
+        if ($value === 'lunched') {
+            $this->attributes['current_time'] = $this->freshTimestamp();
+        }
+    }
     // protected $hidden =[         'fiche_inscritpiton'];
 
     // public function student()
@@ -49,6 +70,7 @@ class Complaint extends Model
     // {
     //     return $this->hasMany(Image::class);
     // }
+
     
     
     public function addImage($path)

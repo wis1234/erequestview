@@ -97,6 +97,7 @@ class DiplomaController extends Controller
             'field' => 'required',
             'speciality' => 'required',
             'description' => 'required',
+            'semester' =>'required',
             'fiche_inscription' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -130,6 +131,8 @@ class DiplomaController extends Controller
             'mat' => $mat,
             'field' => $request->input('field'),
             'speciality' => $request->input('speciality'),
+            'semester' => $request->input('semester'),
+
             'description' => $request->input('description'),
             'fiche_inscription' => $imagePath,
             'user_id' => $user->id,

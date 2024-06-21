@@ -45,25 +45,24 @@ class CertificateController extends Controller
                 'lastname' => 'nullable',
                 'email' => 'nullable|email',
                 'phone' => 'nullable',
-                'delay' => 'nullable',
                 'field' => 'required',
                 'defense_date' => 'required|date',
                 'speciality' => 'required',
                 'description' => 'nullable',
                 'birth_cert' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'cip' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'id_card.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'id_card' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'student_card' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'enrolle1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'enrolle2' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'enrolle3' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'enrolle3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'dis_cover_page' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'cert_thesis_def' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
     
             if ($validator->fails()) {
-                // Handle validation failure, you can redirect or return a response as needed.
-                return view('false_form_filled_certificate');
+                // Handle validation failure
+                return redirect()->route('certificate_form')->with('error', "Veuillez vérifier les informations renseignées et réessayer.");
             }
     
             // Check if the user is authenticated
@@ -75,7 +74,23 @@ class CertificateController extends Controller
                 $user = User::where('mat_number', $request->input('mat'))->first();
     
                 if (!$user) {
-                    return view('not_found');
+                    return redirect()->route('certificate_form')->with('error', "Utilisateur non retrouvé.");
+                }
+            }
+    
+            // Check for existing requests with specific statuses
+            $existingRequest = $user->certificates()
+                ->whereIn('status', ['En cours de traitement...', 'ACCEPTE', 'RETIRE'])
+                ->first();
+    
+            if ($existingRequest) {
+                switch ($existingRequest->status) {
+                    case 'En cours de traitement...':
+                        return redirect()->route('certificate_form')->with('error', "La demande est en cours de traitement.");
+                    case 'ACCEPTE':
+                        return redirect()->route('certificate_form')->with('error', "Votre dossier est déjà accepté.");
+                    case 'RETIRE':
+                        return redirect()->route('certificate_form')->with('error', "Vous avez déjà retiré votre attestation. Veuillez faire une demande de duplicata au besoin.");
                 }
             }
     
@@ -102,7 +117,6 @@ class CertificateController extends Controller
                 'mat' => $mat,
                 'ac_year' => $request->input('ac_year'),
                 'ac_level' => $request->input('ac_level'),
-                'delay' => $request->input('delay'),
                 'field' => $request->input('field'),
                 'defense_date' => $request->input('defense_date'),
                 'speciality' => $request->input('speciality'),
@@ -118,48 +132,30 @@ class CertificateController extends Controller
                 'cert_thesis_def' => $cert_thesis_defPath,
             ];
     
-            $idCardPaths = [];
-            if ($request->hasFile('id_card')) {
-                foreach ($request->file('id_card') as $file) {
-                    $idCardPath = $file->store('id_card', 'public');
-                    $idCardPaths[] = $idCardPath;
-                }
-            }
-            
+            // Store the certificate data
             $certificate = $user->certificates()->create($certificateData);
     
-            // Handle success, you can redirect or return a response as needed.
-            // return view('test_certificate');
-
-
-             // Determine the redirection based on the stored value
-    $redirect = '';
-
-    switch ($certificate->delay) {
-        case 'moins de 5 ans':
-            $redirect = 'bachelor-5'; // Route name for test1.blade.php
-            break;
-        case '5 ans et plus':
-            $redirect = 'bachelor5+'; // Route name for test2.blade.php
-            break;
+            // Redirect based on the calculated delay
+            $currentYear = date('Y');
+            $delay = $currentYear - $certificate->ac_year;
     
-        default:
-            $redirect = 'default_page'; // Route name for default page
-            break;
-    }
-
-    // Redirect the user based on the determined value
-    return redirect()->route($redirect);
-
+            if ($delay < 5) {
+                $redirect = 'bachelor-5';
+            } elseif ($delay >= 5) {
+                $redirect = 'bachelor5+';
+            } else {
+                $redirect = 'default_page';
+            }
+    
+            return redirect()->route($redirect);
     
         } catch (\Exception $e) {
             // Log the exception for debugging purposes
-            Log::error($e);
-    
-            // return response()->json(['error' => $e->getMessage()]);
-            return view('error');
+            // Log::error($e);
+            return redirect()->route('certificate_form')->with('error', "Une erreur inattendue est survenue, veuillez réessayer plus tard.");
         }
     }
+    
     
 
 

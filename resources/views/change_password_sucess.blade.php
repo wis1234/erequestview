@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Changement de mot de passe avec succès.</title>
+  <title>Mot de passe réinitialisé.</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
@@ -45,15 +45,22 @@
     }
 
     .popup-content {
-      height: 250px;
-      width: 200px;
+      position: absolute;
+      bottom: 150px;
+      height: 500px;
+      width: 390px;
       display: none;
       background: #fff;
-      padding: 20px;
+      color:black;
+      font-size: 20px;
       border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+
       text-align: center;
+      align-items:center;
       animation: fadeIn 1s ease-in-out;
+      margin: 10px;
     }
 
     @keyframes fadeIn {
@@ -66,12 +73,27 @@
     }
 
     .popup-icon {
-      font-size: 80px;
-      color: #28a745; /* Green color for success */
+      position: relative;
+      top: -75px;
+      font-size: 110px;
+      width: 100px;
+      color: #28a745; 
+      background-color:  white;
+      border-radius: 200%
+
+    }
+    .content{
+      position: relative;
+      top:-40px;
+      margin:10px;
+      display:block;
+      font-size:20px;
+      /* font-weight: bolder; */
     }
 
     .popup-button {
-      background: #007bff; /* Blue color for the button */
+      background:  #05138fde;
+      border-radius: 20px;
       color: #fff;
       border: none;
       padding: 10px 20px;
@@ -82,20 +104,22 @@
     }
 
     .popup-button:hover {
-      background: #0056b3; /* Darker blue color on hover */
+      background: #0056b3; 
     }
 
-    /* the check mark color */
-
   </style>
+
+
 </head>
+
 <body>
   <div class="popup-content" id="popup">
-    <i class="bi bi-check2-circle popup-icon" style="font-size: xx-large;"></i>
-    <p style="color: #333; font-family: Arial, sans-serif; font-size: 20px;">
-      Votre mot de passe a été réinitialisé avec succès.
-      <!-- Vous pouvez désormais vous <a href="login.html" style="color: #333; font-weight: bold;">connecter</a> avec votre Nouveau
-      mot de passe -->
+  <i class="bi bi-check-circle popup-icon"></i>
+    <p style="color:black" class = "content">
+      Votre mot de passe <strong>e-Request</strong> a été réinitialisé avec succès. <br><br>
+      <strong>NB: Le mot de passe est confidentiel et ne doit être en aucun cas partagé</strong>. <br><br>
+    
+       Vous pouvez désormais vous connecter avec votre nouveau mot de passe
     </p>
     <button class="popup-button" onclick="window.location.href='{{ route('login')}}'">OK</button>
   </div>

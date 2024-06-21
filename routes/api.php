@@ -4,6 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\TranscriptController;
+use App\Http\Controllers\PedRegistrationController;
+use App\Http\Controllers\RetakeController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +42,20 @@ Route::get('/transcripts/details', [TranscriptController::class, 'getTranscriptD
 //images path routing
 
 Route::get('transcripts/images/{id}', [TranscriptController::class, 'fetchImages']);
+
+
+// being used as api endpoints in the admin panel
+//routing for complaint lunch
+Route::post('/update-all-complaints', [ComplaintController::class, 'updateAllComplaints']);
+Route::post('/update-all-complaints-stop', [ComplaintController::class, 'updateAllComplaintsStop']);
+
+
+//routing for complaint lunch
+Route::post('/uaps', [PedRegistrationController::class, 'updateAllPeds']);
+Route::post('/uapsStop', [PedRegistrationController::class, 'updateAllPedsStop']);
+
+//routing for complaint lunch
+Route::post('/uars', [RetakeController::class, 'updateAllRetakes']);
+Route::post('/uarsStop', [RetakeController::class, 'updateAllRetakesStop']);
+
+

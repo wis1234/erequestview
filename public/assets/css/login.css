@@ -1,0 +1,187 @@
+/*Add CSS for the popup */
+  body {
+    margin: 10px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #fff;
+    color: black
+  }
+  .popup-content {
+    width: 400px;
+    height: 650px;
+    display: none;
+    background: #05138fde;
+    /* color:#05138fde; */
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    margin: 10px,10px,10px,10px;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .login-container {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 40px 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 95%;
+  height: 650px;
+  background-color: #fff
+}
+
+.login-form {
+width: 100%;
+  text-align: center;
+  color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  height: 80%;
+
+}
+
+.avatar {
+
+width: 80px;
+height: 80px;
+border-radius: 1px;
+background-color: #05138fde;
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 0 auto;
+margin-bottom: 10px;
+border-radius: 50%
+}
+
+.input-container {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.input-container input {
+  width: 90%;
+  padding: 10px 15px;
+  border:outset;
+  border-radius: 10px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  color: black;
+}
+
+.input-container input::placeholder {
+  color: black
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+}
+
+.options input {
+  margin-right: 5px;
+}
+
+.options a {
+  color: white;
+  text-decoration: none;
+}
+
+.login_button {
+  width: 50%;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #05138fde;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.register_button {
+  width: 50%;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #b30d0dde;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+.login_button:hover {
+  background-color: #002244;
+  color: white;
+}
+.register_button:hover {
+  background-color: #810707de;
+  color: white;
+}
+
+
+.register_items .forgot_password p {
+font-size: 16px;
+font-weight:bold;
+color: black;
+text-decoration: none;
+
+}
+.register_items .forgot_password p a {
+text-decoration: none;
+font-size: 18px;
+color:  #05138fde;
+
+}
+
+.eRequest {
+color:  #05138fde;
+font-weight: bold;
+font-size:21px;
+}
+
+.erequest_self{
+  font-size:30px
+}
+
+.error {
+color: white;
+font-weight: bold;
+font-size:15px;
+background-color: #810707de;
+height: auto;
+box-shadow: 1 0 8px rgba(0, 0, 0, 0.2);
+position: relative;
+top: 10px;
+
+}
+.copyright{
+color:  black;
+font-size: 12px
+}
+.copyright strong{
+color:  #05138fde;
+
+}
